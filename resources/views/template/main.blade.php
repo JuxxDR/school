@@ -11,13 +11,11 @@
     @stack('css')
 </head>
 <body>
-
 @include('components.navbar')
 <div class="wrapper">
     @yield('content')
 </div>
 @include('components.footer')
-
 <!-- Javascript -->
 @include('template.global_js')
 @stack('scripts')

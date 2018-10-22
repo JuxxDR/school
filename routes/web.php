@@ -20,3 +20,24 @@ Route::get(
     'tutor/index',
     'TutorController@index'
 )->name('tutor_index');
+
+
+//====================================
+//          Rutas Reinscripcion
+//======================================
+
+Route::get(
+    'inscripcion/',
+    'InscripcionController@folio'
+)->name('inscripcion_folio');
+
+Route::post(
+    'inscripcion/',
+    'InscripcionController@folioPost'
+)->name('inscripcion_folio_post');
+
+Route::post(
+    'inscripcion/{inscripcionId}',
+    'InscripcionController@datosAlumnoPost'
+)->name('inscripcion_datos_alumno_post');
+
