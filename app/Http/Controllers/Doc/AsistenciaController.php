@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Doc;
 use App\Model\Alumno;
 use App\Model\Asistencia;
 use App\model\DiaAsistencia;
+use App\Model\Docente;
 use App\Model\Grupo;
 use App\Model\GrupoAlumno;
 use Illuminate\Http\Request;
@@ -20,16 +21,21 @@ class AsistenciaController extends Controller
     public function index()
     {
         $user_id = auth()->user()->id;
-        $group_id = Grupo::where('docente_id',$user_id)->first();
-        $group_id=$group_id->id;
-        $students = GrupoAlumno::where('grupo_id',$group_id)->get();
-        $chidos=DiaAsistencia::where('fecha_entrega',date('Y-m-d'))->first();
-        if ($chidos){
-            $chidos=DiaAsistencia::where('fecha_entrega',date('Y-m-d'))->first()->realizada;
-        }else{
-            $chidos=0;
+        $group_id = Grupo::where('docente_id', $user_id)->first();
+        $group_id = $group_id->id;
+        $students = GrupoAlumno::where('grupo_id', $group_id)->get();
+        $numero_alumnos=0;
+        foreach ($students as $alumnos) {
+            $numero_alumnos++;
         }
-        return view('docente.asistencia.index')->with(compact('students','chidos'));
+        $realizada = DiaAsistencia::where('fecha_entrega', date('Y-m-d'))->first();
+        if ($realizada) {
+            $realizada = DiaAsistencia::where('fecha_entrega', date('Y-m-d'))->first()->realizada;
+        } else {
+            $realizada = 0;
+        }
+        $docente=Docente::find(auth()->user()->id);
+        return view('docente.asistencia.index')->with(compact('students', 'realizada','docente','numero_alumnos'));
     }
 
     public function asistio($id)
@@ -39,7 +45,7 @@ class AsistenciaController extends Controller
         $student->asistio = 'si';
         $student->fecha = date('Y-m-d');
         $student->save();
-        return back()->with('notification', 'Usuario registrado satisfactoriamente');
+        return back()->with('notification', 'El alumno ' . $student->alumnoAsistencia->nombre . ' ' . $student->alumnoAsistencia->apellidoP . ' ' . $student->alumnoAsistencia->apellidoM . ' asistio a clase');
     }
 
     public function noAsistio($id)
@@ -49,22 +55,33 @@ class AsistenciaController extends Controller
         $student->asistio = 'no';
         $student->fecha = date('Y-m-d');
         $student->save();
-        return back()->with('notification', 'Usuario registrado satisfactoriamente');
+        return back()->with('notification', 'El alumno ' . $student->alumnoAsistencia->nombre . ' ' . $student->alumnoAsistencia->apellidoP . ' ' . $student->alumnoAsistencia->apellidoM . ' no asistio a clase');
     }
 
     public function delete($id)
     {
-        $user = Asistencia::where('alumno_id',$id)->where('fecha',date('Y-m-d'));
+        $user = Asistencia::where('alumno_id', $id)->where('fecha', date('Y-m-d'));
         $user->delete();
         return back();
     }
 
     public function guardar()
     {
+        $user_id = auth()->user()->id;
+        $group_id = Grupo::where('docente_id', $user_id)->first();
+        $group_id = $group_id->id;
+        $students = GrupoAlumno::where('grupo_id', $group_id)->get();
+
+        foreach ($students as $student) {
+            if (!Asistencia::where('alumno_id', $student->alumno_id)->where('fecha', date('Y-m-d'))->first()) {
+                return back()->with('notification', 'No se ha registrado asistencia de todos los alumnos');
+            }
+        }
+
         $valor = new DiaAsistencia();
-        $valor->fecha_entrega=date('Y-m-d');
-        $valor->realizada=1;
+        $valor->fecha_entrega = date('Y-m-d');
+        $valor->realizada = 1;
         $valor->save();
-        return back();
+        return back()->with('notification', 'Se ha registrado lista correctamente');
     }
 }

@@ -5,18 +5,62 @@
     <!-- Page Content  -->
     <div id="content">
         <div class="container">
-            <div class="row">
-                <div class="col-md-10">
-                    <h2>Lista de asistencia</h2>
+            @if(session('notification'))
+                <div class="alert alert-dismissible alert-info">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Información </strong><br>
+                    {{ session('notification') }}
                 </div>
-                <div class="col-md-2">
-                    <h5 style="float: right;"><i class="fa fa-calendar"></i><span> {{ date('d/M/Y') }}</span></h5>
+            @endif
+
+            <div class="row">
+                <div class="col-md-8">
+                    <h2>Lista de asistencia</h2>
                 </div>
             </div>
             <p>Recuerda pasar lista todos los dias de clase.</p>
-
-            <br>
-            @if( $chidos == 0 )
+            <a href="" class="btn btn-info" style="float: right">Consultar fechas anteriores</a>
+            <br><br>
+            <div class="card">
+                <div class="container">
+                    <div class="card-body">
+                        <h5 style="float:right;"><i class="fa fa-calendar"></i><span> {{ date('d/M/Y') }}</span></h5>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <h5>Escuela </h5>
+                                <p>Jardin de Niños: "Profa. Ma. Luisa Ballina Escartin" </p>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>Grupo: </h5>
+                                <p>{{ $docente->grupo->id }}</p>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>No. Alumnos: </h5>
+                                <p>{{ $numero_alumnos }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <h5>Nombre de Docente: </h5>
+                                <p>{{ $docente->nombre.' '.$docente->apellidoP.' '.$docente->apellidoM }}</p>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>No. Docente: </h5>
+                                <p>{{ $docente->id }}</p>
+                            </div>
+                            <div class="col-md-2">
+                                <h5>Aula: </h5>
+                                <p>{{ $docente->grupo->aula }}</p>
+                            </div>
+                            <div class="col-md-2">
+                                <h5>Grado: </h5>
+                                <p>{{ $docente->grupo->grado }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @if( $realizada == 0 )
                 <table class="table" id="lista_asistencias">
                     <thead class="thead-dark">
                     <tr>
@@ -52,43 +96,18 @@
                     @endforeach
                     </tbody>
                 </table>
-                <a class="btn btn-primary" style="float: right;" href="">Guardar</a>
+                <a class="btn btn-primary" style="float: right;" href="asistencia/guardar">Guardar</a>
             @else
-                <h3>Ya pasaste lista el dia de hoy</h3>
-            @endif
-            <br><br><br>
-            <div class="card">
-                <div class="card-body">
-                    <form>
-                        {{ csrf_field() }}
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="alumno_name">Alumno:</label>
-                                    <input type="text" class="form-control" id="alumno_name"
-                                           placeholder="Introduce nombre de alumno"
-                                           name="alumno_name">
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="asistio_opcion">Opción:</label>
-                                    <select class="form-control" name="asistio_opcion">
-                                        <option>Selecciona una opción</option>
-                                        <option>Asistio</option>
-                                        <option>No Asistio</option>
-                                        <option>Sin especificar</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="asistio_opcion" style="color: white;">Opción:</label>
-                                <button class="btn btn-info" style="float: right;">Consultar dias anteriores</button>
-                            </div>
-                        </div>
-                    </form>
+                <div class="alert alert-dismissible alert-info text-center">
+                    <h4>Ya pasaste lista el dia de hoy</h4>
+                    <p>Recuerda que solo puedes registrar asistencia de tu grupo una vez al dia.</p>
+                    <p style="text-align: right;font-size: 11pt;color: black;">Si deseas consultar listas de asistencia
+                        de fechas
+                        anteriores, puedes hacerlo dando click <strong><a href=""
+                                                                          style="color: dodgerblue">aqui</a></strong>.
+                    </p>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
 @endsection

@@ -50,13 +50,13 @@ Route::get('docente/inicio','Doc\DocenteController@index')->name('docente_inicio
 
 Route::get('docente/asistencia','Doc\AsistenciaController@index')->name('asistencia_inicio');
 
-Route::post('docente/{id}/asistencia', 'Doc\AsistenciaController@asistio');
+Route::get('docente/{id}/asistencia', 'Doc\AsistenciaController@asistio');
 
-Route::post('docente/{id}/noAsistencia', 'Doc\AsistenciaController@noAsistio');
+Route::get('docente/{id}/noAsistencia', 'Doc\AsistenciaController@noAsistio');
 
 Route::get('docente/{id}/modificarAsistencia', 'Doc\AsistenciaController@delete');
 
-Route::post('docente/asistencia/guardar', 'Doc\AsistenciaController@guardar');
+Route::get('docente/asistencia/guardar', 'Doc\AsistenciaController@guardar');
 
 Route::get(    'docente/cuenta','Doc\DocenteController@account')->name('docente_cuenta');
 
