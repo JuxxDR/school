@@ -38,7 +38,7 @@ class GrupoAlumno extends Model
         );
     }
 
-    public function alumno()
+    public function alumnos()
     {
         return $this->belongsTo(
             Alumno::class,

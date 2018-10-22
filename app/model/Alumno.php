@@ -176,7 +176,7 @@ class Alumno extends Model
 
     public function grupoAlumno()
     {
-        return $this->HasMany(
+        return $this->hasMany(
             GrupoAlumno::class,
             'alumno_id',
             'id'

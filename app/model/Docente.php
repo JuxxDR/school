@@ -3,7 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Foundation\Auth\User as Authenticatable;
 /**
  * App\Model\Docente
  *
@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Docente whereRole($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Docente whereUpdatedAt($value)
  */
-class Docente extends Model
+class Docente extends Authenticatable
 {
     protected $table = 'docentes';
     protected $fillable = [
@@ -47,5 +47,15 @@ class Docente extends Model
             'docente_id',
             'id'
         );
+    }
+
+    public function getIsAdminAttribute()
+    {
+        return $this->role == 0;
+    }
+
+    public function getIsTeacherAttribute()
+    {
+        return $this->role == 1;
     }
 }

@@ -41,3 +41,25 @@ Route::post(
     'InscripcionController@datosAlumnoPost'
 )->name('inscripcion_datos_alumno_post');
 
+//====================================
+//          Rutas Docente
+//======================================
+Auth::routes();
+
+Route::get('docente/inicio','Doc\DocenteController@index')->name('docente_inicio');
+
+Route::get('docente/asistencia','Doc\AsistenciaController@index')->name('asistencia_inicio');
+
+Route::post('docente/{id}/asistencia', 'Doc\AsistenciaController@asistio');
+
+Route::post('docente/{id}/noAsistencia', 'Doc\AsistenciaController@noAsistio');
+
+Route::get('docente/{id}/modificarAsistencia', 'Doc\AsistenciaController@delete');
+
+Route::post('docente/asistencia/guardar', 'Doc\AsistenciaController@guardar');
+
+Route::get(    'docente/cuenta','Doc\DocenteController@account')->name('docente_cuenta');
+
+Route::get('administrativo/notificaciones','Admin\AdminController@notifications')->name('admin_notificar');
+
+Route::get('/home', 'HomeController@index')->name('home');
