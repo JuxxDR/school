@@ -5,36 +5,22 @@
     <!-- Page Content  -->
     <div id="content">
         <div class="container">
-            @if(session('notification'))
-                <div class="alert alert-dismissible alert-info">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Información </strong><br>
-                    {{ session('notification') }}
-                </div>
-            @endif
-
-            <div class="row">
-                <div class="col-md-8">
-                    <h2>Lista de asistencia</h2>
-                </div>
-            </div>
-            <p>Recuerda pasar lista todos los dias de clase.</p>
             <a href="" class="btn btn-info" style="float: right">Consultar fechas anteriores</a>
             <br><br>
             <div class="card">
                 <div class="container">
+                    <br>
+                    <h1 style="text-align: center;">Lista de asistencia</h1>
+                    <h2 style="text-align: center;">Jardin de Niños: "Profa. Ma. Luisa Ballina Escartin" </h2>
+                    <img class="card-img-top" src="{{ asset('img/niños.png') }}" alt="Card image" style="width:100%">
                     <div class="card-body">
                         <h5 style="float:right;"><i class="fa fa-calendar"></i><span> {{ date('d/M/Y') }}</span></h5>
                         <div class="row">
-                            <div class="col-md-5">
-                                <h5>Escuela </h5>
-                                <p>Jardin de Niños: "Profa. Ma. Luisa Ballina Escartin" </p>
-                            </div>
-                            <div class="col-md-3">
-                                <h5>Grupo: </h5>
+                            <div class="col-md-6">
+                                <h5>Codigo de Grupo </h5>
                                 <p>{{ $docente->grupo->id }}</p>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 col-md-offset-4">
                                 <h5>No. Alumnos: </h5>
                                 <p>{{ $numero_alumnos }}</p>
                             </div>
@@ -60,6 +46,20 @@
                     </div>
                 </div>
             </div>
+            @if(session('notification'))
+                <div class="alert alert-dismissible alert-warning">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Alerta! </strong><br>
+                    {{ session('notification') }}
+                </div>
+            @endif
+            @if(session('confirmation'))
+                <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Información </strong><br>
+                    {{ session('confirmation') }}
+                </div>
+            @endif
             @if( $realizada == 0 )
                 <table class="table" id="lista_asistencias">
                     <thead class="thead-dark">

@@ -45,7 +45,7 @@ class AsistenciaController extends Controller
         $student->asistio = 'si';
         $student->fecha = date('Y-m-d');
         $student->save();
-        return back()->with('notification', 'El alumno ' . $student->alumnoAsistencia->nombre . ' ' . $student->alumnoAsistencia->apellidoP . ' ' . $student->alumnoAsistencia->apellidoM . ' asistio a clase');
+        return back()->with('confirmation', 'El alumno ' . $student->alumnoAsistencia->nombre . ' ' . $student->alumnoAsistencia->apellidoP . ' ' . $student->alumnoAsistencia->apellidoM . ' asistio a clase');
     }
 
     public function noAsistio($id)
@@ -55,7 +55,7 @@ class AsistenciaController extends Controller
         $student->asistio = 'no';
         $student->fecha = date('Y-m-d');
         $student->save();
-        return back()->with('notification', 'El alumno ' . $student->alumnoAsistencia->nombre . ' ' . $student->alumnoAsistencia->apellidoP . ' ' . $student->alumnoAsistencia->apellidoM . ' no asistio a clase');
+        return back()->with('confirmation', 'El alumno ' . $student->alumnoAsistencia->nombre . ' ' . $student->alumnoAsistencia->apellidoP . ' ' . $student->alumnoAsistencia->apellidoM . ' no asistio a clase');
     }
 
     public function delete($id)
@@ -82,6 +82,6 @@ class AsistenciaController extends Controller
         $valor->fecha_entrega = date('Y-m-d');
         $valor->realizada = 1;
         $valor->save();
-        return back()->with('notification', 'Se ha registrado lista correctamente');
+        return back()->with('confirmation', 'Se ha registrado lista correctamente');
     }
 }
