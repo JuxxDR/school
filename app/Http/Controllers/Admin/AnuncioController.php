@@ -21,7 +21,7 @@ class AnuncioController extends Controller
             'importancia' => 'in:1,2,3',
             'descripcion' => 'required',
         ], [
-            "titulo.required" => "El anuncio no titulo.",
+            "titulo.required" => "El anuncio no tiene titulo.",
             "importancia.in" => "El nivel de importancia no es valida.",
             "descripcion.required" => "La descripcion no puede ir vacia, debes introducir algo.",
         ]);
