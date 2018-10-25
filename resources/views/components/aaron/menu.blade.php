@@ -12,7 +12,7 @@
                 <a href="{{ route('asistencia_inicio') }}">Lista de asistencia</a>
             </li>
             <li>
-                <a href="#">Tareas</a>
+                <a href="{{ route('tarea_inicio') }}">Tareas</a>
             </li>
             <li>
                 <a href="#">Reportes de evaluación</a>

@@ -27,7 +27,19 @@
                     <p>Este anuncio sera publicado en todos lo grupos de cualquier grado.</p>
                     <div class="card">
                         <div class="card-body">
-                            <form>
+                            @if(count($errors)>0)
+                                <div class="alert alert-dismissible alert-danger">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <strong>Oh no!</strong> <a href="#" class="alert-link">Comprueba si los datos introducidos son
+                                        correctos </a> e intentalo de nuevo.
+                                    <ul>
+                                        @foreach($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            <form action="anuncio/general" method="POST">
                                 {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-md-8">
@@ -43,9 +55,9 @@
                                             <label for="importancia">Importancia:</label>
                                             <select class="form-control" name="importancia">
                                                 <option>Selecciona una opción</option>
-                                                <option>Alta</option>
-                                                <option>Media</option>
-                                                <option>Baja</option>
+                                                <option value="1">Alta</option>
+                                                <option value="2">Media</option>
+                                                <option value="3">Baja</option>
                                             </select>
                                         </div>
                                     </div>

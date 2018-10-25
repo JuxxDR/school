@@ -29,6 +29,8 @@ class Anuncio extends Model
         'grupo_id',
         'nombre',
         'informacion',
+        'importancia',
+        'observaciones'
     ];
 
     public function grupo()
