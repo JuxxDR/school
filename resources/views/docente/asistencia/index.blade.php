@@ -45,68 +45,64 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            @if(session('notification'))
-                <div class="alert alert-dismissible alert-warning">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Alerta! </strong><br>
-                    {{ session('notification') }}
-                </div>
-            @endif
-            @if(session('confirmation'))
-                <div class="alert alert-dismissible alert-success">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Información </strong><br>
-                    {{ session('confirmation') }}
-                </div>
-            @endif
-            @if( $realizada == 0 )
-                <table class="table" id="lista_asistencias">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th>No. Control</th>
-                        <th>Nombre Completo</th>
-                        <th>Asistencia</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($students as $student)
+
+                @if(session('notification'))
+                    <div class="alert alert-dismissible alert-warning" style="margin-bottom: 0px">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Alerta! </strong><br>
+                        {{ session('notification') }}
+                    </div>
+                @endif
+                @if( $realizada == 0 )
+                    <table class="table" id="lista_asistencias">
+                        <thead class="thead-dark">
                         <tr>
-                            <td>{{ $student->alumnos->no_control }}</td>
-                            <td>{{ $student->alumnos->nombre .' '. $student->alumnos->apellidoP .' '. $student->alumnos->apellidoM }}</td>
-                            <td>
-                                @if( !\App\Model\Asistencia::where('alumno_id',$student->alumnos->id)->where('fecha',date('Y-m-d'))->first() )
-                                    <a href="{{ $student->alumnos->id }}/asistencia" class="btn btn-sm btn-success"
-                                       title="Asistio">
-                                        <i class="fa fa-check"></i>
-                                    </a>
-                                    <a href="{{ $student->alumnos->id }}/noAsistencia" class="btn btn-sm btn-danger"
-                                       title="No asistio">
-                                        <i class="fa fa-remove"></i>
-                                    </a>
-                                @else
-                                    <a href="{{ $student->alumnos->id }}/modificarAsistencia"
-                                       class="btn btn-sm btn-info"
-                                       title="Modificar">
-                                        <i class="fa fa-check"></i>
-                                    </a>
-                                @endif
-                            </td>
+                            <th>No. Control</th>
+                            <th>Nombre Completo</th>
+                            <th>Asistencia</th>
                         </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        @foreach($students as $student)
+                            <tr>
+                                <td>{{ $student->alumnos->no_control }}</td>
+                                <td>{{ $student->alumnos->nombre .' '. $student->alumnos->apellidoP .' '. $student->alumnos->apellidoM }}</td>
+                                <td>
+                                    @if( !\App\Model\Asistencia::where('alumno_id',$student->alumnos->id)->where('fecha',date('Y-m-d'))->first() )
+                                        <a href="{{ $student->alumnos->id }}/asistencia" class="btn btn-sm btn-success"
+                                           title="Asistio">
+                                            <i class="fa fa-check"></i>
+                                        </a>
+                                        <a href="{{ $student->alumnos->id }}/noAsistencia" class="btn btn-sm btn-danger"
+                                           title="No asistio">
+                                            <i class="fa fa-remove"></i>
+                                        </a>
+                                    @else
+                                        <a href="{{ $student->alumnos->id }}/modificarAsistencia"
+                                           class="btn btn-sm btn-info"
+                                           title="Modificar">
+                                            <i class="fa fa-check"></i>
+                                        </a>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                @else
+                    <div class="alert alert-dismissible alert-info text-center" style="margin-bottom: 0px">
+                        <h4>Ya pasaste lista el dia de hoy</h4>
+                        <p style="color: black">Recuerda que solo puedes registrar asistencia de tu grupo una vez al
+                            dia.</p>
+                        <p style="text-align: right;font-size: 11pt;color: black;">Si deseas consultar las listas de
+                            asistencia, puedes hacerlo dando click <strong><a href=""
+                                                                              style="color: dodgerblue">aqui</a></strong>.
+                        </p>
+                    </div>
+                @endif
+            </div>
+            @if( $realizada == 0 )
                 <a class="btn btn-primary" style="float: right;" href="asistencia/guardar">Guardar</a>
-            @else
-                <div class="alert alert-dismissible alert-info text-center">
-                    <h4>Ya pasaste lista el dia de hoy</h4>
-                    <p>Recuerda que solo puedes registrar asistencia de tu grupo una vez al dia.</p>
-                    <p style="text-align: right;font-size: 11pt;color: black;">Si deseas consultar listas de asistencia
-                        de fechas
-                        anteriores, puedes hacerlo dando click <strong><a href=""
-                                                                          style="color: dodgerblue">aqui</a></strong>.
-                    </p>
-                </div>
             @endif
         </div>
     </div>

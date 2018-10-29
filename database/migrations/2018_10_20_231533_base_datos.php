@@ -323,6 +323,10 @@ class BaseDatos extends Migration
             $table->string('nombre');
             $table->string('descripcion');
             $table->date('fecha_entrega');
+            $table->integer('aceptable');
+            $table->integer('medio');
+            $table->integer('deficiente');
+            $table->integer('no_entregado');
             $table->timestamps();
         });
 
@@ -356,6 +360,8 @@ class BaseDatos extends Migration
 
             $table->string('nombre');
             $table->string('informacion');
+            $table->string('observaciones');
+            $table->smallInteger('importancia');
             $table->timestamps();
         });
 
@@ -366,6 +372,15 @@ class BaseDatos extends Migration
 
             $table->string('nombre');
             $table->string('informacion');
+            $table->timestamps();
+        });
+
+        Schema::create('anuncios_generales', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nombre');
+            $table->string('informacion');
+            $table->string('observaciones');
+            $table->smallInteger('importancia');
             $table->timestamps();
         });
     }

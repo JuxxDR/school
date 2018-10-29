@@ -61,7 +61,7 @@ class Grupo extends Model
         );
     }
 
-    public function tarea()
+    public function tareas()
     {
         return $this->hasMany(
             Tarea::class,

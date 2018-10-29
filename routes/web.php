@@ -62,9 +62,15 @@ Route::post(
 //======================================
 Auth::routes();
 
-Route::get('docente/inicio', 'Doc\DocenteController@index')->name('docente_inicio');
+Route::get('docente/inicio','Doc\DocenteController@index')->name('docente_inicio');
 
-Route::get('docente/asistencia', 'Doc\AsistenciaController@index')->name('asistencia_inicio');
+Route::get('docente/cuenta','Doc\DocenteController@account')->name('docente_cuenta');
+
+//====================================
+//          Rutas Docente-Asistencia
+//======================================
+
+Route::get('docente/asistencia','Doc\AsistenciaController@index')->name('asistencia_inicio');
 
 Route::get('docente/{id}/asistencia', 'Doc\AsistenciaController@asistio');
 
@@ -74,8 +80,18 @@ Route::get('docente/{id}/modificarAsistencia', 'Doc\AsistenciaController@delete'
 
 Route::get('docente/asistencia/guardar', 'Doc\AsistenciaController@guardar');
 
-Route::get('docente/cuenta', 'Doc\DocenteController@account')->name('docente_cuenta');
+//====================================
+//          Rutas Docente-Tareas
+//======================================
 
-Route::get('administrativo/notificaciones', 'Admin\AdminController@notifications')->name('admin_notificar');
+Route::get('docente/tareas','Doc\TareaController@index')->name('tarea_inicio');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('docente/tareas/entregas/{id}','Doc\TareaController@entrega')->name('tarea_entrega');
+//====================================
+//          Rutas Admin
+//======================================;
+
+Route::get('administrativo/notificaciones','Admin\AdminController@notifications')->name('admin_notificar');
+
+Route::post('administrativo/anuncio/general','Admin\AnuncioController@general')->name('admin_general');
+
