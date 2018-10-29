@@ -79,3 +79,5 @@ Route::get('administrativo/notificaciones','Admin\AdminController@notifications'
 
 Route::post('administrativo/anuncio/general','Admin\AnuncioController@general')->name('admin_general');
 
+Route::post('administrativo/anuncio/grupo','Admin\AnuncioController@grupo')->name('admin_grupo');
+
