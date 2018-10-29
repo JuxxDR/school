@@ -23,8 +23,9 @@ Route::get(
 
 
 //====================================
-//          Rutas Reinscripcion
+//          Rutas Inscripcioón
 //======================================
+
 
 Route::get(
     'inscripcion/',
@@ -36,19 +37,34 @@ Route::post(
     'InscripcionController@folioPost'
 )->name('inscripcion_folio_post');
 
+Route::get(
+    'inscripcion/{inscripcionId}/folio/{folioId}/alumno',
+    'InscripcionController@datosAlumnoPost'
+)->name('inscripcion_datos_alumno');
+
 Route::post(
-    'inscripcion/{inscripcionId}',
+    'inscripcion/{inscripcionId}/folio/{folioId}/alumno',
     'InscripcionController@datosAlumnoPost'
 )->name('inscripcion_datos_alumno_post');
+
+Route::post(
+    'inscripcion/{inscripcionId}/folio/{folioId}/salud',
+    'InscripcionController@datosSaludPost'
+)->name('inscripcion_datos_salud_post');
+
+Route::post(
+    'inscripcion/{inscripcionId}/folio/{folioId}/view/pdf',
+    'PdfController@createPdf'
+)->name('inscripcion_confirm_pdf');
 
 //====================================
 //          Rutas Docente
 //======================================
 Auth::routes();
 
-Route::get('docente/inicio','Doc\DocenteController@index')->name('docente_inicio');
+Route::get('docente/inicio', 'Doc\DocenteController@index')->name('docente_inicio');
 
-Route::get('docente/asistencia','Doc\AsistenciaController@index')->name('asistencia_inicio');
+Route::get('docente/asistencia', 'Doc\AsistenciaController@index')->name('asistencia_inicio');
 
 Route::get('docente/{id}/asistencia', 'Doc\AsistenciaController@asistio');
 
@@ -58,8 +74,8 @@ Route::get('docente/{id}/modificarAsistencia', 'Doc\AsistenciaController@delete'
 
 Route::get('docente/asistencia/guardar', 'Doc\AsistenciaController@guardar');
 
-Route::get(    'docente/cuenta','Doc\DocenteController@account')->name('docente_cuenta');
+Route::get('docente/cuenta', 'Doc\DocenteController@account')->name('docente_cuenta');
 
-Route::get('administrativo/notificaciones','Admin\AdminController@notifications')->name('admin_notificar');
+Route::get('administrativo/notificaciones', 'Admin\AdminController@notifications')->name('admin_notificar');
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -27,6 +27,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Docente wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Docente whereRole($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Docente whereUpdatedAt($value)
+ * @property-read mixed $is_admin
+ * @property-read mixed $is_teacher
  */
 class Docente extends Authenticatable
 {
