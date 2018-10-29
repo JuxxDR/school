@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\GrupoAlumno whereGrupoId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\GrupoAlumno whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\GrupoAlumno whereUpdatedAt($value)
+ * @property-read \App\Model\Alumno $alumnos
  */
 class GrupoAlumno extends Model
 {

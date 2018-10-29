@@ -23,8 +23,9 @@ Route::get(
 
 
 //====================================
-//          Rutas Reinscripcion
+//          Rutas Inscripcioón
 //======================================
+
 
 Route::get(
     'inscripcion/',
@@ -36,10 +37,25 @@ Route::post(
     'InscripcionController@folioPost'
 )->name('inscripcion_folio_post');
 
+Route::get(
+    'inscripcion/{inscripcionId}/folio/{folioId}/alumno',
+    'InscripcionController@datosAlumnoPost'
+)->name('inscripcion_datos_alumno');
+
 Route::post(
-    'inscripcion/{inscripcionId}',
+    'inscripcion/{inscripcionId}/folio/{folioId}/alumno',
     'InscripcionController@datosAlumnoPost'
 )->name('inscripcion_datos_alumno_post');
+
+Route::post(
+    'inscripcion/{inscripcionId}/folio/{folioId}/salud',
+    'InscripcionController@datosSaludPost'
+)->name('inscripcion_datos_salud_post');
+
+Route::post(
+    'inscripcion/{inscripcionId}/folio/{folioId}/view/pdf',
+    'PdfController@createPdf'
+)->name('inscripcion_confirm_pdf');
 
 //====================================
 //          Rutas Docente

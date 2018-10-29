@@ -81,6 +81,9 @@ class Alumno extends Model
         'curp',
         'fecha_nacimiento',
         'edad',
+        'grado',
+        'estado',
+        'inscripcion_id',
         'meses',
         'calle',
         'no_ext',
@@ -93,6 +96,7 @@ class Alumno extends Model
         'municipio',
         'tel_casa',
         'cel',
+        'sexo',
     ];
 
     public static function rules()
