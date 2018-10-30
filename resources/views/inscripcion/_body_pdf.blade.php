@@ -8,7 +8,7 @@
 @endphp
 <div style="text-align: justify; font: menu">
     <h5><b>Datos del alumno</b></h5>
-    <p style="font-size: 1.5em" style="font-size: 1.5em">
+    <p style="font-size: 1em; text-align: justify">
         {{----}}
         Nombre:
         @if(!isset($pdfOk))
@@ -26,7 +26,7 @@
             <b> {{$alumno->curp}}</b>
         @endif
     </p>
-    <p style="font-size: 1.5em">
+    <p style="font-size: 1em; text-align: justify ">
         {{----}}
         Fecha de nacimiento:
         @if(!isset($pdfOk))
@@ -49,7 +49,7 @@
             <b> {{$alumno->edad}}</b>
         @endif
     </p>
-    <p style="font-size: 1.5em">
+    <p style="font-size: 1em; text-align: justify ">
         {{----}}
         Calle:
         @if(!isset($pdfOk))
@@ -79,7 +79,7 @@
             <b> {{$alumno->colonia}}</b>
         @endif
     </p>
-    <p style="font-size: 1.5em">
+    <p style="font-size: 1em; text-align: justify ">
         {{----}}
         Entre la calle:
         @if(!isset($pdfOk))
@@ -102,7 +102,7 @@
             <b> {{$alumno->cp}}</b>
         @endif
     </p>
-    <p style="font-size: 1.5em">
+    <p style="font-size: 1em; text-align: justify ">
         {{----}}
         Punto de referencia:
         @if(!isset($pdfOk))
@@ -111,7 +111,7 @@
             <b> {{$alumno->punto_referencia}}</b>
         @endif
     </p>
-    <p style="font-size: 1.5em">
+    <p style="font-size: 1em; text-align: justify ">
         {{----}}
         Municipio:
         @if(!isset($pdfOk))
@@ -134,7 +134,7 @@
             <b> {{$alumno->cel}}</b>
         @endif
     </p>
-    <p style="font-size: 1.5em">
+    <p style="font-size: 1em; text-align: justify ">
         {{----}}
         Edad años:
         @if(!isset($pdfOk))
@@ -173,7 +173,7 @@
     </p>
     <h5><b>Datos de salud</b></h5>
     {{----}}
-    <p style="font-size: 1.5em">
+    <p style="font-size: 1em; text-align: justify ">
         Enfermedades que ha padecido:
         @if(!isset($pdfOk))
             <input type="text" class="pdf-input" value="{{$salud->enfermedad}}">
@@ -195,7 +195,7 @@
             <b> {{$salud->ban_alergia === 0 ?"No" :"Si"}}</b>
         @endif
     </p>
-    <p style="font-size: 1.5em">
+    <p style="font-size: 1em; text-align: justify ">
         {{----}}
         @if(!isset($pdfOk))
             <input type="text" class="pdf-input" value="{{$salud->alergia}}">
@@ -217,7 +217,7 @@
             <b> {{$salud->enfermedad_ult_mes}}</b>
         @endif
     </p>
-    <p style="font-size: 1.5em">
+    <p style="font-size: 1em; text-align: justify ">
         {{----}}
         Enfermedades que padece con mayor frecuencia;
         @if(!isset($pdfOk))
@@ -239,7 +239,7 @@
             <b> {{$salud->alergia}}</b>
         @endif
     </p>
-    <p style="font-size: 1.5em">
+    <p style="font-size: 1em; text-align: justify ">
         {{----}}
         Médico familiar:
         @if(!isset($pdfOk))
@@ -255,5 +255,6 @@
             <b> {{$salud->recomendaciones_especiales}}</b>
         @endif
     </p>
+
 
 </div>

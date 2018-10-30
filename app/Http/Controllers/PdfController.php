@@ -19,11 +19,15 @@ class PdfController extends Controller
     {
 
         $inscripcion = Inscripciones::find($inscripcionId);
-        $alumno = new Alumno();
-//        return dd($request->all());
+        $alumno = $inscripcion->alumno()->first();
+//        return dd($alumno);
+        $noctrl = $alumno->no_control;
+        $password = $alumno->password;
         $alumno->fill($request->all());
+        $alumno->no_control = $noctrl;
+        $alumno->password = $password;
+        $alumno->save();
         $alumno->inscripcion_id = $inscripcionId;
-
 
         $infSalud = new InfSalud();
         $infSalud->fill($request->inf_salud);

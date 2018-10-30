@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+@php
+    /* @var $alumno \App\Model\Alumno*/
+@endphp
+        <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -11,7 +14,17 @@
     @stack('css')
 </head>
 <body>
-    @include('inscripcion._body_pdf')
+<img src="{{asset('img/ENCABEZADO.jpg')}}" alt="encabezado" width="100%">
+@include('inscripcion._body_pdf')
+<p>
+    Aqui la metes
+    :3
+</p>
+<p>
+<h4>Porfavor guarda la siguiente información</h4>
+<h5><b>No. Control: </b> {{$alumno->no_control}} </h5>
+<h5><b>Contraseña: </b> {{$alumno->password}} </h5>
+</p>
 
 @include('template.global_js')
 @stack('scripts')

@@ -280,9 +280,7 @@
         </div>
     </div>
 
-    <div class="col-12 text-center" style="text-align: center">
-        <button class="btn btn-primary" type="submit">Continuar</button>
-    </div>
+
 
 </div>
 

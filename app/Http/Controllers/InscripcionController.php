@@ -18,6 +18,7 @@ use App\model\Enfermedades;
 use App\model\Folios;
 use App\model\InfSalud;
 use App\model\Inscripciones;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
 
@@ -36,7 +37,7 @@ class InscripcionController extends Controller
         $inscripcion = new Inscripciones();
         $inscripcion->folio_id = $folio->id;
         $inscripcion->save();
-        return view('inscripcion.inscripcion', ['folio' => $folio, 'inscripcion' => $inscripcion]);
+        return view('inscripcion.inscripcion', ['folio' => $folio, 'inscripcion' => $inscripcion ,'select'=>1]);
     }
 
     public function datosAlumnoPost(Request $request, $folioId, $inscripcionId)
@@ -48,7 +49,8 @@ class InscripcionController extends Controller
         return view('inscripcion.inscripcion', [
             'folio' => $folio,
             'inscripcion' => $inscripcion,
-            'alumno' => $alumno
+            'alumno' => $alumno,
+            'select'=>2
         ]);
     }
 
@@ -64,7 +66,7 @@ class InscripcionController extends Controller
 
         $infSalud = new InfSalud();
         $infSalud->fill($request->inf_salud);
-//        return dd($infSalud);
+        //       return dd($infSalud);
         $enfermedades = new Enfermedades();
         $enfermedades->fill($request->enfermedades);
         $detectado = new Detectado();
@@ -87,8 +89,17 @@ class InscripcionController extends Controller
     {
         try {
             DB::beginTransaction();
-            $alumno->no_control = Alumno::all()->count() + 1;
-            $alumno->password = "nhemames";
+            $año = 18;
+            $cct = 27;
+            $ctrl = 10 + Alumno::count() + 1;
+            $noCtrl = $año . $cct . $ctrl;
+            $alumno->no_control = $noCtrl;
+            $base = 'JN';
+            $digits = 4;
+            $rnd = str_pad(rand(0, pow(10, $digits) - 1), $digits, '0', STR_PAD_LEFT);
+            $password = $base . $rnd;
+            $alumno->password = $password;
+            $alumno->password=bcrypt($alumno->password);
             $transactionOk = $alumno->save();
             if ($transactionOk) {
                 $inf_salud->alumno_id = $alumno->id;
@@ -112,7 +123,6 @@ class InscripcionController extends Controller
             if ($transactionOk) {
                 DB::commit();
                 $pdfOk = true;
-
                 return view('inscripcion.confirmation_pdf', [
                     'alumno' => $alumno,
                     'salud' => $inf_salud,
@@ -120,7 +130,7 @@ class InscripcionController extends Controller
                     'antecedentes' => $antecedentes,
                     'detectado' => $detectado,
                     'inscripcion' => $inscripcion,
-                   'pdfOk' => $pdfOk
+                    'pdfOk' => $pdfOk
                 ]);
 
                 $view = \View::make('inscripcion.pdf', [
