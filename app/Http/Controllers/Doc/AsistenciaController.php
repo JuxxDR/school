@@ -28,14 +28,15 @@ class AsistenciaController extends Controller
         foreach ($students as $alumnos) {
             $numero_alumnos++;
         }
-        $realizada = DiaAsistencia::where('fecha_entrega', date('Y-m-d'))->first();
+        $realizada = DiaAsistencia::where('fecha_entrega', date('Y-m-d'))->where('docente_id',$user_id)->first();
         if ($realizada) {
             $realizada = DiaAsistencia::where('fecha_entrega', date('Y-m-d'))->first()->realizada;
         } else {
             $realizada = 0;
         }
         $docente=Docente::find(auth()->user()->id);
-        return view('docente.asistencia.index')->with(compact('students', 'realizada','docente','numero_alumnos'));
+        $fechas=DiaAsistencia::where('docente_id',$docente->id)->get();
+        return view('docente.asistencia.index')->with(compact('students', 'realizada','docente','numero_alumnos','fechas'));
     }
 
     public function asistio($id)
@@ -81,7 +82,17 @@ class AsistenciaController extends Controller
         $valor = new DiaAsistencia();
         $valor->fecha_entrega = date('Y-m-d');
         $valor->realizada = 1;
+        $valor->docente_id = $user_id;
         $valor->save();
         return back()->with('confirmation', 'Se ha registrado lista correctamente');
     }
+
+    public function consultaFecha(Request $request){
+        $user_id = auth()->user()->id;
+        $group_id = Grupo::where('docente_id', $user_id)->first()->id;
+        $students = GrupoAlumno::where('grupo_id', $group_id)->get();
+        $fecha_elegida = $request->input('fecha');
+        return view('docente.asistencia.consulta')->with(compact('students','fecha_elegida'));
+    }
+
 }

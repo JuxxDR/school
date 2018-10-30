@@ -5,6 +5,8 @@
     <!-- Page Content  -->
     <div id="content">
         <div class="container">
+            <a id="regresar" name="regresar" class="btn btn-info" style="float: right" href="{{ route('tarea_inicio') }}">Regresar</a>
+            <br><br>
             <div class="card">
                 <div class="container">
                     <br>
