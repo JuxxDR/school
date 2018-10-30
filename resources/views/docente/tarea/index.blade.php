@@ -18,7 +18,7 @@
                 </div>
             </div>
             <br>
-            <button class="btn btn-info" style="float: right">Agregar Tarea</button>
+            <button class="btn btn-info" style="float: right" id="creartarea" name="creartarea">Agregar Tarea</button>
             <br><br>
             <div class="card">
                 @if(session('notification'))
@@ -50,17 +50,29 @@
                         <div class="container">
                             <div class="tab-content">
                                 <div id="principal" class="container tab-pane active"><br>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis tellus
-                                        pulvinar, convallis nisi et, posuere mauris. Etiam posuere gravida feugiat.
-                                        Maecenas in porta massa. Donec tempor bibendum faucibus. Nullam et tempor felis,
-                                        nec dictum turpis. Vestibulum sed imperdiet mauris, non vestibulum nisi. Nam
-                                        ultrices accumsan ultrices. Donec consectetur fringilla diam vitae dapibus.
-                                        Integer ullamcorper, arcu non condimentum tristique, diam odio sodales ex, ut
-                                        imperdiet nisi nunc at velit. Aenean quis eleifend enim. Pellentesque habitant
-                                        morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris
-                                        quis sodales augue. In pulvinar massa fringilla tortor consequat dignissim.
-                                        Proin ullamcorper fringilla eros. Sed finibus sed lectus accumsan posuere.
-                                        Maecenas in molestie orci.</p>
+                                    <h2>Programa de Valores</h2>
+                                    <p style="text-align: justify;">El programa de valores en preescolar consiste en
+                                        sensibilizar a los niños y
+                                        concientizarlos acerca de las reglas que se siguen en la escuela, en la calle,
+                                        en el hogar. Se les leen cuentos, anécdotas, fábulas que tratan del respeto, la
+                                        honestidad, amistad, responsabilidad, la solidaridad, la tolerancia. El reto
+                                        pedagógico actual de la escuela sesitúa principalmente en la formación
+                                        del pensamiento y en el desarrollo de lasactitudes y capacidades para
+                                        actuarracionalmente.<br><br>
+
+                                        Los valores deben estar presentes en el currículum formal y en las prácticas
+                                        educativas. Sin embargo, la sociedad no permanece estática, sino que seencuentra
+                                        en constante transformación y por ello provoca que las necesidades educativas de
+                                        los estudiantes no sean siempre las mismas. Las docentes deben estar adoptando
+                                        y renovando los contenidos de planes y programas, así como las estrategias de
+                                        enseñanza, para brindar una educación pertinente con los valores sociales y las
+                                        necesidades de sus estudiantes.<br><br>
+
+                                        La figura del docente representa una “autoridad moral” para sus estudiantes,ya
+                                        que tiene un poder de influencia muy grande sobre ellos que va más allá de los
+                                        conocimientos que imparte. También es compromiso de las docentes asumir un
+                                        papel de preocupación e interés por las cuestiones emocionales y personales de
+                                        sus alumnas y alumnos..</p>
                                 </div>
                                 @foreach($tareas as $tarea)
                                     <div id="tarea{{ $tarea->id }}" class="container tab-pane"><br>
@@ -78,7 +90,7 @@
                                                 <h5>{{ $tarea->id }}</h5>
                                             </div>
                                             <div class="col-md-3">
-                                                <a class="btn btn-success" href="tareas/entregas/{{ $tarea->id }}"
+                                                <a class="btn btn-success" href="tarea/entregas/{{ $tarea->id }}"
                                                    style="float: right">Registrar Entregas</a>
                                             </div>
                                         </div>
@@ -108,4 +120,42 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="TareaModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Agregar Tarea</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                </div>
+                <form action="{{ route('tarea_agregar') }}" method="POST">
+                    {{ csrf_field() }}
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="name">Nombre:</label>
+                            <input type="text" class="form-control" id="name" placeholder="Introduce Nombre"
+                                   name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion">Descripcion:</label>
+                            <textarea name="descripcion" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="start">Fecha de Entrega:</label>
+                            <input type="date" class="form-control" id="start" name="start">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/aaron.js') }}"></script>
 @endsection

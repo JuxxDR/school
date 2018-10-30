@@ -27,10 +27,10 @@
                    class="dropdown-toggle">Administrar</a>
                 <ul class="collapse list-unstyled" id="adminSubmenu">
                     <li>
-                        <a href="#">Docentes</a>
+                        <a href="{{ route('admin_docentes') }}">Docentes</a>
                     </li>
                     <li>
-                        <a href="#">Grupos</a>
+                        <a href="{{ route('admin_grupos') }}">Grupos</a>
                     </li>
                 </ul>
             </li>

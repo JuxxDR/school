@@ -5,7 +5,7 @@
     <!-- Page Content  -->
     <div id="content">
         <div class="container">
-            <a href="" class="btn btn-info" style="float: right">Consultar fechas anteriores</a>
+            <button id="consultar" name="consultar" class="btn btn-info" style="float: right">Consultar fechas anteriores</button>
             <br><br>
             <div class="card">
                 <div class="container">
@@ -106,4 +106,38 @@
             @endif
         </div>
     </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="FechaModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Fechas anteriores</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                </div>
+                <form action="asistencia/consultarFecha" method="POST">
+                    {{ csrf_field() }}
+                    <div class="modal-body">
+                        <div class="col-md-12">
+                            <label for="fecha">Fecha:</label>
+                            <select name="fecha" id="fecha" class="form-control">
+                                <option value="0">Selecciona una fecha anterior</option>
+                                @foreach($fechas as $fecha)
+                                    <option value="{{ $fecha->fecha_entrega }}">{{ $fecha->fecha_entrega }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Continuar</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/aaron.js') }}"></script>
 @endsection
