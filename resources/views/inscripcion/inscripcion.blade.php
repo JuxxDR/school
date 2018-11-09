@@ -53,10 +53,10 @@
                             'folioId'=>$folio->id,
                             'inscripcionId'=>$inscripcion->id])])!!}
                             @include ('inscripcion._form_datos_alumno')
-                            {!! Form::close()!!}
                             <div class="col-12 text-center" style="text-align: center">
                                 <button class="btn btn-primary" type="submit">Continuar</button>
                             </div>
+                            {!! Form::close()!!}
                         </div>
                     @endif
 

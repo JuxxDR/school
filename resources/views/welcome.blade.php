@@ -60,35 +60,41 @@
             <!-- Marketing Icons Section -->
             <div class="row">
                 <div class="col-lg-4 mb-4">
-                    <div class="w3-card ">
-                        <h4 class="card-header">Nuestra Historia</h4>
-                        <div class="card-body">
-                            <p class="card-text">El Jardin de Niños Profra. Ma.Luisa Ballina Escartin es una institucion cuya mision es brindar un servicio educativo de calidad, en donde directivos y docentes, están comprometidos, a lograr los propósitos fundamentales de la educación preescolar, propiciando, ambientes de aprendizajes, atendiendo a la diversidad que los lleven al desarrollo de competencias, practica de valores generando  un deseo permanente  de aprender a aprender, aprender a convivir</p>
+                    <div class="card h-100 card bg-warning">
+                        <h4 class="card-header"style="text-align: center">Nuestra Historia</h4>
+                        <div class="card-body" style="background-color: #f7ecb5">
+                            <p class="card-text" style="text-align: justify" ><br>El Jardin de Niños Profra. Ma.Luisa Ballina Escartin es una institucion cuya misión es brindar un servicio educativo de calidad, en donde directivos y docentes, están comprometidos, a lograr los propósitos fundamentales de la educación preescolar, propiciando, ambientes de aprendizajes, atendiendo a la diversidad que los lleven al desarrollo de competencias, practica de valores generando  un deseo permanente  de aprender a aprender, aprender a convivir</p>
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="btn btn-primary">Saber mas..</a>
+                            <a href="#" class="btn btn-light">Saber más..</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-4">
-                    <div class="card h-100">
-                        <h4 class="card-header">Programas</h4>
-                        <div class="card-body">
-                            <p class="card-text"> Programa Nacional de Lectura <br>Programa Operación Matemática<br> Programa de  Valores <br>Programa  de  Impulso a la activación física</p>
+                    <div class="card h-100 card bg-success">
+                        <h4 class="card-header"style="text-align: center">Programas</h4>
+                        <div class="card-body" style="background-color: #a3d7a3">
+                            <p class="card-text"> </p>
+                            <ul style="list-style-type: square">
+                                <li>Programa Nacional de Lectura</li>
+                                <li>Programa Operación Matemática</li>
+                                <li>Programa de  Valores</li>
+                                <li>Programa  de  Impulso a la Activación Física</li>
+                            </ul>
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="btn btn-primary">Saber mas...</a>
+                            <a href="#" class="btn btn-light">Conocer más...</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-4">
-                    <div class="card h-100">
-                        <h4 class="card-header">Contactanos</h4>
-                        <div class="card-body">
-                            <p class="card-text" style="text-align: justify;">Plan de Texca No.100 Col. La Magdalena C.P,.<br>Tel: 2-80-16-80<br>correo electrónico:<br>jnballina_escartin@hotmail.com</p>
+                    <div class="card h-100 card bg-info">
+                        <h4 class="card-header"style="text-align: center">Contáctanos</h4>
+                        <div class="card-body" style="background-color: #b0e1ef">
+                            <p class="card-text" style="text-align: justify;"><br>Plan de Texca No.100 Col. La Magdalena C.P:50010.<br>Tel: 2-80-16-80<br>Correo electrónico:<br>jnballina_escartin@hotmail.com</p>
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="btn btn-primary">Contactar</a>
+                            <a href="#" class="btn btn-light">Contactar</a>
                         </div>
                     </div>
                 </div>

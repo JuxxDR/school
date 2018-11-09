@@ -32,11 +32,11 @@
                     'detectado'=>$detectado,
                     'antecedente'=>$antecedentes
                     ])
+
                     <div class="col-12 text-center" style="text-align: center">
                         <button class="btn btn-primary" type="submit">Continuar</button>
                     </div>
                     {!! Form::close()!!}
-
                 </div>
             </div>
         </div>
