@@ -5,6 +5,9 @@
     <!-- Page Content  -->
     <div id="content">
         <div class="container">
+            <a id="regresar" name="regresar" class="btn btn-info" style="float: right"
+               href="{{ route('tarea_inicio') }}">Regresar</a>
+            <br><br>
             <div class="card">
                 <div class="container">
                     <br>
@@ -52,17 +55,16 @@
                     {{ session('confirmation') }}
                 </div>
             @endif
-            @if( true )
-                <form>
+            @if( !\App\Model\EntregaTarea::where('tarea_id',$tarea->id)->first() )
+                <form action="registro" method="POST">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="tarea_id" value="{{ $tarea->id }}" id="tarea_id">
                     <table class="table" id="lista_asistencias">
                         <thead class="thead-dark">
                         <tr>
                             <th>No. Control</th>
                             <th>Nombre Completo</th>
-                            <th style="text-align: center">Aceptable</th>
-                            <th style="text-align: center">Medio</th>
-                            <th style="text-align: center">Deficiente</th>
-                            <th style="text-align: center">No Entregado</th>
+                            <th style="text-align: center">Opciones</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -70,25 +72,16 @@
                             <tr>
                                 <td>{{ $student->alumnos->no_control }}</td>
                                 <td>{{ $student->alumnos->nombre .' '. $student->alumnos->apellidoP .' '. $student->alumnos->apellidoM }}</td>
+                                <input type="hidden" name="student_id{{ $student->alumnos->id }}" value="{{ $student->alumnos->id }}"
+                                       id="student_id">
                                 <td style="text-align: center">
-                                    <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" value="">
-                                    </div>
-                                </td>
-                                <td style="text-align: center">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" value="">
-                                    </div>
-                                </td>
-                                <td style="text-align: center">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" value="">
-                                    </div>
-                                </td>
-                                <td style="text-align: center">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" value="">
-                                    </div>
+                                    <select class="form-control" name="entrega{{ $student->alumnos->id }}">
+                                        <option>Selecciona una opción</option>
+                                        <option value="1">Aceptable</option>
+                                        <option value="2">Medio</option>
+                                        <option value="3">Deficiente</option>
+                                        <option value="4">No entregado</option>
+                                    </select>
                                 </td>
                             </tr>
                         @endforeach
@@ -98,7 +91,7 @@
                 </form>
             @else
                 <div class="alert alert-dismissible alert-info text-center">
-
+                    <h2>Ya registraste esta tarea</h2>
                 </div>
             @endif
         </div>

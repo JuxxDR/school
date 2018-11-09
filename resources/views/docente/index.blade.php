@@ -9,43 +9,64 @@
                 {{ session('status') }}
             </div>
         @endif
-        <h2>Collapsible Sidebar Using Bootstrap 4</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.</p>
+        <div class="card">
+            <div class="card-header">
+                <h2>Nuestra Historia</h2>
+            </div>
+            <div class="card-body">
+                <p style="text-align: justify">El Jardín de Niños Profra. Ma. Luisa Ballina Escartín se construye en una
+                    superficie de 1791 m2 , siendo un área de relleno sanitario el cual fue donado el día 17 de Enero de
+                    1987
+                    hace 26 años. En el Acta de donación se manifestó en la primera etapa que este terreno sería
+                    utilizado para la
+                    construcción de un Centro de Educación Preescolar ya que la comunidad no contaba con una institución
+                    que
+                    prestara el servicio. Siendo la encargada de esta gestión la Profra. Ma. Celsa Alarcón Toledo, quién
+                    estuvo
+                    en la Dirección de la institución durante 24 años.<br><br>
+
+                    En el año 2010 se jubila la profesora y se asigna en febrero del 2011 a la L.E.P. Marcela Arochi
+                    Portilla
+                    como Directora Escolar de la Institución, quien hasta la fecha funge con esa función.La institución
+                    cuenta con 7 grupos y con el área de USAER desde hace 16 años en donde el equipo docente
+                    integra de manera regular a alumnos con discapacidad.El Jardín de Niños Profra. Ma. Luisa Ballina
+                    Escartin es una institución cuya misión es brindar un servicio
+                    educativo de calidad, en donde directivos y docentes, estan comprometidos a lograr los propósitos
+                    fundamentales de la educación preescolar, propiciando ambientes de aprendizaje, atendiendo a la
+                    diversidad
+                    que los lleven al desarrollo de competencias, práctica de valores, generando un deseo permanente de
+                    aprender
+                    a aprender y aprender a convivir.<br><br>
+
+
+                    Con la visión de ser una escuela comprometida con la formación de los alumnos y alumnas en el que
+                    Directivos
+                    y docentes fungen como estrategas comprometidos con la mejora de la calidad educativa a través del
+                    fortalecimiento de los procesos pedagógicos de enseñanza-aprendizaje propiciando actividades
+                    pertinentes que
+                    garanticen el logro de los propósitos educativos generando permanentemente el deseo de aprender a
+                    aprender y
+                    aprender a convivir, a fin de que afronten exitosamente las exigencias sociales y personales de cada
+                    etapa
+                    de la vida fortaleciendo el desarrollo de valores y actitudes con una actitud corresponsable y
+                    activa de la
+                    comunidad escolar en donde junto con los padres asuman un compromiso por la educación de sus hijos
+                    para
+                    llegar a una meta común.<br><br></p>
+            </div>
+        </div>
 
         <div class="line"></div>
 
-        <h2>Lorem Ipsum Dolor</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.</p>
+        <h2>Programas</h2>
+        <ul>
+            <li>Programa Nacional de Lectura</li>
+            <li>Programa Operación Matemática</li>
+            <li>Programa de Valores</li>
+            <li>Programa Nacional de Lectura</li>
+            <li>Programa de Impulso a la activación física</li>
+        </ul>
 
-        <div class="line"></div>
 
-        <h2>Lorem Ipsum Dolor</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.</p>
-
-        <div class="line"></div>
-
-        <h3>Lorem Ipsum Dolor</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.</p>
     </div>
 @endsection

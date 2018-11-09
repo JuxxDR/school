@@ -24,5 +24,6 @@
 <!-- Javascript -->
 @include('template.aaron.scripts')
 @stack('scripts')
+@yield('scripts')
 </body>
 </html>

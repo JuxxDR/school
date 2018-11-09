@@ -323,10 +323,7 @@ class BaseDatos extends Migration
             $table->string('nombre');
             $table->string('descripcion');
             $table->date('fecha_entrega');
-            $table->integer('aceptable');
-            $table->integer('medio');
-            $table->integer('deficiente');
-            $table->integer('no_entregado');
+
             $table->timestamps();
         });
 
@@ -339,12 +336,15 @@ class BaseDatos extends Migration
             $table->unsignedInteger('alumno_id');
             $table->foreign('alumno_id')->references('id')->on('alumnos');
 
-            $table->string('entrego');
+            $table->smallInteger('entrego'); //0.-No entrego 1.-Deficiente 2.-Medio 3.-Aceptable
             $table->timestamps();
         });
 
         Schema::create('dia_asistencia', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->unsignedInteger('docente_id');
+            $table->foreign('docente_id')->references('id')->on('docentes');
 
             $table->date('fecha_entrega');
             $table->smallInteger('realizada');//0.-No 1.-Si
@@ -372,6 +372,8 @@ class BaseDatos extends Migration
 
             $table->string('nombre');
             $table->string('informacion');
+            $table->string('observaciones');
+            $table->smallInteger('importancia');
             $table->timestamps();
         });
 
