@@ -32,6 +32,9 @@
                     <li>
                         <a href="{{ route('admin_grupos') }}">Grupos</a>
                     </li>
+                    <li>
+                        <a href="{{ route('admin_reportes') }}">Reportes de Evaluación</a>
+                    </li>
                 </ul>
             </li>
         @endif

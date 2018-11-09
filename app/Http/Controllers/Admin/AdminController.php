@@ -22,6 +22,12 @@ class AdminController extends Controller
         return view('admin.docente')->with(compact('docentes'));
     }
 
+    public function reportes()
+    {
+        $grupos = Grupo::all();
+        return view('admin.reporte')->with(compact('grupos'));
+    }
+
     public function grupos()
     {
         $grupos = Grupo::all();

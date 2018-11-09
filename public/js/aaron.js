@@ -1,7 +1,8 @@
 $(function () {
     $('#consultar').on('click', FechaModal);
     $('#creartarea').on('click', TareaModal);
-    $('[data-docente]').on('click', DocenteModal)
+
+    $('[data-docente]').on('click', DocenteModal);
 });
 
 function FechaModal() {
@@ -22,5 +23,6 @@ function DocenteModal() {
     var docente_email = $(this).parent().prev().prev().prev().text();
     $('#email').val(docente_email);
     //show
-    $('#DocenteModal').modal('show')
+    $('#DocenteModal').modal('show');
 }
+
