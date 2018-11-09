@@ -47,6 +47,11 @@ Route::post(
     'InscripcionController@datosAlumnoPost'
 )->name('inscripcion_datos_alumno_post');
 
+Route::get(
+    'inscripcion/{inscripcionId}/folio/{folioId}/salud',
+    'InscripcionController@datosSalud'
+)->name('inscripcion_datos_salud');
+
 Route::post(
     'inscripcion/{inscripcionId}/folio/{folioId}/salud',
     'InscripcionController@datosSaludPost'

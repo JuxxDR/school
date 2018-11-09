@@ -36,7 +36,6 @@
                                             'inscripcionId'=>$inscripcion->id])])!!}
                             <div>
                                 @include('inscripcion._form_salud')
-
                             </div>
                             <div hidden>
                                 @include ('inscripcion._form_datos_alumno',['alumno'=>$alumno])

@@ -10,7 +10,7 @@
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('nombre','Nombre') !!}
-            {{ Form::text('nombre',isset($alumno->nombre), [
+            {{ Form::text('nombre',null, [
           'class' => $errors->has('nombre')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('nombre'))
@@ -194,7 +194,7 @@
             ])}}
             @if($errors->has('colonia'))
                 <div class="invalid-feedback">
-                    {{ $errors->first('no_int') }}
+                    {{ $errors->first('colonia') }}
                 </div>
             @endif
         </div>
@@ -279,7 +279,6 @@
             @endif
         </div>
     </div>
-
 
 
 </div>

@@ -46,7 +46,13 @@ class InscripcionController extends Controller
     {
         $folio = Folios::find($folioId);
         $inscripcion = Inscripciones::find($inscripcionId);
-        return view('inscripcion.inscripcion', ['folio' => $folio, 'inscripcion' => $inscripcion]);
+
+        return view('inscripcion.inscripcion',
+            [
+                'folio' => $folio,
+                'inscripcion' => $inscripcion,
+                'select' => 1
+            ]);
     }
 
     public function datosAlumnoPost(CreateAlumnoRequest $request, $folioId, $inscripcionId)
@@ -55,23 +61,38 @@ class InscripcionController extends Controller
         $alumno->fill($request->all());
         $inscripcion = Inscripciones::find($inscripcionId);
         $folio = Folios::find($inscripcion->folio_id);
+        \Session::put('alumno', $alumno);
+        return redirect()->route('inscripcion_datos_salud', ['folio' => $folioId, 'inscripcion' => $inscripcionId]);
         return view('inscripcion.inscripcion', [
             'folio' => $folio,
             'inscripcion' => $inscripcion,
             'alumno' => $alumno,
-            'select'=>2
+            'select' => 2
         ]);
+    }
+
+
+    public function datosSalud($inscripcionId,$folioId)
+    {
+        $alumno = \Session::get('alumno');
+        $folio = Folios::find($folioId);
+        $inscripcion = Inscripciones::find($inscripcionId);
+        return view('inscripcion.inscripcion',
+            [
+                'folio' => $folio,
+                'inscripcion' => $inscripcion,
+                'alumno' => $alumno,
+                'select' => 2
+            ]);
     }
 
     public function datosSaludPost(CreateSaludRequest $request, $folioId, $inscripcionId)
     {
-
+        $alumno = \Session::get('alumno');
         $inscripcion = Inscripciones::find($inscripcionId);
-        $alumno = new Alumno();
 //        return dd($request->all());
-        $alumno->fill($request->all());
+//        $alumno->fill($request->all());
         $alumno->inscripcion_id = $inscripcionId;
-
 
         $infSalud = new InfSalud();
         $infSalud->fill($request->inf_salud);
@@ -82,6 +103,7 @@ class InscripcionController extends Controller
         $detectado->fill($request->detectado);
         $antecedente = new AntecedesntesHereditarios();
         $antecedente->fill($request->antecedente);
+
 
         return $this->finalSave($alumno, $infSalud, $enfermedades, $antecedente, $detectado, $inscripcion);
     }
@@ -108,7 +130,7 @@ class InscripcionController extends Controller
             $rnd = str_pad(rand(0, pow(10, $digits) - 1), $digits, '0', STR_PAD_LEFT);
             $password = $base . $rnd;
             $alumno->password = $password;
-            $alumno->password=bcrypt($alumno->password);
+            $alumno->password = bcrypt($alumno->password);
             $transactionOk = $alumno->save();
             if ($transactionOk) {
                 $inf_salud->alumno_id = $alumno->id;
