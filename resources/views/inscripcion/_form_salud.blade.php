@@ -183,7 +183,7 @@
         </div>
     </div>
 
-    <div class="col-8">
+    <div class="col-6">
         <div class="form-group text-left">
             {!! Form::label('inf_salud[enfermedad_ult_mes]','¿Escriba las enfermedades que ha tenido su hijo(a) durante los últimos 12 meses?') !!}
             {{ Form::textarea ('inf_salud[enfermedad_ult_mes]',

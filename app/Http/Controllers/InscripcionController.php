@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Request\CheckFolioRequest;
+use App\Http\Request\CreateAlumnoRequest;
 use App\Http\Request\CreateSaludRequest;
 use App\Model\Alumno;
 use App\model\AntecedesntesHereditarios;
@@ -37,10 +38,18 @@ class InscripcionController extends Controller
         $inscripcion = new Inscripciones();
         $inscripcion->folio_id = $folio->id;
         $inscripcion->save();
-        return view('inscripcion.inscripcion', ['folio' => $folio, 'inscripcion' => $inscripcion ,'select'=>1]);
+        return redirect()->route('inscripcion_datos_alumno', ['folio' => $folio, 'inscripcion' => $inscripcion]);
+//        return view('inscripcion.inscripcion', ['folio' => $folio, 'inscripcion' => $inscripcion]);
     }
 
-    public function datosAlumnoPost(Request $request, $folioId, $inscripcionId)
+    public function datosAlumno($folioId, $inscripcionId)
+    {
+        $folio = Folios::find($folioId);
+        $inscripcion = Inscripciones::find($inscripcionId);
+        return view('inscripcion.inscripcion', ['folio' => $folio, 'inscripcion' => $inscripcion]);
+    }
+
+    public function datosAlumnoPost(CreateAlumnoRequest $request, $folioId, $inscripcionId)
     {
         $alumno = new Alumno();
         $alumno->fill($request->all());
@@ -66,7 +75,7 @@ class InscripcionController extends Controller
 
         $infSalud = new InfSalud();
         $infSalud->fill($request->inf_salud);
-        //       return dd($infSalud);
+//        return dd($infSalud);
         $enfermedades = new Enfermedades();
         $enfermedades->fill($request->enfermedades);
         $detectado = new Detectado();

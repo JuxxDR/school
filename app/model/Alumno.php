@@ -96,7 +96,6 @@ class Alumno extends Model
         'municipio',
         'tel_casa',
         'cel',
-        'sexo',
     ];
 
     public static function rules()
