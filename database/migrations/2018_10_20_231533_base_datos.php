@@ -343,7 +343,7 @@ class BaseDatos extends Migration
         Schema::create('dia_asistencia', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->unsignedInteger('docente_id')->unique();
+            $table->unsignedInteger('docente_id');
             $table->foreign('docente_id')->references('id')->on('docentes');
 
             $table->date('fecha_entrega');
@@ -372,6 +372,8 @@ class BaseDatos extends Migration
 
             $table->string('nombre');
             $table->string('informacion');
+            $table->string('observaciones');
+            $table->smallInteger('importancia');
             $table->timestamps();
         });
 

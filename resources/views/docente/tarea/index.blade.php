@@ -90,30 +90,50 @@
                                                 <h5>{{ $tarea->id }}</h5>
                                             </div>
                                             <div class="col-md-3">
-                                                <a class="btn btn-success" href="tarea/entregas/{{ $tarea->id }}"
-                                                   style="float: right">Registrar Entregas</a>
+                                                @if(!\App\Model\EntregaTarea::where('tarea_id',$tarea->id)->first())
+                                                    <a class="btn btn-success" href="tarea/entregas/{{ $tarea->id }}"
+                                                       style="float: right">Registrar</a>
+                                                @endif
                                             </div>
                                         </div>
                                         <br>
                                         <h3>Descripción: </h3>
                                         <p style="text-align: justify">{{ $tarea->descripcion }}</p>
-                                        @if($tarea->aceptable==0 && $tarea->medio==0 && $tarea->deficiente==0 && $tarea->no_entregado==0)
+                                        @if(!\App\Model\EntregaTarea::where('tarea_id',$tarea->id)->first())
                                             <div class="alert alert-dismissible alert-info">
                                                 <strong>Aun no registras entregas de esta tarea </strong><br>
                                             </div>
                                         @else
                                             <div class="row">
-                                                <div class="col-md-6">
-
-                                                </div>
-                                                <div class="col-md-6">
-
-                                                </div>
+                                                <table class="table" id="registro_tarea">
+                                                    <thead class="thead-dark">
+                                                    <tr>
+                                                        <th>No. Control</th>
+                                                        <th>Nombre Completo</th>
+                                                        <th style="text-align: center">Tarea</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    @foreach($students as $student)
+                                                        <tr>
+                                                            <td>{{ $student->alumnos->no_control }}</td>
+                                                            <td>{{ $student->alumnos->nombre .' '. $student->alumnos->apellidoP .' '. $student->alumnos->apellidoM }}</td>
+                                                            <td style="text-align: center">
+                                                                {{ \App\Model\EntregaTarea::where('alumno_id',$student->alumnos->id)->where('tarea_id',$tarea->id)->first()->entrego }}
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="row">
+                                                <canvas id="bar-chart{{ $tarea->id }}"></canvas>
                                             </div>
                                         @endif
                                     </div>
                                 @endforeach
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -158,4 +178,28 @@
 
 @section('scripts')
     <script src="{{ asset('js/aaron.js') }}"></script>
+    <script>
+        @foreach($tareas as $tarea)
+        new Chart(document.getElementById("bar-chart{{ $tarea->id }}"), {
+            type: 'bar',
+            data: {
+                labels: ["Aceptable", "Medio", "Deficiente", "No Entregado"],
+                datasets: [
+                    {
+                        label: "Alumnos",
+                        backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9"],
+                        data: [{{ $tarea->entregaTarea->where('entrego',1)->count() }},{{ $tarea->entregaTarea->where('entrego',2)->count() }}, {{ $tarea->entregaTarea->where('entrego',3)->count() }}, {{ $tarea->entregaTarea->where('entrego',4)->count() }}]
+                    }
+                ]
+            },
+            options: {
+                legend: {display: false},
+                title: {
+                    display: true,
+                    text: 'Registro de tareas'
+                }
+            }
+        });
+        @endforeach
+    </script>
 @endsection

@@ -92,6 +92,8 @@ Route::get('docente/tareas','Doc\TareaController@index')->name('tarea_inicio');
 
 Route::get('docente/tarea/entregas/{id}','Doc\TareaController@entrega')->name('tarea_entrega');
 
+Route::post('docente/tarea/entregas/registro','Doc\TareaController@registro')->name('tarea_registro');
+
 Route::post('docente/agregar','Doc\TareaController@create')->name('tarea_agregar');
 //====================================
 //          Rutas Admin
@@ -103,9 +105,13 @@ Route::post('administrativo/anuncio/general','Admin\AnuncioController@general')-
 
 Route::post('administrativo/anuncio/grupo','Admin\AnuncioController@grupo')->name('admin_grupo');
 
+Route::post('administrativo/anuncio/alumno','Admin\AnuncioController@alumno')->name('admin_alumno');
+
 Route::get('administrativo/docentes','Admin\AdminController@docentes')->name('admin_docentes');
 
 Route::get('administrativo/grupos','Admin\AdminController@grupos')->name('admin_grupos');
+
+Route::get('administrativo/reportes','Admin\AdminController@reportes')->name('admin_reportes');
 
 Route::post('administrativo/actualizar/docente','Admin\AdminController@actualizarDocente')->name('actualizar_docente');
 
