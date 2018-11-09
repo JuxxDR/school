@@ -61,7 +61,6 @@ class CreateDatabase extends Migration
             $table->string('estado');
             $table->string('tel_casa');
             $table->string('cel');
-            $table->string('sexo');
             $table->rememberToken();
             $table->timestamps();
         });

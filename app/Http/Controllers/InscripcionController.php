@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Request\CheckFolioRequest;
+use App\Http\Request\CreateAlumnoRequest;
 use App\Http\Request\CreateSaludRequest;
 use App\Model\Alumno;
 use App\model\AntecedesntesHereditarios;
@@ -36,10 +37,18 @@ class InscripcionController extends Controller
         $inscripcion = new Inscripciones();
         $inscripcion->folio_id = $folio->id;
         $inscripcion->save();
+        return redirect()->route('inscripcion_datos_alumno', ['folio' => $folio, 'inscripcion' => $inscripcion]);
+//        return view('inscripcion.inscripcion', ['folio' => $folio, 'inscripcion' => $inscripcion]);
+    }
+
+    public function datosAlumno($folioId, $inscripcionId)
+    {
+        $folio = Folios::find($folioId);
+        $inscripcion = Inscripciones::find($inscripcionId);
         return view('inscripcion.inscripcion', ['folio' => $folio, 'inscripcion' => $inscripcion]);
     }
 
-    public function datosAlumnoPost(Request $request, $folioId, $inscripcionId)
+    public function datosAlumnoPost(CreateAlumnoRequest $request, $folioId, $inscripcionId)
     {
         $alumno = new Alumno();
         $alumno->fill($request->all());
@@ -120,7 +129,7 @@ class InscripcionController extends Controller
                     'antecedentes' => $antecedentes,
                     'detectado' => $detectado,
                     'inscripcion' => $inscripcion,
-                   'pdfOk' => $pdfOk
+                    'pdfOk' => $pdfOk
                 ]);
 
                 $view = \View::make('inscripcion.pdf', [

@@ -39,7 +39,7 @@ Route::post(
 
 Route::get(
     'inscripcion/{inscripcionId}/folio/{folioId}/alumno',
-    'InscripcionController@datosAlumnoPost'
+    'InscripcionController@datosAlumno'
 )->name('inscripcion_datos_alumno');
 
 Route::post(
