@@ -14,4 +14,7 @@
             </li>
         </ul>
     </div>
+    @if(auth()->check())
+        <p style="float: right;color: white;font-size: 11pt;">{{ \App\Model\Docente::find(auth()->user()->id)->email }}</p>
+    @endif
 </nav>

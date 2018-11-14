@@ -8,6 +8,7 @@ use App\model\DiaAsistencia;
 use App\Model\Docente;
 use App\Model\Grupo;
 use App\Model\GrupoAlumno;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -93,6 +94,49 @@ class AsistenciaController extends Controller
         $students = GrupoAlumno::where('grupo_id', $group_id)->get();
         $fecha_elegida = $request->input('fecha');
         return view('docente.asistencia.consulta')->with(compact('students','fecha_elegida'));
+    }
+
+    public function descargaPDF(Request $request){
+        $docente=Docente::find(auth()->user()->id);
+        $user_id = auth()->user()->id;
+        $group_id = Grupo::where('docente_id', $user_id)->first()->id;
+        $students = GrupoAlumno::where('grupo_id', $group_id)->get();
+        $fecha_elegida = $request->input('fecha');
+        $numero_alumnos=0;
+        foreach ($students as $alumnos) {
+            $numero_alumnos++;
+        }
+        $view =  \View::make('docente.asistencia.registro', compact('students', 'fecha_elegida','docente','numero_alumnos'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->download('Asistencia-'.$fecha_elegida.'.pdf');
+    }
+
+    public function registro(Request $request)
+    {
+        $user_id = auth()->user()->id;
+        $group_id = Grupo::where('docente_id', $user_id)->first();
+        $group_id = $group_id->id;
+        $students = GrupoAlumno::where('grupo_id', $group_id)->get();
+        foreach ($students as $student) {
+            $entrega = new Asistencia();
+            $entrega->alumno_id = $student->alumno_id;
+            $asistio="";
+            if ($request->input('asistencia' . $student->alumno_id)== 1){
+                $asistio="si";
+            }else{
+                $asistio="no";
+            }
+            $entrega->asistio = $asistio;
+            $entrega->fecha = date('Y-m-d');
+            $entrega->save();
+        }
+        $valor = new DiaAsistencia();
+        $valor->fecha_entrega = date('Y-m-d');
+        $valor->realizada = 1;
+        $valor->docente_id = $user_id;
+        $valor->save();
+        return back()->with('confirmation', 'Se ha registrado lista correctamente');
     }
 
 }

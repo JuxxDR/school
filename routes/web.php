@@ -66,6 +66,8 @@ Route::get('docente/inicio','Doc\DocenteController@index')->name('docente_inicio
 
 Route::get('docente/cuenta','Doc\DocenteController@account')->name('docente_cuenta');
 
+Route::post('docente/cambioContraseña','Doc\DocenteController@cambioContraseña')->name('docente_pass');
+
 //====================================
 //          Rutas Docente-Asistencia
 //======================================
@@ -78,11 +80,13 @@ Route::get('docente/{id}/noAsistencia', 'Doc\AsistenciaController@noAsistio');
 
 Route::get('docente/{id}/modificarAsistencia', 'Doc\AsistenciaController@delete');
 
-Route::get('docente/asistencia/guardar', 'Doc\AsistenciaController@guardar');
+Route::post('docente/asistencia/guardar', 'Doc\AsistenciaController@registro');
 
 Route::get('docente/asistencia/consulta','Doc\AsistenciaController@consulta')->name('asistencia_consulta');
 
 Route::post('docente/asistencia/consultarFecha','Doc\AsistenciaController@consultaFecha');
+
+Route::post('docente/asistencia/descargaPDF','Doc\AsistenciaController@descargaPDF');
 
 //====================================
 //          Rutas Docente-Tareas
@@ -95,9 +99,19 @@ Route::get('docente/tarea/entregas/{id}','Doc\TareaController@entrega')->name('t
 Route::post('docente/tarea/entregas/registro','Doc\TareaController@registro')->name('tarea_registro');
 
 Route::post('docente/agregar','Doc\TareaController@create')->name('tarea_agregar');
+
+//====================================
+//          Rutas Docente-Reportes
+//======================================
+
+Route::get('docente/reporte','Doc\DocenteController@reportes')->name('docente_reportes');
+
+Route::post('docente/reporte/alumno','Doc\DocenteController@buscarReporteAlumno')->name('docente_reportesAlumno');
 //====================================
 //          Rutas Admin
 //======================================;
+
+Route::get('administrativo/primerTrimestre','Admin\AdminController@habilitarPrimer')->name('admin_habilitar1');
 
 Route::get('administrativo/notificaciones','Admin\AdminController@notifications')->name('admin_notificar');
 

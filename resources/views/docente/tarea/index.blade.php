@@ -93,6 +93,8 @@
                                                 @if(!\App\Model\EntregaTarea::where('tarea_id',$tarea->id)->first())
                                                     <a class="btn btn-success" href="tarea/entregas/{{ $tarea->id }}"
                                                        style="float: right">Registrar</a>
+                                                @else
+
                                                 @endif
                                             </div>
                                         </div>
@@ -119,7 +121,15 @@
                                                             <td>{{ $student->alumnos->no_control }}</td>
                                                             <td>{{ $student->alumnos->nombre .' '. $student->alumnos->apellidoP .' '. $student->alumnos->apellidoM }}</td>
                                                             <td style="text-align: center">
-                                                                {{ \App\Model\EntregaTarea::where('alumno_id',$student->alumnos->id)->where('tarea_id',$tarea->id)->first()->entrego }}
+                                                                @if(\App\Model\EntregaTarea::where('alumno_id',$student->alumnos->id)->where('tarea_id',$tarea->id)->first()->entrego==4)
+                                                                    No entrego
+                                                                @elseif(\App\Model\EntregaTarea::where('alumno_id',$student->alumnos->id)->where('tarea_id',$tarea->id)->first()->entrego==3)
+                                                                    Deficiente
+                                                                @elseif(\App\Model\EntregaTarea::where('alumno_id',$student->alumnos->id)->where('tarea_id',$tarea->id)->first()->entrego==2)
+                                                                    Medio
+                                                                @elseif(\App\Model\EntregaTarea::where('alumno_id',$student->alumnos->id)->where('tarea_id',$tarea->id)->first()->entrego==1)
+                                                                    Aceptable
+                                                                @endif
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -180,6 +190,7 @@
     <script src="{{ asset('js/aaron.js') }}"></script>
     <script>
         @foreach($tareas as $tarea)
+        @if(\App\Model\EntregaTarea::where('tarea_id',$tarea->id)->first())
         new Chart(document.getElementById("bar-chart{{ $tarea->id }}"), {
             type: 'bar',
             data: {
@@ -200,6 +211,7 @@
                 }
             }
         });
+        @endif
         @endforeach
     </script>
 @endsection
