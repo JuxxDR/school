@@ -354,6 +354,7 @@ class BaseDatos extends Migration
         Schema::create('trimestre', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('trimestre')->default(0);
+            $table->timestamps();
         });
 
         //Tablas Jorge
