@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Inscripciones whereFolioId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Inscripciones whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Inscripciones whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Model\Alumno[] $alumno
  */
 class Inscripciones extends Model
 {
@@ -35,6 +36,14 @@ class Inscripciones extends Model
         return $this->belongsTo(
             Folios::class,
             'folio_id',
+            'id'
+        );
+    }
+
+    public function alumno(){
+        return $this->hasMany(
+            Alumno::class,
+            'inscripcion_id',
             'id'
         );
     }

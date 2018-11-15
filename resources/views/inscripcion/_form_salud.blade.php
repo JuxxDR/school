@@ -95,7 +95,7 @@
 
     <div class="col-4">
         <div class="form-group text-left">
-            {!! Form::label('inf_salud[carac_especial]','¿Alguna caracteística especial del niño?') !!}
+            {!! Form::label('inf_salud[carac_especial]','¿Alguna característica especial del niño?') !!}
             {{ Form::text('inf_salud[carac_especial]',
                             isset($salud->carac_especial), [
                           'class' => $errors->has('inf_salud.carac_especial')?'is-invalid form-control':'form-control',
@@ -183,7 +183,7 @@
         </div>
     </div>
 
-    <div class="col-8">
+    <div class="col-6">
         <div class="form-group text-left">
             {!! Form::label('inf_salud[enfermedad_ult_mes]','¿Escriba las enfermedades que ha tenido su hijo(a) durante los últimos 12 meses?') !!}
             {{ Form::textarea ('inf_salud[enfermedad_ult_mes]',
@@ -572,7 +572,7 @@
                             ])}}
                     </td>
 
-                    <td>Prentesco:</td>
+                    <td>Parentesco:</td>
                     <td>
                         {{ Form::text('antecedente[parentesco_diab]',
                             isset($antecedente->parentesco_diab), [
@@ -594,7 +594,7 @@
                             ])}}
                     </td>
 
-                    <td>Prentesco:</td>
+                    <td>Parentesco:</td>
                     <td>
                         {{ Form::text('antecedente[parentesco_cor]',
                             isset($antecedente->parentesco_cor), [
@@ -616,7 +616,7 @@
                             ])}}
                     </td>
 
-                    <td>Prentesco:</td>
+                    <td>Parentesco:</td>
                     <td>
                         {{ Form::text('antecedente[parentesco_hip]',
                             isset($antecedente->parentesco_hip), [
@@ -638,7 +638,7 @@
                             ])}}
                     </td>
 
-                    <td>Prentesco:</td>
+                    <td>Parentesco:</td>
                     <td>
                         {{ Form::text('antecedente[parentesco_can]',
                             isset($antecedente->parentesco_can), [

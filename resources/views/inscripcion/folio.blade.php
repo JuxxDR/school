@@ -9,7 +9,7 @@
         <div class="row" style="height: 614px">
             <div class="col-6 offset-3 mt-5">
                 <div class="card">
-                    <div class="card-header text-center ">
+                    <div class="card-header text-center card bg-secondary" style="color: white" >
                         <h3>Inscripción</h3>
                     </div>
                     <div class="card-body">
@@ -32,7 +32,7 @@
                                 {!!
                                     Form::submit('Continuar',
                                     [
-                                    'class' => 'btn btn-primary btn-md '
+                                    'class' => 'btn btn-success btn-md '
                                     ])
                                 !!}
                             </div>

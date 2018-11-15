@@ -49,6 +49,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\InfSalud whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\InfSalud whereVacunasAplicadas($value)
  * @mixin \Eloquent
+ * @property string|null $recomendaciones_especiales
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\model\InfSalud whereRecomendacionesEspeciales($value)
  */
 class InfSalud extends Model
 {

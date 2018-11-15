@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Grupo whereGrado($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Grupo whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Grupo whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Model\Tarea[] $tareas
  */
 class Grupo extends Model
 {

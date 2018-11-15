@@ -10,7 +10,7 @@
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('nombre','Nombre') !!}
-            {{ Form::text('nombre',isset($alumno->nombre), [
+            {{ Form::text('nombre',isset($alumno->nombre)?$alumno->nombre:"", [
           'class' => $errors->has('nombre')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('nombre'))
@@ -23,7 +23,7 @@
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('apellidoP','Apellido Paterno') !!}
-            {{ Form::text('apellidoP',isset($alumno->apellidoP), [
+            {{ Form::text('apellidoP',isset($alumno->apellidoP)?$alumno->apellidoP:"", [
           'class' => $errors->has('apellidoP')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('apellidoP'))
@@ -36,7 +36,7 @@
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('apellidoM','Apellido Materno') !!}
-            {{ Form::text('apellidoM',isset($alumno->apellidoM), [
+            {{ Form::text('apellidoM',isset($alumno->apellidoM)?$alumno->apellidoM:"", [
           'class' => $errors->has('apellidoM')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('apellidoM'))
@@ -50,7 +50,7 @@
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('curp','CURP') !!}
-            {{ Form::text('curp',isset($alumno->curp), [
+            {{ Form::text('curp',isset($alumno->curp)?$alumno->curp:"", [
           'class' => $errors->has('curp')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('curp'))
@@ -63,7 +63,7 @@
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('fecha_nacimiento','Fecha de nacimiento') !!}
-            {{ Form::date('fecha_nacimiento',isset($alumno->fecha_nacimiento), [
+            {{ Form::date('fecha_nacimiento',isset($alumno->fecha_nacimiento)?$alumno->fecha_nacimiento:"", [
           'class' => $errors->has('fecha_nacimiento')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('fecha_nacimiento'))
@@ -76,7 +76,7 @@
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('edad','Edad') !!}
-            {{ Form::number('edad',isset($alumno->edad), [
+            {{ Form::number('edad',isset($alumno->edad)?$alumno->edad:"", [
           'class' => $errors->has('edad')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('edad'))
@@ -90,7 +90,7 @@
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('meses','Meses') !!}
-            {{ Form::number('meses',isset($alumno->meses), [
+            {{ Form::number('meses',isset($alumno->meses)?$alumno->meses:"", [
           'class' => $errors->has('meses')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('meses'))
@@ -103,7 +103,7 @@
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('grado','Grado') !!}
-            {{ Form::select('grado',['1'=>1,'2'=>2,'3'=>3],isset($alumno->grado),[
+            {{ Form::select('grado',['1'=>1,'2'=>2,'3'=>3],isset($alumno->grado)?$alumno->grado:"",[
                 'class' => $errors->has('grado')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('grado'))
@@ -123,7 +123,7 @@
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('estado','Entidad de nacimiento') !!}
-            {{ Form::text('estado',isset($alumno->estado), [
+            {{ Form::text('estado',isset($alumno->estado)?$alumno->estado:"", [
           'class' => $errors->has('estado')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('estado'))
@@ -136,7 +136,7 @@
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('municipio','Municipio') !!}
-            {{ Form::text('municipio',isset($alumno->municipio), [
+            {{ Form::text('municipio',isset($alumno->municipio)?$alumno->municipio:"", [
           'class' => $errors->has('municipio')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('municipio'))
@@ -149,7 +149,7 @@
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('calle','Calle') !!}
-            {{ Form::text('calle',isset($alumno->calle), [
+            {{ Form::text('calle',isset($alumno->calle)?$alumno->calle:"", [
           'class' => $errors->has('calle')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('calle'))
@@ -163,7 +163,7 @@
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('no_ext','No. Exterior') !!}
-            {{ Form::number('no_ext',isset($alumno->no_ext), [
+            {{ Form::number('no_ext',isset($alumno->no_ext)?$alumno->no_ext:"", [
           'class' => $errors->has('no_ext')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('no_ext'))
@@ -176,7 +176,7 @@
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('no_int','No. Interior') !!}
-            {{ Form::number('no_int',isset($alumno->no_int), [
+            {{ Form::number('no_int',isset($alumno->no_int)?$alumno->no_int:"", [
           'class' => $errors->has('no_int')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('no_int'))
@@ -189,12 +189,12 @@
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('colonia','Colonia') !!}
-            {{ Form::text('colonia',isset($alumno->colonia), [
+            {{ Form::text('colonia',isset($alumno->colonia)?$alumno->colonia:"", [
           'class' => $errors->has('colonia')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('colonia'))
                 <div class="invalid-feedback">
-                    {{ $errors->first('no_int') }}
+                    {{ $errors->first('colonia') }}
                 </div>
             @endif
         </div>
@@ -203,7 +203,7 @@
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('entre_calle1','Entre la calle') !!}
-            {{ Form::text('entre_calle1',isset($alumno->entre_calle1), [
+            {{ Form::text('entre_calle1',isset($alumno->entre_calle1)?$alumno->entre_calle1:"", [
           'class' => $errors->has('entre_calle1')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('entre_calle1'))
@@ -216,7 +216,7 @@
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('entre_calle2','Y la calle') !!}
-            {{ Form::text('entre_calle2',isset($alumno->entre_calle2), [
+            {{ Form::text('entre_calle2',isset($alumno->entre_calle2)?$alumno->entre_calle2:"", [
           'class' => $errors->has('entre_calle2')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('entre_calle2'))
@@ -229,7 +229,7 @@
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('cp','Código postal') !!}
-            {{ Form::number('cp',isset($alumno->cp), [
+            {{ Form::number('cp',isset($alumno->cp)?$alumno->cp:"", [
           'class' => $errors->has('cp')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('cp'))
@@ -243,7 +243,7 @@
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('punto_referencia','Punto de referencia') !!}
-            {{ Form::text('punto_referencia',isset($alumno->punto_referencia), [
+            {{ Form::text('punto_referencia',isset($alumno->punto_referencia)?$alumno->punto_referencia:"", [
           'class' => $errors->has('punto_referencia')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('punto_referencia'))
@@ -256,7 +256,7 @@
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('tel_casa','Telefóno de casa') !!}
-            {{ Form::text('tel_casa',isset($alumno->tel_casa), [
+            {{ Form::text('tel_casa',isset($alumno->tel_casa)?$alumno->tel_casa:"", [
           'class' => $errors->has('tel_casa')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('tel_casa'))
@@ -269,7 +269,7 @@
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('cel','Celular') !!}
-            {{ Form::text('cel',isset($alumno->cel), [
+            {{ Form::text('cel',isset($alumno->cel)?$alumno->cel:"", [
           'class' => $errors->has('cel')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('cel'))
@@ -280,9 +280,6 @@
         </div>
     </div>
 
-    <div class="col-12 text-center" style="text-align: center">
-        <button class="btn btn-primary" type="submit">Continuar</button>
-    </div>
 
 </div>
 
