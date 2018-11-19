@@ -27,7 +27,7 @@ if (Session::has('eventos')){
                       true=>"Si",
                       false=>"No",
                       ],
-                      isset($eventos->cultural), [
+                      isset($eventos->cultural)?$eventos->cultural:false, [
                               'class' => $errors->has('cultural')?'is-invalid form-control':'form-control',
                       ])}}
                 </div>
@@ -40,7 +40,7 @@ if (Session::has('eventos')){
                       true=>"Si",
                       false=>"No",
                       ],
-                      isset($eventos->deportivo), [
+                      isset($eventos->deportivo)?$eventos->deportivo:false, [
                               'class' => $errors->has('deportivo')?'is-invalid form-control':'form-control',
                       ])}}
                 </div>
@@ -53,7 +53,7 @@ if (Session::has('eventos')){
                       true=>"Si",
                       false=>"No",
                       ],
-                      isset($eventos->excursion), [
+                      isset($eventos->excursion)?$eventos->excursion:false, [
                               'class' => $errors->has('excursion')?'is-invalid form-control':'form-control',
                       ])}}
                 </div>
@@ -66,7 +66,7 @@ if (Session::has('eventos')){
                       true=>"Si",
                       false=>"No",
                       ],
-                      isset($eventos->recreativo), [
+                      isset($eventos->recreativo)?$eventos->recreativo:false, [
                               'class' => $errors->has('excursion')?'is-invalid form-control':'form-control',
                       ])}}
                 </div>
@@ -79,7 +79,7 @@ if (Session::has('eventos')){
                       true=>"Si",
                       false=>"No",
                       ],
-                      isset($eventos->conv_fam), [
+                      isset($eventos->conv_fam)?$eventos->conv_fam:false, [
                               'class' => $errors->has('excursion')?'is-invalid form-control':'form-control',
                       ])}}
                 </div>
@@ -92,7 +92,7 @@ if (Session::has('eventos')){
                       true=>"Si",
                       false=>"No",
                       ],
-                      isset($eventos->clase_abierta), [
+                      isset($eventos->clase_abierta)?$eventos->clase_abierta:false, [
                               'class' => $errors->has('excursion')?'is-invalid form-control':'form-control',
                       ])}}
                 </div>
@@ -106,7 +106,7 @@ if (Session::has('eventos')){
                       true=>"Si",
                       false=>"No",
                       ],
-                      isset($eventos->civicos), [
+                      isset($eventos->civicos)?$eventos->civicos:false, [
                               'class' => $errors->has('excursion')?'is-invalid form-control':'form-control',
                       ])}}
                 </div>

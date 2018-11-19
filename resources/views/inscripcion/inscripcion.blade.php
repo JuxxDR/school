@@ -213,9 +213,11 @@
                             <div>
                                 @include('inscripcion._form_eventos')
                             </div>
-                            <div class="col-12 text-center" style="text-align: center">
-                                <button class="btn btn-primary" type="submit">Continuar</button>
-                            </div>
+                            @if(!$confirmation)
+                                <div class="col-12 text-center" style="text-align: center">
+                                    <button class="btn btn-primary" type="submit">Continuar</button>
+                                </div>
+                            @endif
                             <input type="hidden" name="confirmation" value="{{$confirmation}}">
                             {!! Form::close()!!}
                         </div>

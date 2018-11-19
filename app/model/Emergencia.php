@@ -63,7 +63,15 @@ class Emergencia extends Model
     public static function rules()
     {
         return [
-            "*" => "required"
+            "nombre1" => 'required',
+            "tel_fijo1" => 'required',
+            "celular1" => 'required',
+            "parentesco1" => 'required',
+            "nombre2" => 'required',
+            "tel_fijo2" => 'required',
+            "celular2" => 'required',
+            "parentesco2" => 'required',
+            "hospital_emergencia" => 'required',
         ];
     }
 

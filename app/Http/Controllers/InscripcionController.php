@@ -427,6 +427,12 @@ class InscripcionController extends Controller
                     'enfermedades' => $enfermedades,
                     'antecedentes' => $antecedentes,
                     'detectado' => $detectado,
+                    'padre' => $padre,
+                    'madre' => $madre,
+                    'emergencia' => $emergencia,
+                    'familia' => $familia,
+                    'eventos' => $eventos,
+                    'personasAut' => $personasAut,
                     'inscripcion' => $inscripcion,
                     'pdfOk' => $pdfOk
                 ])->render();

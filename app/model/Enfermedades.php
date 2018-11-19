@@ -74,5 +74,6 @@ class Enfermedades extends Model
         'e11',
         'e12',
         'e13',
+        'especifique'
     ];
 }

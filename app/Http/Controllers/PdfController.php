@@ -17,6 +17,20 @@ class PdfController extends Controller
 
     public function createPdf(Request $request)
     {
+
+        return $this->finalSave();
+    }
+
+    /**
+     * @param $alumno Alumno
+     * @param $inf_salud InfSalud
+     * @param $enfermedades  Enfermedades
+     * @param $antecedentes AntecedesntesHereditarios
+     * @param $detectado    Detectado
+     * @return \Illuminate\Http\RedirectResponse|string|void
+     */
+    public function finalSave()
+    {
         $alumno = \Session::get('alumno');
         $inf_salud = \Session::get('salud')['infSalud'];
         $enfermedades = \Session::get('salud')['enfermedades'];
@@ -29,30 +43,6 @@ class PdfController extends Controller
         $eventos = \Session::get('eventos');
         $personasAut = \Session::get('personasAut');
         $inscripcion = Inscripciones::find(1);
-        $enfermedades->especifique = "si";
-        return $this->finalSave($alumno, $inf_salud, $enfermedades, $antecedentes, $detectado, $inscripcion);
-    }
-
-    /**
-     * @param $alumno Alumno
-     * @param $inf_salud InfSalud
-     * @param $enfermedades  Enfermedades
-     * @param $antecedentes AntecedesntesHereditarios
-     * @param $detectado    Detectado
-     * @return \Illuminate\Http\RedirectResponse|string|void
-     */
-    public function finalSave($alumno, $inf_salud, $enfermedades, $antecedentes, $detectado, $inscripcion)
-    {
-        $pdfOk = true;
-//                return view('inscripcion.confirmation_pdf', [
-//                    'alumno' => $alumno,
-//                    'salud' => $inf_salud,
-//                    'enfermedades' => $enfermedades,
-//                    'antecedentes' => $antecedentes,
-//                    'detectado' => $detectado,
-//                    'inscripcion' => $inscripcion,
-//                    'pdfOk' => $pdfOk
-//                ]);
 
         $view = \View::make('inscripcion.pdf', [
             'alumno' => $alumno,
@@ -60,8 +50,14 @@ class PdfController extends Controller
             'enfermedades' => $enfermedades,
             'antecedentes' => $antecedentes,
             'detectado' => $detectado,
+            'padre' => $padre,
+            'madre' => $madre,
+            'emergencia' => $emergencia,
+            'familia' => $familia,
+            'eventos' => $eventos,
+            'personasAut' => $personasAut,
             'inscripcion' => $inscripcion,
-            'pdfOk' => $pdfOk
+            'pdfOk' => true
         ])->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);

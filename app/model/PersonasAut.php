@@ -45,10 +45,14 @@ class PersonasAut extends Model
         "nombre3",
         "nombre4",
     ];
+
     public static function rules()
     {
         return [
-            "*" => "required"
+            "nombre1" => 'required',
+            "nombre2" => 'required',
+            "nombre3" => 'required',
+            "nombre4" => 'required',
         ];
     }
 

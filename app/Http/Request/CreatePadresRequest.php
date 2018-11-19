@@ -49,6 +49,7 @@ class CreatePadresRequest extends FormRequest
     {
         return array_merge(
             Padre::messages('padres.0.'),
+            Padre::messages('padres.1.'),
             ['padres.1.*.required_without' => 'Ingrese los datos de al menos un padre.']
         );
     }

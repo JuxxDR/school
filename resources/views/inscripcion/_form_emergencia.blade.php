@@ -11,7 +11,6 @@
     <div class="col-12 mb-3">
         <h2 class="text-center">Datos de contacto</h2>
         <hr>
-
     </div>
     <div class="col-12">
         <div class="row">
