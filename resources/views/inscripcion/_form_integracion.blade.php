@@ -1,5 +1,9 @@
 <?php
 /* @var $familia \App\Model\Familias */
+
+if (Session::has('familia')){
+    $familia=Session::get('familia');
+}
 ?>
 
 <div class="row">

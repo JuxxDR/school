@@ -1,260 +1,267 @@
 @php
     /* @var $alumno \App\Model\Alumno*/
     /* @var $salud \App\model\InfSalud*/
-    /* @var $enfermedade \App\model\Enfermedades*/
-    /* @var $antecedente \App\model\AntecedesntesHereditarios*/
+    /* @var $enfermedades \App\model\Enfermedades*/
+    /* @var $antecedentes \App\model\AntecedesntesHereditarios*/
     /* @var $detectado \App\model\Detectado */
     /* @var $inscripcion  \App\model\Inscripciones*/
+
+$enfermedadesDef=[];
+$enfermedadesDef[]="Sobre peso u obesidad";
+$enfermedadesDef[]="Enfermedades del corazón";
+$enfermedadesDef[]="Bronquitis";
+$enfermedadesDef[]="Hemorragias";
+$enfermedadesDef[]="Epilepsia";
+$enfermedadesDef[]="Fiebre reumática";
+$enfermedadesDef[]="Cáncer";
+$enfermedadesDef[]="Diabetes";
+$enfermedadesDef[]="Amigdalitis";
+$enfermedadesDef[]="Anémia";
+$enfermedadesDef[]="Hepatitis";
+$enfermedadesDef[]="Neoplasias";
+$enfermedadesDef[]="Enfermedades cónicas";
+$enfermedadesDef[]=" ";
+
+$enfermedadesVal=$enfermedades->attributesToArray();
+unset($enfermedadesVal['salud_id']);
+unset($enfermedadesVal['updated_at']);
+unset($enfermedadesVal['created_at']);
+unset($enfermedadesVal['id']);
+
+$detectadoDef[]="¿Duerme bien durante la noche?";
+$detectadoDef[]="¿Le da fiebre con frecuencia?";
+$detectadoDef[]="¿Le falta aire despues de hacer ejercicio?";
+$detectadoDef[]="¿Es alergico a algun medicamento?";
+$detectadoDef[]="¿Presenta hemorragias?";
+$detectadoDef[]="¿Cuenta con algun antecedente médico que le impida a su hijo realizar actividades fisicas?";
+$detectadoDef[]="¿Le duelen las piernas por la noche?";
+$detectadoDef[]="¿Se desmaya con frecuencia?";
+$detectadoDef[]="¿Es alergico a algun medicamento y/o bebida?";
+$detectadoDef[]="¿Ha recibido alguna vez tranfusión sanguínea?";
+$detectadoDef[]="¿Tiene impedimento para realizar actividades físicas?";
+$detectadoDef[]="¿Ha sido intervenido quírurgicamente?";
+
+$detectadoVal=$detectado->attributesToArray();
+unset($detectadoVal['salud_id']);
+unset($detectadoVal['updated_at']);
+unset($detectadoVal['created_at']);
+unset($detectadoVal['id']);
+
+
+$antecedentesDef[]="¿Tiene algun familiar diabético?";
+$antecedentesDef[]="¿Tiene algun familiar enfermo del corazón?";
+$antecedentesDef[]="¿Tiene algun familiar hipertenso?";
+$antecedentesDef[]="¿Tiene algun familiar enfermo de cáncer?";
+
+$antecedentesVal=$antecedentes->attributesToArray();
+unset($antecedentesVal['salud_id']);
+unset($antecedentesVal['updated_at']);
+unset($antecedentesVal['created_at']);
+unset($antecedentesVal['id']);
+unset($antecedentesVal['fam_diab']);
+unset($antecedentesVal['fam_cor']);
+unset($antecedentesVal['fam_hip']);
+unset($antecedentesVal['fam_can']);
+
 @endphp
 <div style="text-align: justify; font: menu">
     <h5><b>Datos del alumno</b></h5>
-    <p style="font-size: 1em; text-align: justify">
+    <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
         {{----}}
         Nombre:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$alumno->nombre}}">
-            <input type="text" class="pdf-input" value="{{$alumno->apellidoP}}">
-            <input type="text" class="pdf-input" value="{{$alumno->apellidoM}}">
-        @else
-            <b> {{$alumno->nombre}} {{$alumno->apellidoP}} {{$alumno->apellidoM}}</b>
-        @endif
+        <b>{{$alumno->nombre}} {{$alumno->apellidoP}} {{$alumno->apellidoM}}</b>
         {{----}}
         CURP:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$alumno->curp}}">
-        @else
-            <b> {{$alumno->curp}}</b>
-        @endif
-    </p>
-    <p style="font-size: 1em; text-align: justify ">
+        <b>{{$alumno->curp}}</b>
+
         {{----}}
         Fecha de nacimiento:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$alumno->fecha_nacimiento}}">
-        @else
-            <b> {{$alumno->fecha_nacimiento}}</b>
-        @endif
+        <b>{{\App\Model\Alumno::setDateAttribute($alumno->fecha_nacimiento)}}</b>
         {{----}}
         Entidad de nacimiento:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$alumno->estado}}">
-        @else
-            <b> {{$alumno->estado}}</b>
-        @endif
+        <b>{{$alumno->estado}}</b>
         {{----}}
         Edad:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$alumno->edad}}">
-        @else
-            <b> {{$alumno->edad}}</b>
-        @endif
-    </p>
-    <p style="font-size: 1em; text-align: justify ">
+        <b>{{$alumno->edad}}</b>
+
         {{----}}
         Calle:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$alumno->calle}}">
-        @else
-            <b> {{$alumno->calle}}</b>
-        @endif
+        <b>{{$alumno->calle}}</b>
         {{----}}
         No.Ext:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$alumno->no_ext}}">
-        @else
-            <b> {{$alumno->no_ext}}</b>
-        @endif
+        <b>{{$alumno->no_ext}}</b>
         {{----}}
         No.Int:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$alumno->no_int}}">
-        @else
-            <b> {{$alumno->no_int}}</b>
-        @endif
+        <b>{{$alumno->no_int}}</b>
         {{----}}
         Colonia:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$alumno->colonia}}">
-        @else
-            <b> {{$alumno->colonia}}</b>
-        @endif
-    </p>
-    <p style="font-size: 1em; text-align: justify ">
+        <b>{{$alumno->colonia}}</b>
+
         {{----}}
         Entre la calle:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$alumno->entre_calle1}}">
-        @else
-            <b> {{$alumno->entre_calle1}}</b>
-        @endif
+        <b>{{$alumno->entre_calle1}}</b>
         {{----}}
         Y la calle:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$alumno->entre_calle2}}">
-        @else
-            <b> {{$alumno->entre_calle2}}</b>
-        @endif
+        <b>{{$alumno->entre_calle2}}</b>
         {{----}}
         Código postal:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$alumno->cp}}">
-        @else
-            <b> {{$alumno->cp}}</b>
-        @endif
-    </p>
-    <p style="font-size: 1em; text-align: justify ">
+        <b>{{$alumno->cp}}</b>
+
         {{----}}
         Punto de referencia:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$alumno->punto_referencia}}">
-        @else
-            <b> {{$alumno->punto_referencia}}</b>
-        @endif
-    </p>
-    <p style="font-size: 1em; text-align: justify ">
+        <b>{{$alumno->punto_referencia}}</b>
+
         {{----}}
         Municipio:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$alumno->municipio}}">
-        @else
-            <b> {{$alumno->municipio}}</b>
-        @endif
+        <b>{{$alumno->municipio}}</b>
         {{----}}
         Teléfono de casa:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$alumno->tel_casa}}">
-        @else
-            <b> {{$alumno->tel_casa}}</b>
-        @endif
+        <b>{{$alumno->tel_casa}}</b>
         {{----}}
         Teléfono celular:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$alumno->cel}}">
-        @else
-            <b> {{$alumno->cel}}</b>
-        @endif
-    </p>
-    <p style="font-size: 1em; text-align: justify ">
+        <b>{{$alumno->cel}}</b>
+
         {{----}}
         Edad años:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$alumno->edad}}">
-        @else
-            <b> {{$alumno->edad}}</b>
-        @endif
+        <b>{{$alumno->edad}}</b>
         {{----}}
         Meses:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$alumno->meses}}">
-        @else
-            <b> {{$alumno->meses}}</b>
-        @endif
+        <b>{{$alumno->meses}}</b>
         {{----}}
         Sexo:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$alumno->sexo}}">
-        @else
-            <b> {{$alumno->sexo}}</b>
-        @endif
+        <b>{{$alumno->sexo}}</b>
         {{----}}
         Talla:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$salud->talla}}">
-        @else
-            <b> {{$salud->talla}}</b>
-        @endif
+        <b>{{$salud->talla}}</b>
         {{----}}
         Peso:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$salud->peso}}">
-        @else
-            <b> {{$salud->peso}}</b>
-        @endif
+        <b>{{$salud->peso}}</b>
     </p>
     <h5><b>Datos de salud</b></h5>
     {{----}}
     <p style="font-size: 1em; text-align: justify ">
         Enfermedades que ha padecido:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$salud->enfermedad}}">
-        @else
-            <b> {{$salud->enfermedad}}</b>
-        @endif
+        <b>{{$salud->enfermedad}}</b>
         {{----}}
         Vacunas aplicadas:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$salud->vacunas_aplicadas}}">
-        @else
-            <b> {{$salud->vacunas_aplicadas}}</b>
-        @endif
+        <b>{{$salud->vacunas_aplicadas}}</b>
         {{----}}
         Alergias:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$salud->ban_alergia === 0 ?"No" :"Si"}}">
-        @else
-            <b> {{$salud->ban_alergia === 0 ?"No" :"Si"}}</b>
-        @endif
-    </p>
-    <p style="font-size: 1em; text-align: justify ">
+        <b>{{$salud->ban_alergia === 0 ?"No" :"Si"}}</b>
+
         {{----}}
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$salud->alergia}}">
-        @else
-            <b> {{$salud->alergia}}</b>
-        @endif
+        <b>{{$salud->alergia}}</b>
         {{----}}
         Caracteristicas especiales del niño:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$salud->carac_especial}}">
-        @else
-            <b> {{$salud->carac_especial}}</b>
-        @endif
+        <b>{{$salud->carac_especial}}</b>
         {{----}}
         Enfermedades que ha padecido el niño en los últimos 12 meses
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$salud->enfermedad_ult_mes}}">
-        @else
-            <b> {{$salud->enfermedad_ult_mes}}</b>
-        @endif
-    </p>
-    <p style="font-size: 1em; text-align: justify ">
+        <b>{{$salud->enfermedad_ult_mes}}</b>
+
         {{----}}
-        Enfermedades que padece con mayor frecuencia;
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$salud->enfermedad_frecuente}}">
-        @else
-            <b> {{$salud->enfermedad_frecuente}}</b>
-        @endif
+        Enfermedades que padece con mayor frecuencia:
+        <b>{{$salud->enfermedad_frecuente}}</b>
         {{----}}
-        Alergias;
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$salud->ban_alergia ===0 ? "No":"Si" }}">
-        @else
-            <b> {{$salud->ban_alergia ===0 ? "No":"Si" }}</b>
-        @endif
+        Alergias:
+        <b>{{$salud->ban_alergia ===0 ? "No":"Si" }}</b>
         {{----}}
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$salud->alergia}}">
-        @else
-            <b> {{$salud->alergia}}</b>
-        @endif
-    </p>
-    <p style="font-size: 1em; text-align: justify ">
+        <b>{{$salud->alergia}}</b>
+
         {{----}}
         Médico familiar:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$salud->medico_familiar}}">
-        @else
-            <b> {{$salud->medico_familiar}}</b>
-        @endif
+        <b>{{$salud->medico_familiar}}</b>
         {{----}}
         Recomendaciónes especiales:
-        @if(!isset($pdfOk))
-            <input type="text" class="pdf-input" value="{{$salud->recomendaciones_especiales}}">
-        @else
-            <b> {{$salud->recomendaciones_especiales}}</b>
-        @endif
+        <b>{{isset($salud->recomendaciones_especiales)?:'S/n'}}</b>
     </p>
+
+    <div id="div-enfermedades">
+        <table>
+            <thead>
+            <tr style="text-align: center">
+                <th colspan="4"> Enfermedades que presenta el infante</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($enfermedadesVal as $enfermedad)
+                @if($loop->index %2 ===0)
+                    <tr>
+                        <td>
+                            {{$enfermedadesDef[$loop->index]}}
+                        </td>
+                        <td style="text-align: center">
+                            {{$enfermedad==1?"Si":"No"}}
+                        </td>
+                        @else
+                            @if($loop->index === 13)
+                                <td colspan="2">
+                                    {{$enfermedad}}
+                                </td>
+                            @else
+                                <td>
+                                    {{$enfermedadesDef[$loop->index]}}
+                                </td>
+                                <td style="text-align: center">
+                                    {{$enfermedad==1?"Si":"No"}}
+                                </td>
+                            @endif
+                    </tr>
+                @endif
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+    <div id="div-detectado">
+        <table>
+            <thead>
+            <tr style="text-align: center">
+                <th colspan="4">Insidencias presentadas en el infante</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($detectadoVal as $detectado)
+                @if($loop->index %2 ===0)
+                    <tr>
+                        <td>
+                            {{$detectadoDef[$loop->index]}}
+                        </td>
+                        <td style="text-align: center">
+                            {{$detectado==1?"Si":"No"}}
+                        </td>
+                        @else
+                            <td>
+                                {{$detectadoDef[$loop->index]}}
+                            </td>
+                            <td style="text-align: center">
+                                {{$detectado==1?"Si":"No"}}
+                            </td>
+                    </tr>
+                @endif
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+    <div id="div-antecedentes">
+        <table>
+            <thead>
+            <tr style="text-align: center">
+                <th colspan="2">Antecedentes del infante</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($antecedentesVal as $antecedentes)
+                <tr>
+                    <td>
+                        {{$antecedentesDef[$loop->index]}}
+                    </td>
+                    <td style="text-align: center">
+                        {{$antecedentes?:"No"}}
+                    </td>
+                    </td>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
 
 
 </div>

@@ -105,5 +105,12 @@ class InfSalud extends Model
             $prefix . 'peso.required' => 'El campo es requerido',
         ];
     }
-
+    public function detectado()
+    {
+        return $this->belongsTo(
+            Detectado::class,
+            'salud_id',
+            'id'
+        );
+    }
 }

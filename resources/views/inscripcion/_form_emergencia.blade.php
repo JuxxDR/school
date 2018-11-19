@@ -2,6 +2,9 @@
         @endphp
 <?php
 /* @var $emergencia \App\Model\Emergencia */
+    if (Session::has('emergencia')){
+        $emergencia=Session::get('emergencia');
+    }
 ?>
 
 <div class="row">

@@ -15,31 +15,22 @@ use Barryvdh\DomPDF\Facade as PDF;
 class PdfController extends Controller
 {
 
-    public function createPdf(Request $request, $folioId, $inscripcionId)
+    public function createPdf(Request $request)
     {
-
-        $inscripcion = Inscripciones::find($inscripcionId);
-        $alumno = $inscripcion->alumno()->first();
-//        return dd($alumno);
-        $noctrl = $alumno->no_control;
-        $password = $alumno->password;
-        $alumno->fill($request->all());
-        $alumno->no_control = $noctrl;
-        $alumno->password = $password;
-        $alumno->save();
-        $alumno->inscripcion_id = $inscripcionId;
-
-        $infSalud = new InfSalud();
-        $infSalud->fill($request->inf_salud);
-//        return dd($infSalud);
-        $enfermedades = new Enfermedades();
-        $enfermedades->fill($request->enfermedades);
-        $detectado = new Detectado();
-        $detectado->fill($request->detectado);
-        $antecedente = new AntecedesntesHereditarios();
-        $antecedente->fill($request->antecedente);
-
-        return $this->finalSave($alumno, $infSalud, $enfermedades, $antecedente, $detectado, $inscripcion);
+        $alumno = \Session::get('alumno');
+        $inf_salud = \Session::get('salud')['infSalud'];
+        $enfermedades = \Session::get('salud')['enfermedades'];
+        $detectado = \Session::get('salud')['detectado'];
+        $antecedentes = \Session::get('salud')['antecedente'];
+        $padre = \Session::get('padres')['padre'];
+        $madre = \Session::get('padres')['madre'];
+        $emergencia = \Session::get('emergencia');
+        $familia = \Session::get('familia');
+        $eventos = \Session::get('eventos');
+        $personasAut = \Session::get('personasAut');
+        $inscripcion = Inscripciones::find(1);
+        $enfermedades->especifique = "si";
+        return $this->finalSave($alumno, $inf_salud, $enfermedades, $antecedentes, $detectado, $inscripcion);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 
@@ -162,7 +163,14 @@ class Alumno extends Model
             ];
     }
 
+    protected $dateFormat = 'Y-m-d';
+
     protected $dates = ['fecha_nacimiento'];
+
+    public static function setDateAttribute($value)
+    {
+        return (new Carbon($value))->format('d/m/y');
+    }
 
     public function evaluaciones()
     {
@@ -204,6 +212,15 @@ class Alumno extends Model
     {
         return $this->HasMany(
             AnuncioEspecifico::class,
+            'alumno_id',
+            'id'
+        );
+    }
+
+    public function infSalud()
+    {
+        return $this->HasMany(
+            InfSalud::class,
             'alumno_id',
             'id'
         );

@@ -1,6 +1,10 @@
 <?php
 /* @var $padre \App\Model\Padre */
 /* @var $madre\App\Model\Padre */
+if (Session::has('padres')) {
+    $madre = Session::get('padres')['madre'];
+    $padre = Session::get('padres')['padre'];
+}
 
 ?>
 <div class="row">

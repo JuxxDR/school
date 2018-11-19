@@ -11,16 +11,28 @@
     <title>@yield('title')</title>
     <!-- Style sheets -->
     @include('template.global_css')
-    @stack('css')
+
+    <style>
+        .new_page {
+            page-break-before: always;
+        }
+
+        table {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, td, th {
+            border: 1px solid black;
+        }
+
+
+    </style>
 </head>
 <body>
 <img src="{{asset('img/ENCABEZADO.jpg')}}" alt="encabezado" width="100%">
-{{--@include('inscripcion._body_pdf')--}}
-@if(!isset($pdfOk))
-    @include('inscripcion._form_datos_alumno',['alumno'=>$alumno])
-@else
-
-@endif
+@include('inscripcion._body_pdf')
 <p>
     Aqui la metes
     :3

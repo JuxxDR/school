@@ -2,6 +2,10 @@
         @endphp
 <?php
 /* @var $eventos \App\Model\Eventos */
+if (Session::has('eventos')){
+    $eventos=Session::get('eventos');
+}
+
 ?>
 
 <div class="row">

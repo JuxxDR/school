@@ -2,6 +2,10 @@
         @endphp
 <?php
 /* @var $personas \App\Model\PersonasAut */
+
+if (Session::has('personasAut')) {
+    $personas= Session::get('personasAut');
+}
 ?>
 <div class="row">
     <div class="col-12 mb-3">
