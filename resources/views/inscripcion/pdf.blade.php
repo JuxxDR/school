@@ -15,7 +15,12 @@
 </head>
 <body>
 <img src="{{asset('img/ENCABEZADO.jpg')}}" alt="encabezado" width="100%">
-@include('inscripcion._body_pdf')
+{{--@include('inscripcion._body_pdf')--}}
+@if(!isset($pdfOk))
+    @include('inscripcion._form_datos_alumno',['alumno'=>$alumno])
+@else
+
+@endif
 <p>
     Aqui la metes
     :3

@@ -68,6 +68,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Alumno whereUpdatedAt($value)
  * @property string $estado
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Alumno whereEstado($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Alumno newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Alumno newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Alumno query()
  */
 class Alumno extends Model
 {

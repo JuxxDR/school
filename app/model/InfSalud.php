@@ -51,6 +51,9 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  * @property string|null $recomendaciones_especiales
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\InfSalud whereRecomendacionesEspeciales($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\model\InfSalud newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\model\InfSalud newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\model\InfSalud query()
  */
 class InfSalud extends Model
 {

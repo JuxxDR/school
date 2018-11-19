@@ -26,6 +26,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Evaluacion whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Evaluacion whereTrimestre($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Evaluacion whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Evaluacion newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Evaluacion newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Evaluacion query()
  */
 class Evaluacion extends Model
 {

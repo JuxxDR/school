@@ -21,6 +21,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Materia whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Materia whereNombre($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Materia whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Materia newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Materia newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Materia query()
  */
 class Materia extends Model
 {

@@ -120,27 +120,26 @@ class CreateDatabase extends Migration
 
         Schema::create('padres', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('curp');
-            $table->Integer('nombre_completo');
-
-            $table->unsignedInteger('familia_id');
+            $table->string('curp')->nullable();
+            $table->string('nombre_completo')->nullable();
+            $table->unsignedInteger('familia_id')->nullable();
+            $table->string('calle')->nullable();
+            $table->string('no_ext')->nullable();
+            $table->string('no_int')->nullable();
+            $table->string('colonia')->nullable();
+            $table->string('entre_calle1')->nullable();
+            $table->string('entre_calle2')->nullable();
+            $table->string('cp')->nullable();
+            $table->string('nivel_estudios')->nullable();
+            $table->string('edo_civil')->nullable();
+            $table->string('ocupacion')->nullable();
+            $table->string('lugar_trabajo')->nullable();
+            $table->string('tel_fijo')->nullable();
+            $table->string('celular')->nullable();
+            $table->string('email')->nullable();
+            $table->string('red_social')->nullable();
+            $table->string('parentesco')->nullable(); //0.-Papa 1.-Mama
             $table->foreign('familia_id')->references('id')->on('familias');;
-            $table->string('calle');
-            $table->string('no_ext');
-            $table->string('no_int');
-            $table->string('colonia');
-            $table->string('entre_calle1');
-            $table->string('entre_calle2');
-            $table->string('cp');
-            $table->string('nivel_estudios');
-            $table->string('edo_civil');
-            $table->string('ocupacion');
-            $table->string('lugar_trabajo');
-            $table->string('tel_fijo');
-            $table->string('celular');
-            $table->string('email');
-            $table->string('red_social');
-            $table->string('parentesco'); //0.-Papa 1.-Mama
             $table->rememberToken();
             $table->timestamps();
         });

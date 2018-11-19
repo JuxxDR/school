@@ -25,6 +25,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Inscripciones whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Inscripciones whereUpdatedAt($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Model\Alumno[] $alumno
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Inscripciones newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Inscripciones newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Inscripciones query()
  */
 class Inscripciones extends Model
 {
