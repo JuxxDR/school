@@ -15,7 +15,7 @@
                 <a href="{{ route('tarea_inicio') }}">Tareas</a>
             </li>
             <li>
-                <a href="#">Reportes de evaluación</a>
+                <a href="{{ route('docente_reportes') }}">Reportes de evaluación</a>
             </li>
         @endif
         @if(auth()->user()->is_admin)

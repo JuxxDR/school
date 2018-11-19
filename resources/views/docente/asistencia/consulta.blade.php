@@ -10,8 +10,13 @@
             <div class="card">
                 <div class="card-body">
                     <h2>Consulta de Asistencia</h2>
+                    <form action="descargaPDF" method="POST">
+                        {{ csrf_field() }}
+                        <input type="hidden" value="{{ $fecha_elegida }}" id="fecha" name="fecha">
+                        <button type="submit" class="btn btn-danger" style="float:right;"><i class="fa fa-file-pdf"></i><span> Generar PDF</span></button>
+                    </form>
+                    <h5><i class="fa fa-calendar"></i><span> {{ $fecha_elegida }}</span></h5>
                     <br>
-                    <h5 style="float:right;"><i class="fa fa-calendar"></i><span> {{ $fecha_elegida }}</span></h5>
                     <table class="table" id="lista_asistencias">
                         <thead class="thead-dark">
                         <tr>

@@ -16,8 +16,9 @@ html, body {
 }
 
 .footer {
-    background: #60584d;
-    color: #FFFFFF;
+    background: #014c8c;
+    color: white;
+    padding-bottom: 5px;
     height: 70px;
 }
 

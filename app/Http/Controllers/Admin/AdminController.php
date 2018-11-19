@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Model\Docente;
 use App\Model\Grupo;
+use App\model\Trimestre;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use PhpParser\Comment\Doc;
@@ -77,5 +78,12 @@ class AdminController extends Controller
         $docente->role = 1;
         $docente->save();
         return back()->with('notification_crear', 'Docente creado');
+    }
+
+    public function habilitarPrimer(){
+        $trimestre = Trimestre::all()->first();
+        $trimestre->trimestre=1;
+        $trimestre->save();
+        return back()->with('notification','El primer trimestre ha sido habilitado');
     }
 }

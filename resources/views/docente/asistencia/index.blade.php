@@ -5,7 +5,9 @@
     <!-- Page Content  -->
     <div id="content">
         <div class="container">
-            <button id="consultar" name="consultar" class="btn btn-info" style="float: right">Consultar fechas anteriores</button>
+            <button id="consultar" name="consultar" class="btn btn-info" style="float: right">Consultar fechas
+                anteriores
+            </button>
             <br><br>
             <div class="card">
                 <div class="container">
@@ -54,41 +56,34 @@
                     </div>
                 @endif
                 @if( $realizada == 0 )
-                    <table class="table" id="lista_asistencias">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th>No. Control</th>
-                            <th>Nombre Completo</th>
-                            <th>Asistencia</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($students as $student)
+                    <form action="asistencia/guardar" method="POST">
+                        {{ csrf_field() }}
+                        <table class="table" id="lista_asistencias">
+                            <thead class="thead-dark">
                             <tr>
-                                <td>{{ $student->alumnos->no_control }}</td>
-                                <td>{{ $student->alumnos->nombre .' '. $student->alumnos->apellidoP .' '. $student->alumnos->apellidoM }}</td>
-                                <td>
-                                    @if( !\App\Model\Asistencia::where('alumno_id',$student->alumnos->id)->where('fecha',date('Y-m-d'))->first() )
-                                        <a href="{{ $student->alumnos->id }}/asistencia" class="btn btn-sm btn-success"
-                                           title="Asistio">
-                                            <i class="fa fa-check"></i>
-                                        </a>
-                                        <a href="{{ $student->alumnos->id }}/noAsistencia" class="btn btn-sm btn-danger"
-                                           title="No asistio">
-                                            <i class="fa fa-remove"></i>
-                                        </a>
-                                    @else
-                                        <a href="{{ $student->alumnos->id }}/modificarAsistencia"
-                                           class="btn btn-sm btn-info"
-                                           title="Modificar">
-                                            <i class="fa fa-check"></i>
-                                        </a>
-                                    @endif
-                                </td>
+                                <th>No. Control</th>
+                                <th>Nombre Completo</th>
+                                <th>Asistencia</th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            @foreach($students as $student)
+                                <tr>
+                                    <td>{{ $student->alumnos->no_control }}</td>
+                                    <td>{{ $student->alumnos->nombre .' '. $student->alumnos->apellidoP .' '. $student->alumnos->apellidoM }}</td>
+                                    <td>
+                                        <select class="form-control" name="asistencia{{ $student->alumnos->id }}">
+                                            <option value="0">Selecciona una opción</option>
+                                            <option value="1">Asistio</option>
+                                            <option value="2">No asistio</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                        <button class="btn btn-primary" style="float: right;" type="submit">Guardar</button>
+                    </form>
                 @else
                     <div class="alert alert-dismissible alert-info text-center" style="margin-bottom: 0px">
                         <h4>Ya pasaste lista el dia de hoy</h4>
@@ -101,9 +96,6 @@
                     </div>
                 @endif
             </div>
-            @if( $realizada == 0 )
-                <a class="btn btn-primary" style="float: right;" href="asistencia/guardar">Guardar</a>
-            @endif
         </div>
     </div>
 
