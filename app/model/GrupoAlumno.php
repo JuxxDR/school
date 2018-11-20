@@ -21,6 +21,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\GrupoAlumno whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\GrupoAlumno whereUpdatedAt($value)
  * @property-read \App\Model\Alumno $alumnos
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\GrupoAlumno newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\GrupoAlumno newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\GrupoAlumno query()
  */
 class GrupoAlumno extends Model
 {

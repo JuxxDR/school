@@ -24,6 +24,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Tarea whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Tarea whereNombre($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Tarea whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Tarea newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Tarea newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Tarea query()
  */
 class Tarea extends Model
 {

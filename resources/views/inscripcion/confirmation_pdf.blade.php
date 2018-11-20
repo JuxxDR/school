@@ -15,28 +15,47 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="container border mt-3 " style="font-size: 1.5em;">
-            <div class="row">
-                <div class="col-12 text-center">
-                    {!! Form::open(['url'=>route('inscripcion_confirm_pdf',
-                                       ['folioId'=>$inscripcion->folio_id,
-                                       'inscripcionId'=>$inscripcion->id])])!!}
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        {!! Form::open(['url'=>route('inscripcion_confirm_pdf',
+                                           ['folioId'=>$inscripcion->folio_id,
+                                           'inscripcionId'=>$inscripcion->id])])!!}
 
-                    @include('inscripcion._form_datos_alumno',[
-                    'alumno'=>$alumno
-                    ])
+                        @include('inscripcion._form_datos_alumno',[
+                        'alumno'=>$alumno
+                        ])
 
-                    @include('inscripcion._form_salud',[
-                    'salud'=>$salud,
-                    'enfermedades'=>$enfermedades,
-                    'detectado'=>$detectado,
-                    'antecedente'=>$antecedentes
-                    ])
+                        @include('inscripcion._form_salud',[
+                        'salud'=>$salud,
+                        'enfermedades'=>$enfermedades,
+                        'detectado'=>$detectado,
+                        'antecedente'=>$antecedentes
+                        ])
 
-                    <div class="col-12 text-center" style="text-align: center">
-                        <button class="btn btn-primary" type="submit">Continuar</button>
+                        @include('inscripcion._form_padres',[
+                        'padre'=>$padre,
+                        'madre'=>$madre,
+                       ])
+
+                        @include('inscripcion._form_integracion',[
+                        'familia'=>$familia
+                       ])
+
+                        @include('inscripcion._form_personas_aut',[
+                         'personas'=>$personasAut
+                        ])
+                        @include('inscripcion._form_emergencia',[
+                         'emergencia'=>$emergencia
+                        ])
+
+
+                        <div class="col-12 text-center" style="text-align: center">
+                            <button class="btn btn-primary" type="submit">Continuar</button>
+                        </div>
+                        {!! Form::close()!!}
                     </div>
-                    {!! Form::close()!!}
                 </div>
             </div>
         </div>

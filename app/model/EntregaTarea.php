@@ -22,6 +22,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\EntregaTarea whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\EntregaTarea whereTareaId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\EntregaTarea whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\EntregaTarea newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\EntregaTarea newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\EntregaTarea query()
  */
 class EntregaTarea extends Model
 {

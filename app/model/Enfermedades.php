@@ -53,6 +53,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Enfermedades whereSaludId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Enfermedades whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Enfermedades newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Enfermedades newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Enfermedades query()
  */
 class Enfermedades extends Model
 {
@@ -71,5 +74,6 @@ class Enfermedades extends Model
         'e11',
         'e12',
         'e13',
+        'especifique'
     ];
 }

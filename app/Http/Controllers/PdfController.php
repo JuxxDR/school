@@ -15,31 +15,10 @@ use Barryvdh\DomPDF\Facade as PDF;
 class PdfController extends Controller
 {
 
-    public function createPdf(Request $request, $folioId, $inscripcionId)
+    public function createPdf(Request $request)
     {
 
-        $inscripcion = Inscripciones::find($inscripcionId);
-        $alumno = $inscripcion->alumno()->first();
-//        return dd($alumno);
-        $noctrl = $alumno->no_control;
-        $password = $alumno->password;
-        $alumno->fill($request->all());
-        $alumno->no_control = $noctrl;
-        $alumno->password = $password;
-        $alumno->save();
-        $alumno->inscripcion_id = $inscripcionId;
-
-        $infSalud = new InfSalud();
-        $infSalud->fill($request->inf_salud);
-//        return dd($infSalud);
-        $enfermedades = new Enfermedades();
-        $enfermedades->fill($request->enfermedades);
-        $detectado = new Detectado();
-        $detectado->fill($request->detectado);
-        $antecedente = new AntecedesntesHereditarios();
-        $antecedente->fill($request->antecedente);
-
-        return $this->finalSave($alumno, $infSalud, $enfermedades, $antecedente, $detectado, $inscripcion);
+        return $this->finalSave();
     }
 
     /**
@@ -50,18 +29,20 @@ class PdfController extends Controller
      * @param $detectado    Detectado
      * @return \Illuminate\Http\RedirectResponse|string|void
      */
-    public function finalSave($alumno, $inf_salud, $enfermedades, $antecedentes, $detectado, $inscripcion)
+    public function finalSave()
     {
-        $pdfOk = true;
-//                return view('inscripcion.confirmation_pdf', [
-//                    'alumno' => $alumno,
-//                    'salud' => $inf_salud,
-//                    'enfermedades' => $enfermedades,
-//                    'antecedentes' => $antecedentes,
-//                    'detectado' => $detectado,
-//                    'inscripcion' => $inscripcion,
-//                    'pdfOk' => $pdfOk
-//                ]);
+        $alumno = \Session::get('alumno');
+        $inf_salud = \Session::get('salud')['infSalud'];
+        $enfermedades = \Session::get('salud')['enfermedades'];
+        $detectado = \Session::get('salud')['detectado'];
+        $antecedentes = \Session::get('salud')['antecedente'];
+        $padre = \Session::get('padres')['padre'];
+        $madre = \Session::get('padres')['madre'];
+        $emergencia = \Session::get('emergencia');
+        $familia = \Session::get('familia');
+        $eventos = \Session::get('eventos');
+        $personasAut = \Session::get('personasAut');
+        $inscripcion = Inscripciones::find(1);
 
         $view = \View::make('inscripcion.pdf', [
             'alumno' => $alumno,
@@ -69,8 +50,14 @@ class PdfController extends Controller
             'enfermedades' => $enfermedades,
             'antecedentes' => $antecedentes,
             'detectado' => $detectado,
+            'padre' => $padre,
+            'madre' => $madre,
+            'emergencia' => $emergencia,
+            'familia' => $familia,
+            'eventos' => $eventos,
+            'personasAut' => $personasAut,
             'inscripcion' => $inscripcion,
-            'pdfOk' => $pdfOk
+            'pdfOk' => true
         ])->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);

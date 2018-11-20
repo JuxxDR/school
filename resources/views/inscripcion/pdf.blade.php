@@ -11,7 +11,27 @@
     <title>@yield('title')</title>
     <!-- Style sheets -->
     @include('template.global_css')
-    @stack('css')
+
+    <style>
+        .new_page {
+            page-break-before: always;
+        }
+
+        table {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, td, th {
+            border: 1px solid black;
+        }
+        P{
+            margin-top: 20px;
+        }
+
+
+    </style>
 </head>
 <body>
 <img src="{{asset('img/ENCABEZADO.jpg')}}" alt="encabezado" width="100%">

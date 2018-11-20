@@ -28,6 +28,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Folios whereFolio($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Folios whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Folios whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Folios newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Folios newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Folios query()
  */
 class Folios extends Model
 {

@@ -21,6 +21,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Anuncio whereInformacion($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Anuncio whereNombre($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Anuncio whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Anuncio newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Anuncio newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Anuncio query()
  */
 class Anuncio extends Model
 {

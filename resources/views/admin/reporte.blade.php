@@ -9,6 +9,21 @@
             <br>
             <div class="card">
                 <div class="card-body">
+                    @if(session('notification'))
+                        <div class="alert alert-dismissible alert-info" style="margin-bottom: 0px;">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Correcto</strong> <a href="#" class="alert-link">La acción se ha ejecutado de manera
+                                correcta </a><br>
+                            {{ session('notification') }}
+                        </div>
+                    @endif
+                    @if(\App\model\Trimestre::all()->first()->trimestre==0)
+                        <a class="btn btn-success" href="primerTrimestre">Habilitar Primer Trimestre</a>
+                    @elseif(\App\model\Trimestre::all()->first()->trimestre==1)
+                        <a class="btn btn-success" href="segundoTrimestre">Habilitar Segundo Trimestre</a>
+                    @elseif(\App\model\Trimestre::all()->first()->trimestre==2)
+                        <a class="btn btn-success" href="tercerTrimestre">Habilitar Tercer Trimestre</a>
+                    @endif
                     @foreach($grupos as $grupo)
                         <h3>{{ 'Grupo: '.$grupo->id }}</h3>
                         <h4>{{ 'Aula: '.$grupo->aula }}</h4>

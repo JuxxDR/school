@@ -49,6 +49,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Detectado whereSaludId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Detectado whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Detectado newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Detectado newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Detectado query()
  */
 class Detectado extends Model
 {
