@@ -114,27 +114,26 @@ class BaseDatos extends Migration
 
         Schema::create('padres', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('curp');
-            $table->Integer('nombre_completo');
-
             $table->unsignedInteger('familia_id');
+            $table->string('curp')->nullable;
             $table->foreign('familia_id')->references('id')->on('familias');;
-            $table->string('calle');
-            $table->string('no_ext');
-            $table->string('no_int');
-            $table->string('colonia');
-            $table->string('entre_calle1');
-            $table->string('entre_calle2');
-            $table->string('cp');
-            $table->string('nivel_estudios');
-            $table->string('edo_civil');
-            $table->string('ocupacion');
-            $table->string('lugar_trabajo');
-            $table->string('tel_fijo');
-            $table->string('celular');
-            $table->string('email');
-            $table->string('red_social');
-            $table->string('parentesco'); //0.-Papa 1.-Mama
+            $table->string('nombre_completo')->nullable;
+            $table->string('calle')->nullable;
+            $table->string('no_ext')->nullable;
+            $table->string('no_int')->nullable;
+            $table->string('colonia')->nullable;
+            $table->string('entre_calle1')->nullable;
+            $table->string('entre_calle2')->nullable;
+            $table->string('cp')->nullable;
+            $table->string('nivel_estudios')->nullable;
+            $table->string('edo_civil')->nullable;
+            $table->string('ocupacion')->nullable;
+            $table->string('lugar_trabajo')->nullable;
+            $table->string('tel_fijo')->nullable;
+            $table->string('celular')->nullable;
+            $table->string('email')->nullable;
+            $table->string('red_social')->nullable;
+            $table->string('parentesco')->nullable; //0.-Papa 1.-Mama
             $table->rememberToken();
             $table->timestamps();
         });
@@ -154,6 +153,8 @@ class BaseDatos extends Migration
             $table->string('enfermedad_ult_mes');
             $table->string('enfermedad_frecuente');
             $table->string('medico_familiar');
+            $table->string('talla');
+            $table->string('peso');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -201,7 +202,7 @@ class BaseDatos extends Migration
             $table->smallInteger('e11');
             $table->smallInteger('e12');
             $table->smallInteger('e13');
-            $table->string('especifique');
+            $table->string('especifique')->nullable;
             $table->rememberToken();
             $table->timestamps();
         });
@@ -238,10 +239,10 @@ class BaseDatos extends Migration
             $table->smallInteger('fam_cor');
             $table->smallInteger('fam_hip');
             $table->smallInteger('fam_can');
-            $table->string('parentesco_diab');
-            $table->string('parentesco_cor');
-            $table->string('parentesco_hip');
-            $table->string('parentesco_can');
+            $table->string('parentesco_diab')->nullable();
+            $table->string('parentesco_cor')->nullable();
+            $table->string('parentesco_hip')->nullable();
+            $table->string('parentesco_can')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

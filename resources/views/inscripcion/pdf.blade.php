@@ -26,8 +26,15 @@
         table, td, th {
             border: 1px solid black;
         }
-        P{
+
+        P {
             margin-top: 20px;
+        }
+
+        body {
+            font-family: Arial, Arial, sans-serif !important;
+            color: black;
+            background-color:white !important
         }
 
 
@@ -36,16 +43,6 @@
 <body>
 <img src="{{asset('img/ENCABEZADO.jpg')}}" alt="encabezado" width="100%">
 @include('inscripcion._body_pdf')
-<p>
-    Aqui la metes
-    :3
-</p>
-<p>
-<h4>Porfavor guarda la siguiente información</h4>
-<h5><b>No. Control: </b> {{$alumno->no_control}} </h5>
-<h5><b>Contraseña: </b> {{$alumno->password}} </h5>
-</p>
-
 @include('template.global_js')
 @stack('scripts')
 </body>

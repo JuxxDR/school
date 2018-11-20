@@ -13,9 +13,6 @@
     /* @var $personasAut\App\model\PersonasAut*/
 
 
-
-
-
 $enfermedadesDef=[];
 $enfermedadesDef[]="Sobre peso u obesidad";
 $enfermedadesDef[]="Enfermedades del corazón";
@@ -74,10 +71,10 @@ unset($antecedentesVal['fam_hip']);
 unset($antecedentesVal['fam_can']);
 
 @endphp
-<div style="text-align: justify; font: menu">
+<div style="text-align: justify; font: menu;">
     <div id="cabecera" style="text-align: right">
         <p style="">
-            <b>Ficha de inscripcion: {{$inscripcion->folio->folio}}</b>
+            <b>Ficha : {{$inscripcion->folio->folio}}</b>
         </p>
         <p style="">
             Ciclo Escolar 2018-2019
@@ -88,7 +85,7 @@ unset($antecedentesVal['fam_can']);
     </div>
     <div id="datos_alumno">
         <h5><b>Datos del alumno</b></h5>
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
             {{----}}
             Nombre:
             <b>{{$alumno->nombre}} {{$alumno->apellidoP}} {{$alumno->apellidoM}}</b>
@@ -163,7 +160,7 @@ unset($antecedentesVal['fam_can']);
     <div id="datos_padres">
         <h5><b>Núcleo familiar</b></h5>
         <h6 style="margin-left: 10%"><b>•Madre</b></h6>
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
             {{----}}
             Nombre:
             <b>{{$madre->nombre_completo}}</b>
@@ -196,7 +193,7 @@ unset($antecedentesVal['fam_can']);
             <b>{{$madre->red_social}}</b>
         </p>
         <h6 style="margin-left: 10%"><b>Dirección</b></h6>
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
             {{----}}
             Calle:
             <b>{{$madre->calle}}</b>
@@ -223,7 +220,7 @@ unset($antecedentesVal['fam_can']);
         </p>
         {{--PADRE--}}
         <h6 style="margin-left: 10%"><b>•Padre</b></h6>
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
             {{----}}
             Nombre:
             <b>{{$padre->nombre_completo}}</b>
@@ -256,7 +253,7 @@ unset($antecedentesVal['fam_can']);
             <b>{{$padre->red_social}}</b>
         </p>
         <h6 style="margin-left: 10%"><b>Dirección</b></h6>
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
             {{----}}
             Calle:
             <b>{{$padre->calle}}</b>
@@ -284,7 +281,7 @@ unset($antecedentesVal['fam_can']);
     </div>
     <div id="datos-familia" style="text-align: justify; font: menu">
         <h5><b>Integración familiar</b></h5>
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
             Número de integrantes de la familia:
             <b>{{$familia->integrantes}}</b>
             {{----}}
@@ -300,46 +297,9 @@ unset($antecedentesVal['fam_can']);
         </p>
     </div>
 
-
-    <div id="datos-enfermedades" class="new_page">
-        <table>
-            <thead>
-            <tr style="text-align: center">
-                <th colspan="4"> Enfermedades que presenta el infante</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($enfermedadesVal as $enfermedad)
-                @if($loop->index %2 ===0)
-                    <tr>
-                        <td>
-                            {{$enfermedadesDef[$loop->index]}}
-                        </td>
-                        <td style="text-align: center">
-                            {{$enfermedad==1?"Si":"No"}}
-                        </td>
-                        @else
-                            @if($loop->index === 13)
-                                <td colspan="2">
-                                    {{$enfermedad}}
-                                </td>
-                            @else
-                                <td>
-                                    {{$enfermedadesDef[$loop->index]}}
-                                </td>
-                                <td style="text-align: center">
-                                    {{$enfermedad==1?"Si":"No"}}
-                                </td>
-                            @endif
-                    </tr>
-                @endif
-            @endforeach
-            </tbody>
-        </table>
-    </div>
-    <div id="datos-emergencia">
+    <div id="datos-emergencia" class="new_page">
         <h5><b>Contactos de emergencia</b></h5>
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
             1 )
             Nombre:
             <b>{{$emergencia->nombre1}}</b>
@@ -350,7 +310,7 @@ unset($antecedentesVal['fam_can']);
             Celular
             <b>{{$emergencia->celular1}}</b>
         </p>
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
             2 )
             Nombre:
             <b>{{$emergencia->nombre2}}</b>
@@ -363,7 +323,7 @@ unset($antecedentesVal['fam_can']);
         </p>
     </div>
     <div id="leyenda-1">
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
         <p>
             Me comprometo que en caso de algún cambio en mi número telefónico y/o domicilio, informaré inmediatamente
             por escrito a la autoridad educativa”. Atendiendo al protocolo de atención en caso de emergencia y de seguro
@@ -374,7 +334,7 @@ unset($antecedentesVal['fam_can']);
         </p>
     </div>
     <div id="datos-eventos">
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
         <h5><b>Posibilidad de participar en eventos</b></h5>
         Culturales:
         <b>{{$eventos->cultural?"Si":"No"}}</b>
@@ -393,31 +353,31 @@ unset($antecedentesVal['fam_can']);
         ¿Cuantas veces puede asisir?
         <b>{{$eventos->pos_asistir}}</b>
         </p>
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
         <h6><b>¿Como suguiere se que se realice el mantenimiento y equipamiento de la escuela?</b></h6>
         {{$eventos->manto_equip}}
         </p>
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
         <h6><b>¿Como seria su participacion para lograr un espacio educativo digno?</b></h6>
         {{$eventos->participacion}}
         </p>
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
         <h6><b>¿De que manera comprende los avances y logros en el aprendizaje de su hijo?</b></h6>
         {{$eventos->avances}}
         </p>
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
         <h6><b>¿Esta de acuerdo que la docente le de unos besotes a su hijo ?</b></h6>
         {{$eventos->premio}}
         </p>
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
         <h6><b>¿A que me comprometo con el nuevo modelo educativo ?</b></h6>
         {{$eventos->compromiso}}
         </p>
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
         <h6><b>¿De que manera considera que se deeb dar la comunicacion entre padres y escuela ?</b></h6>
         {{$eventos->comunicacion}}
         </p>
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
         <h6><b>¿Cuales son ss espectativas en este ciclo escolar?</b></h6>
         {{$eventos->espectativa}}
         </p>
@@ -427,7 +387,7 @@ unset($antecedentesVal['fam_can']);
 
     <div id="datos-autorizadas" class="new_page">
         <h5><b>Datos administrativos</b></h5>
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
             PERSONAS AUTORIZADAS PARA RECOGER AL NIÑO:
             <br>
             <br>
@@ -485,13 +445,13 @@ unset($antecedentesVal['fam_can']);
         </table>
     </div>
     <div id="leyenda-3">
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
             BAJO PROTESTA DECIR VERDAD, CONOZCO Y ACEPTO LAS “NORMAS DE CONTROL ESCOLAR RELATIVAS A LA INSCRIPCIÓN,
             REINSCRIPCIÓN, ACREDITACIÓN, PROMOCIÓN, REGULARIZACIÓN Y CERTIFICACIÓN EN LA EDUCACIÓN BÁSICA”, VIGENTES
             EMITIDAS POR LA “DIRECCIÓN GENERAL DE ACREDITACIÓN, INCORPORACIÓN Y REVALIDACIÓN” DE LA SECRETARÍA DE
             EDUCACIÓN PÚBLICA.
         </p>
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
             LOS DATOS PERSONALES SERÁN PROTEGIDOS INCORPORADOS Y TRATADOS SEGÚN CORRESPONDA EN EL SISTEMA DE DATOS
             PERSONALES QUE ADMINISTRARÁN LA AUTORIDAD EDUCATIVA FEDERAL Y LAS AUTORIDADES EDUCATIVAS LOCALES DENOMINADO
             “REGISTRO NACIONAL DE ALUMNOS (RNA) Y EL REGISTRO NACIONAL DE EMISIÓN, VALIDACIÓN E INSCRIPCIÓN DE
@@ -505,7 +465,7 @@ unset($antecedentesVal['fam_can']);
     <div id="datos-salud" class="new_page">
         <h5><b>Historia Medica del Alumno</b></h5>
         {{----}}
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
             Enfermedades que ha padecido:
             <b>{{$salud->enfermedad}}</b>
             {{----}}
@@ -540,6 +500,42 @@ unset($antecedentesVal['fam_can']);
             Recomendaciónes especiales:
             <b>{{isset($salud->recomendaciones_especiales)?:'S/n'}}</b>
         </p>
+    </div>
+    <div id="datos-enfermedades" >
+        <table>
+            <thead>
+            <tr style="text-align: center">
+                <th colspan="4"> Enfermedades que presenta el infante</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($enfermedadesVal as $enfermedad)
+                @if($loop->index %2 ===0)
+                    <tr>
+                        <td>
+                            {{$enfermedadesDef[$loop->index]}}
+                        </td>
+                        <td style="text-align: center">
+                            {{$enfermedad==1?"Si":"No"}}
+                        </td>
+                        @else
+                            @if($loop->index === 13)
+                                <td colspan="2">
+                                    {{$enfermedad}}
+                                </td>
+                            @else
+                                <td>
+                                    {{$enfermedadesDef[$loop->index]}}
+                                </td>
+                                <td style="text-align: center">
+                                    {{$enfermedad==1?"Si":"No"}}
+                                </td>
+                            @endif
+                    </tr>
+                @endif
+            @endforeach
+            </tbody>
+        </table>
     </div>
     <div id="datos-detectado">
         <table>
@@ -595,7 +591,7 @@ unset($antecedentesVal['fam_can']);
 
 
     <div id="leyenda-4" class="new_page">
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
             BAJO PROTESTA DE DECIR LA VERDAD MANIFIESTO QUE LAS RESPUESTAS DEL CUESTIONARIO CORRESPONDE A MI
             HIJO(A)<b> {{$alumno->nombre}} {{$alumno->apellidoP}} {{$alumno->apellidoM}}</b>
             QUE CURSARA EL <b>{{$alumno->grado}} er.</b> GRADO DE PREESCOLAR EN LA ESCUELA MA.LUISA
@@ -623,12 +619,12 @@ unset($antecedentesVal['fam_can']);
         </table>
     </div>
     <div id="leyenda-5">
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
             CONSIDERANDO QUE LA INSTITUCIÓN, PROMUEVE EL DESARROLLO INTEGRAL Y PERTINENTE A LAS CAPACIDADES FÍSICAS E
             INTELECTUALES D ELLOS ALUMNOS; ASI COMO DE SUS ACTITUDES Y VALORES, SE REQUIERE DETERMINE SI AUTORIZA QUE SU
             HIJO REALICE ACTIVIDADES ESCOLARES PROGRAMADAS
         </p>
-        <span style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <span style="font-size: 1em; text-align: justify;">
             <table style="border: none">
                 <thead>
                 <tr>
@@ -677,10 +673,10 @@ unset($antecedentesVal['fam_can']);
     <div id="leyenda-6" class="new_page">
         <h6><b>AUTORIZACION DE REPRODUCCIÓN DE IMAGEN POR PARTE DEL PADRE O TUTOR DEL ALUMNO</b></h6>
 
-        <p style="font-size: 1em; text-align: right; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: right;">
             Toluca Méx a ____fecha: {{\Carbon\Carbon::now()->format('d-m-Y')}}
         </p>
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
             CLa (el) que suscribe,_________________________________en calidad de padre o tutor del (a)
             menor <b>{{$alumno->nombre}} {{$alumno->apellidoP}} {{$alumno->apellidoM}}</b>
             estando en pleno goce y ejercicio de mis derechos civiles,
@@ -689,7 +685,7 @@ unset($antecedentesVal['fam_can']);
             videos del(a)menor <b>{{$alumno->nombre}} {{$alumno->apellidoP}} {{$alumno->apellidoM}}</b>
             para los materiales educativos a cargo de la SEP.
         </p>
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
             Por lo anterior, esa dependencia podrá fijar, editar, reproducir, publicar y distribuir las imágenes y
             videos del (a) menor
             <b>{{$alumno->nombre}} {{$alumno->apellidoP}} {{$alumno->apellidoM}}</b>
@@ -698,7 +694,7 @@ unset($antecedentesVal['fam_can']);
             27 fracción 1 y 87 de la Ley Federal de Derecho de Autor vigente. Se anexa para conocimiento del firmante.
         </p>
 
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
             Asi mismo autorizo que la Profra. __________________________ pueda hacer uso de fotografías y videos para la
             evaluación y seguimiento de mi hijo(a), misma que integraran en el expediente personal y portafolio de
             evidencias, presentaciones en rendición de cuentas, durante el ciclo escolar 2017-2018.
@@ -722,7 +718,7 @@ unset($antecedentesVal['fam_can']);
         </table>
     </div>
 
-    <div id="leyenda-7" style="border: 1px black solid">
+    <div id="leyenda-7" style="border: 1px black solid; margin-top: 20px">
         <h6 style="text-align: center"><b>Tarjeta de emergencia</b></h6>
         <table style="border: none;width: 100%">
             <thead>
@@ -781,17 +777,22 @@ unset($antecedentesVal['fam_can']);
             </tr>
             </tbody>
         </table>
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
+        <p style="font-size: 1em; text-align: justify;">
             “ME COMPROMETO A QUE EN CASO DE ALGUN CAMBIO EN MI NUMERO TELEFÓNICO Y/O DOMICILIO, INFORMARÉ INMEDIATAMENTE
             POR ESCRITO A LA
             AUTORIDAD EDUCATIVA”, ATENDIENDO AL PROTOCOLO DE ATENCIÓN EN CASO DE EMERGENCIA Y DE SEGURO ESCOLAR”
         </p>
     </div>
     <div id="leyenda-8" class="new_page">
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
-            “ME COMPROMETO A QUE EN CASO DE ALGUN CAMBIO EN MI NUMERO TELEFÓNICO Y/O DOMICILIO, INFORMARÉ INMEDIATAMENTE
-            POR ESCRITO A LA AUTORIDAD EDUCATIVA”, ATENDIENDO AL PROTOCOLO DE ATENCIÓN EN CASO DE EMERGENCIA Y DE SEGURO
-            ESCOLAR”
+        <p style="font-size: 1em; text-align: justify;">
+            Una vez se ha completado el proceso de Inscripción/reinscripción, se ha otorgado un Numero de Alumno y
+            Contraseña, los cuales permitirán acceder a la plataforma para lograr visualizar el seguimiento del alumno,
+            como también diversos avisos o notificaciones por parte de la institución. Esta informacion (No.Alumno y
+            Contraseña) deberá guardarla en un lugar seguro ,pues se le solicitará en caso de acceder a la plataforma en
+            línea, siendo único para cada alumno.
+            <br>
+            <br>
+            Datos de ingreso a plataforma web:
         </p>
         <h5><b>No. Alumno: {{$alumno->no_control}}</b></h5>
         <h5><b>Contraseña: {{$alumno->password}}</b></h5>
