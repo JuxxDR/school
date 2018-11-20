@@ -7,7 +7,7 @@
 ?>
 <div class="row">
     <div class="col-12 mb-3">
-        <h2 class="text-center">Datos de salud</h2>
+        <h2 class="text-center">Datos de Salud</h2>
         <hr>
     </div>
     <div class="col-4">
@@ -154,8 +154,10 @@
     </div>
 
     <div class="col-4">
+
         <div class="form-group text-left">
-            {!! Form::label('inf_salud[talla]','Talla') !!}
+            {{-- TODO PRIMER PARAMETRO NOMBRE CON QUE SE ENVIA AL SERVER, SEGUNDO PARAMETRO ENCABEZADO DEL INPUT--}}
+            {!! Form::label('inf_salud[talla]','Talla(estatura)') !!}
             {{ Form::text ('inf_salud[talla]',
                             isset($salud->talla), [
                           'class' => $errors->has('inf_salud.talla')?'is-invalid form-control':'form-control'
@@ -170,7 +172,7 @@
 
     <div class="col-4">
         <div class="form-group text-left">
-            {!! Form::label('inf_salud[peso]','Peso') !!}
+            {!! Form::label('inf_salud[peso]','Peso(kg)') !!}
             {{ Form::text ('inf_salud[peso]',
                             isset($salud->peso), [
                           'class' => $errors->has('inf_salud.peso')?'is-invalid form-control':'form-control'

@@ -4,7 +4,8 @@
 
 <div class="row">
     <div class="col-12 mb-3">
-        <h2 class="text-center">Datos del alumno</h2>
+        <!--Encabezado Pantalla verificación-->
+        <h2 class="text-center">Datos del Alumno</h2>
         <hr>
     </div>
     <div class="col-4">
@@ -20,6 +21,7 @@
             @endif
         </div>
     </div>
+
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('apellidoP','Apellido Paterno') !!}
@@ -117,7 +119,7 @@
 
 <div class="row">
     <div class="col-12 mb-3">
-        <h2 class="text-center">Datos domiciliarios</h2>
+        <h2 class="text-center">Datos Domiciliarios</h2>
         <hr>
     </div>
     <div class="col-4">

@@ -142,7 +142,7 @@ class Alumno extends Model
                 'edad.required' => 'La edad es requerida',
                 'meses.required' => 'Este campo es requerido',
                 'meses.integer' => 'Ingrese un valor númerico',
-                'meses.max' => 'Ingrese un valor menor a 12',
+                'meses.max' => 'Ingrese un valor entre 1 y 12',
 
                 'estado.required' => 'El estado es requerido',
                 'calle.required' => 'La calle es requerida',

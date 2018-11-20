@@ -210,7 +210,7 @@
             <b> {{$salud->carac_especial}}</b>
         @endif
         {{----}}
-        Enfermedades que ha padecido el niño en los últimos 12 meses
+        Enfermedades que ha padecido el niño en los últimos 12 meses:
         @if(!isset($pdfOk))
             <input type="text" class="pdf-input" value="{{$salud->enfermedad_ult_mes}}">
         @else
@@ -219,14 +219,14 @@
     </p>
     <p style="font-size: 1em; text-align: justify ">
         {{----}}
-        Enfermedades que padece con mayor frecuencia;
+        Enfermedades que padece con mayor frecuencia:
         @if(!isset($pdfOk))
             <input type="text" class="pdf-input" value="{{$salud->enfermedad_frecuente}}">
         @else
             <b> {{$salud->enfermedad_frecuente}}</b>
         @endif
         {{----}}
-        Alergias;
+        Alergias:
         @if(!isset($pdfOk))
             <input type="text" class="pdf-input" value="{{$salud->ban_alergia ===0 ? "No":"Si" }}">
         @else
