@@ -55,18 +55,5 @@
                     llegar a una meta común.<br><br></p>
             </div>
         </div>
-
-        <div class="line"></div>
-
-        <h2>Programas</h2>
-        <ul>
-            <li>Programa Nacional de Lectura</li>
-            <li>Programa Operación Matemática</li>
-            <li>Programa de Valores</li>
-            <li>Programa Nacional de Lectura</li>
-            <li>Programa de Impulso a la activación física</li>
-        </ul>
-
-
     </div>
 @endsection

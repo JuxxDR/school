@@ -7,14 +7,24 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">Inicio</a>
+                <a class="nav-link" href="/escuela_investigacion/public/">Inicio</a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ route('docente_inicio') }}">Docente</a>
+            @if(!auth()->check())
+                <li @if(request()->is('padre_inicio') || request()->is('padre_login')) class="nav-item active"
+                    @else class="nav-item" @endif>
+                    <a class="nav-link" href="{{route('padre_login')}}">Tutores</a>
+                </li>
+            @endif
+            <li @if(request()->is('docente_inicio')) class="nav-item active" @else class="nav-item" @endif>
+                @if(auth()->check())
+                    <a class="nav-link"
+                       href="{{ route('docente_inicio') }}">@if( \App\Model\Docente::find(auth()->user()->id)->role == 1 )
+                            Docente @else Administrativo @endif </a>
+                @else
+                    <a class="nav-link"
+                       href="{{ route('docente_inicio') }}">Docente</a>
+                @endif
             </li>
         </ul>
     </div>
-    @if(auth()->check())
-        <p style="float: right;color: white;font-size: 11pt;">{{ \App\Model\Docente::find(auth()->user()->id)->email }}</p>
-    @endif
 </nav>

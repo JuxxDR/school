@@ -62,77 +62,109 @@ Route::post(
     'PdfController@createPdf'
 )->name('inscripcion_confirm_pdf');
 
+Auth::routes();
+
 //====================================
 //          Rutas Docente
 //======================================
-Auth::routes();
 
-Route::get('docente/inicio','Doc\DocenteController@index')->name('docente_inicio');
 
-Route::get('docente/cuenta','Doc\DocenteController@account')->name('docente_cuenta');
+Route::get('docente/inicio', 'Doc\DocenteController@index')->name('docente_inicio');
 
-Route::post('docente/cambioContraseña','Doc\DocenteController@cambioContraseña')->name('docente_pass');
+Route::get('docente/cuenta', 'Doc\DocenteController@account')->name('docente_cuenta');
 
+Route::post('docente/cambioContraseña', 'Doc\DocenteController@cambioContraseña')->name('docente_pass');
+
+Route::group(['middleware' => 'docente',], function () {
 //====================================
 //          Rutas Docente-Asistencia
 //======================================
 
-Route::get('docente/asistencia','Doc\AsistenciaController@index')->name('asistencia_inicio');
+    Route::get('docente/asistencia', 'Doc\AsistenciaController@index')->name('asistencia_inicio');
 
-Route::get('docente/{id}/asistencia', 'Doc\AsistenciaController@asistio');
+    Route::get('docente/{id}/asistencia', 'Doc\AsistenciaController@asistio');
 
-Route::get('docente/{id}/noAsistencia', 'Doc\AsistenciaController@noAsistio');
+    Route::get('docente/{id}/noAsistencia', 'Doc\AsistenciaController@noAsistio');
 
-Route::get('docente/{id}/modificarAsistencia', 'Doc\AsistenciaController@delete');
+    Route::get('docente/{id}/modificarAsistencia', 'Doc\AsistenciaController@delete');
 
-Route::post('docente/asistencia/guardar', 'Doc\AsistenciaController@registro');
+    Route::post('docente/asistencia/guardar', 'Doc\AsistenciaController@registro');
 
-Route::get('docente/asistencia/consulta','Doc\AsistenciaController@consulta')->name('asistencia_consulta');
+    Route::get('docente/asistencia/consulta', 'Doc\AsistenciaController@consulta')->name('asistencia_consulta');
 
-Route::post('docente/asistencia/consultarFecha','Doc\AsistenciaController@consultaFecha');
+    Route::post('docente/asistencia/consultarFecha', 'Doc\AsistenciaController@consultaFecha');
 
-Route::post('docente/asistencia/descargaPDF','Doc\AsistenciaController@descargaPDF');
+    Route::post('docente/asistencia/descargaPDF', 'Doc\AsistenciaController@descargaPDF');
 
 //====================================
 //          Rutas Docente-Tareas
 //======================================
 
-Route::get('docente/tareas','Doc\TareaController@index')->name('tarea_inicio');
+    Route::get('docente/tareas', 'Doc\TareaController@index')->name('tarea_inicio');
 
-Route::get('docente/tarea/entregas/{id}','Doc\TareaController@entrega')->name('tarea_entrega');
+    Route::get('docente/tarea/entregas/{id}', 'Doc\TareaController@entrega')->name('tarea_entrega');
 
-Route::post('docente/tarea/entregas/registro','Doc\TareaController@registro')->name('tarea_registro');
+    Route::post('docente/tarea/entregas/registro', 'Doc\TareaController@registro')->name('tarea_registro');
 
-Route::post('docente/agregar','Doc\TareaController@create')->name('tarea_agregar');
+    Route::post('docente/agregar', 'Doc\TareaController@create')->name('tarea_agregar');
+
+    Route::post('docente/tarea/descargaPDF', 'Doc\TareaController@descargaPDF');
 
 //====================================
 //          Rutas Docente-Reportes
 //======================================
 
-Route::get('docente/reporte','Doc\DocenteController@reportes')->name('docente_reportes');
+    Route::get('docente/reporte', 'Doc\DocenteController@reportes')->name('docente_reportes');
 
-Route::post('docente/reporte/alumno','Doc\DocenteController@buscarReporteAlumno')->name('docente_reportesAlumno');
+    Route::post('docente/reporte/evaluacionAlumno', 'Doc\DocenteController@guardarReporte')->name('docente_evaluar');
+
+    Route::post('docente/reporte/evaluacionAlumnoModificar', 'Doc\DocenteController@modificarReporte')->name('docente_mdificar_reporte');
+
+    Route::post('docente/reporte/alumno', 'Doc\DocenteController@buscarReporteAlumno')->name('docente_reportesAlumno');
+
+    Route::get('docente/reporte/{id}', 'Doc\DocenteController@PDFReporteAlumno')->name('docente_reportesPDF');
+
+});
 //====================================
 //          Rutas Admin
 //======================================;
+Route::group(['middleware' => 'admin',], function () {
 
-Route::get('administrativo/primerTrimestre','Admin\AdminController@habilitarPrimer')->name('admin_habilitar1');
+    Route::get('administrativo/primerTrimestre', 'Admin\AdminController@habilitarPrimer')->name('admin_habilitar1');
 
-Route::get('administrativo/notificaciones','Admin\AdminController@notifications')->name('admin_notificar');
+    Route::get('administrativo/notificaciones', 'Admin\AdminController@notifications')->name('admin_notificar');
 
-Route::post('administrativo/anuncio/general','Admin\AnuncioController@general')->name('admin_general');
+    Route::get('administrativo/HistorialNotificaciones', 'Admin\AnuncioController@obtenerAnuncios')->name('admin_historial');
 
-Route::post('administrativo/anuncio/grupo','Admin\AnuncioController@grupo')->name('admin_grupo');
+    Route::post('administrativo/anuncio/general', 'Admin\AnuncioController@general')->name('admin_general');
 
-Route::post('administrativo/anuncio/alumno','Admin\AnuncioController@alumno')->name('admin_alumno');
+    Route::post('administrativo/anuncio/grupo', 'Admin\AnuncioController@grupo')->name('admin_grupo');
 
-Route::get('administrativo/docentes','Admin\AdminController@docentes')->name('admin_docentes');
+    Route::post('administrativo/anuncio/alumno', 'Admin\AnuncioController@alumno')->name('admin_alumno');
 
-Route::get('administrativo/grupos','Admin\AdminController@grupos')->name('admin_grupos');
+    Route::get('administrativo/docentes', 'Admin\AdminController@docentes')->name('admin_docentes');
 
-Route::get('administrativo/reportes','Admin\AdminController@reportes')->name('admin_reportes');
+    Route::get('administrativo/grupos', 'Admin\AdminController@grupos')->name('admin_grupos');
 
-Route::post('administrativo/actualizar/docente','Admin\AdminController@actualizarDocente')->name('actualizar_docente');
+    Route::get('administrativo/grupos/crear', 'Admin\AdminController@crearGrupos')->name('admin_creaG');
 
-Route::post('administrativo/docentes/crear','Admin\AdminController@crearDocente')->name('crear_docente');
+    Route::post('administrativo/grupos/asignarDocentes', 'Admin\AdminController@asignarGrupos')->name('admin_asignaGrupos');
 
+    Route::get('administrativo/reportes', 'Admin\AdminController@reportes')->name('admin_reportes');
+
+    Route::post('administrativo/actualizar/docente', 'Admin\AdminController@actualizarDocente')->name('actualizar_docente');
+
+    Route::get('administrativo/eliminarD/{id}', 'Admin\AdminController@deleteDocente')->name('eliminar_docente');
+
+    Route::post('administrativo/docentes/crear', 'Admin\AdminController@crearDocente')->name('crear_docente');
+});
+
+//====================================
+//          Rutas Padres
+//======================================
+
+Route::get('tutor/login', 'Tutor\LoginController@index')->name('padre_login');
+
+Route::post('tutor/inicio', 'Tutor\LoginController@postLogin')->name('padre_inicio');
+
+Route::post('tutor/descargaReporteEvaluacion', 'Tutor\ReporteController@generaPDF');

@@ -7,15 +7,25 @@
         <div class="container">
             <h2>Administrar Docentes</h2>
             <br>
+            <a class="btn btn-info" title="Crear Grupo" href="grupos/crear" style="float: right">Crear Grupos</a>
+            <br><br>
             <div class="card">
-                @if(session('notification'))
-                    <div class="alert alert-dismissible alert-info" style="margin-bottom: 0px;">
+                @if(session('warning'))
+                    <div class="alert alert-dismissible alert-warning" style="margin-bottom: 0px;">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong>Correcto</strong> <a href="#" class="alert-link">La acción se ha ejecutado de manera
+                        <strong>Advertencia! </strong> <a href="#" class="alert-link">La acción no se ha ejecutado de manera
                             correcta </a><br>
-                        {{ session('notification') }}
+                        {{ session('warning') }}
                     </div>
                 @endif
+                    @if(session('notification'))
+                        <div class="alert alert-dismissible alert-success" style="margin-bottom: 0px;">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Informacion! </strong> <a href="#" class="alert-link">La acción se ha ejecutado de manera
+                                correcta </a><br>
+                            {{ session('notification') }}
+                        </div>
+                    @endif
                 @if(count($errors)>0)
                     <div class="alert alert-dismissible alert-danger">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -36,6 +46,8 @@
                         <th>Email</th>
                         <th>Grupo</th>
                         <th>Aula</th>
+                        <th>Grado</th>
+                        <th>No. Alumnos</th>
                         <th>Opciones</th>
                     </tr>
                     </thead>
@@ -48,15 +60,21 @@
                             @if(\App\Model\Grupo::where('docente_id',$docente->id)->first())
                                 <td>{{ \App\Model\Grupo::where('docente_id',$docente->id)->first()->id }}</td>
                                 <td>{{ \App\Model\Grupo::where('docente_id',$docente->id)->first()->aula }}</td>
+                                <td>{{ \App\Model\Grupo::where('docente_id',$docente->id)->first()->grado }}</td>
+                                <td>{{ count(\App\Model\GrupoAlumno::where('grupo_id',\App\Model\Grupo::where('docente_id',$docente->id)->first()->id)->get()) }}</td>
                             @else
-                                <td></td>
-                                <td></td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
                             @endif
                             <td>
                                 <button type="button" class="btn btn-sm btn-info" title="Editar"
                                         data-docente="{{ $docente->id }}">
                                     <span class="fa fa-pencil"></span>
                                 </button>
+                                <a class="btn btn-sm btn-danger" title="Eliminar"
+                                   href="eliminarD/{{ $docente->id }}"><span class="fa fa-remove"></span></a>
                             </td>
                         </tr>
                     @endforeach
@@ -107,7 +125,7 @@
                                 <label for="password2">Contraseña:</label>
                                 <input type="text" class="form-control" id="password2"
                                        placeholder="Introduce Contraseña"
-                                       name="password2">
+                                       name="password2" value="{{ str_random(8) }}">
                             </div>
                         </div>
                         <button type="submit" class="btn btn-success" style="float: right">Guardar Docente</button>
