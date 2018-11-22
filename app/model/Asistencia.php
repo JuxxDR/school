@@ -19,6 +19,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Asistencia whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Asistencia whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Asistencia whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Asistencia newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Asistencia newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Asistencia query()
  */
 class Asistencia extends Model
 {

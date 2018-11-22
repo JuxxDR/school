@@ -3,7 +3,13 @@
 /* @var $enfermedades \App\Model\Enfermedades */
 /* @var $detectado \App\Model\Detectado */
 /* @var $antecedente \App\Model\AntecedesntesHereditarios */
-
+if (Session::has('salud')) {
+    $session=Session::get('salud');
+    $salud = $session['infSalud'];
+    $enfermedades = $session['enfermedades'];
+    $detectado = $session['detectado'];
+    $antecedente = $session['antecedente'];
+}
 ?>
 <div class="row">
     <div class="col-12 mb-3">
@@ -18,7 +24,7 @@
             'H'=>"Hombre",
             'M'=>"Mujer",
             ],
-            isset($salud->sexo), [
+            isset($salud->sexo)?$salud->sexo:"", [
           'class' => $errors->has('inf_salud.sexo')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('inf_salud.sexo'))
@@ -33,7 +39,7 @@
         <div class="form-group text-left">
             {!! Form::label('inf_salud[enfermedad]','Enfermedad que ha padecido') !!}
             {{ Form::text('inf_salud[enfermedad]',
-            isset($salud->enfermedad), [
+            isset($salud->enfermedad)?$salud->enfermedad:"", [
           'class' => $errors->has('inf_salud.enfermedad')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('inf_salud.enfermedad'))
@@ -48,7 +54,7 @@
         <div class="form-group text-left">
             {!! Form::label('inf_salud[vacunas_aplicadas]','Vacunas aplicadas') !!}
             {{ Form::text('inf_salud[vacunas_aplicadas]',
-            isset($salud->vacunas_aplicadas), [
+            isset($salud->vacunas_aplicadas)?$salud->vacunas_aplicadas:"", [
           'class' => $errors->has('inf_salud.vacunas_aplicadas')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('inf_salud.vacunas_aplicadas'))
@@ -67,7 +73,7 @@
             true=>"Si",
             false=>"No"
             ],
-            isset($salud->ban_alergia), [
+            isset($salud->ban_alergia)?$salud->ban_alergia:"", [
           'class' => $errors->has('inf_salud.ban_alergia')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('inf_salud.ban_alergia'))
@@ -82,7 +88,7 @@
         <div class="form-group text-left">
             {!! Form::label('inf_salud[alergia]','¿Que alergia?') !!}
             {{ Form::text('inf_salud[alergia]',
-                            isset($salud->alergia), [
+                            isset($salud->alergia)?$salud->alergia:"", [
                           'class' => $errors->has('inf_salud.alergia')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('inf_salud.alergia'))
@@ -97,7 +103,7 @@
         <div class="form-group text-left">
             {!! Form::label('inf_salud[carac_especial]','¿Alguna característica especial del niño?') !!}
             {{ Form::text('inf_salud[carac_especial]',
-                            isset($salud->carac_especial), [
+                            isset($salud->carac_especial)?$salud->carac_especial:"", [
                           'class' => $errors->has('inf_salud.carac_especial')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('inf_salud.carac_especial'))
@@ -112,7 +118,7 @@
         <div class="form-group text-left">
             {!! Form::label('inf_salud[enfermedad_frecuente]','Enfermedades que padece con frecuencia') !!}
             {{ Form::text ('inf_salud[enfermedad_frecuente]',
-                            isset($salud->enfermedad_frecuente), [
+                            isset($salud->enfermedad_frecuente)?$salud->enfermedad_frecuente:"", [
                           'class' => $errors->has('inf_salud.enfermedad_frecuente')?'is-invalid form-control':'form-control'
             ])}}
             @if($errors->has('inf_salud.enfermedad_frecuente'))
@@ -127,7 +133,7 @@
         <div class="form-group text-left">
             {!! Form::label('inf_salud[tipo_sangre]','Tipo de sangre') !!}
             {{ Form::text ('inf_salud[tipo_sangre]',
-                            isset($salud->tipo_sangre), [
+                            isset($salud->tipo_sangre)?$salud->tipo_sangre:"", [
                           'class' => $errors->has('inf_salud.tipo_sangre')?'is-invalid form-control':'form-control'
             ])}}
             @if($errors->has('inf_salud.tipo_sangre'))
@@ -142,7 +148,7 @@
         <div class="form-group text-left">
             {!! Form::label('inf_salud[medico_familiar]','Institución de derechohabiente del alumno') !!}
             {{ Form::text ('inf_salud[medico_familiar]',
-                            isset($salud->medico_familiar), [
+                            isset($salud->medico_familiar)?$salud->medico_familiar:"", [
                           'class' => $errors->has('inf_salud.medico_familiar')?'is-invalid form-control':'form-control'
             ])}}
             @if($errors->has('inf_salud.medico_familiar'))
@@ -157,7 +163,7 @@
         <div class="form-group text-left">
             {!! Form::label('inf_salud[talla]','Talla') !!}
             {{ Form::text ('inf_salud[talla]',
-                            isset($salud->talla), [
+                            isset($salud->talla)?$salud->talla:"", [
                           'class' => $errors->has('inf_salud.talla')?'is-invalid form-control':'form-control'
             ])}}
             @if($errors->has('inf_salud.talla'))
@@ -172,7 +178,7 @@
         <div class="form-group text-left">
             {!! Form::label('inf_salud[peso]','Peso') !!}
             {{ Form::text ('inf_salud[peso]',
-                            isset($salud->peso), [
+                            isset($salud->peso)?$salud->peso:"", [
                           'class' => $errors->has('inf_salud.peso')?'is-invalid form-control':'form-control'
             ])}}
             @if($errors->has('inf_salud.peso'))
@@ -187,7 +193,7 @@
         <div class="form-group text-left">
             {!! Form::label('inf_salud[enfermedad_ult_mes]','¿Escriba las enfermedades que ha tenido su hijo(a) durante los últimos 12 meses?') !!}
             {{ Form::textarea ('inf_salud[enfermedad_ult_mes]',
-                            isset($salud->enfermedad_ult_mes), [
+                            isset($salud->enfermedad_ult_mes)?$salud->enfermedad_ult_mes:"", [
                           'class' => $errors->has('inf_salud.enfermedad_ult_mes')?'is-invalid form-control':'form-control',
                           'rows'=>3
             ])}}
@@ -222,7 +228,7 @@
                             true=>"Si",
                             false=>"No",
                             ],
-                            isset($enfermedades->e1), [
+                            isset($enfermedades->e1)?$enfermedades->e1:false, [
                                     'class' => $errors->has('enfermedades.e1')?'is-invalid form-control':'form-control',
                             ])}}
                     </td>
@@ -233,7 +239,7 @@
                         true=>"Si",
                         false=>"No",
                         ],
-                        isset($enfermedades->e2), [
+                        isset($enfermedades->e2)?$enfermedades->e2:false, [
                                 'class' => $errors->has('enfermedades.e2')?'is-invalid form-control':'form-control',
                         ])}}
                     </td>
@@ -246,7 +252,7 @@
                         true=>"Si",
                         false=>"No",
                         ],
-                        isset($enfermedades->e3), [
+                        isset($enfermedades->e3)?$enfermedades->e3:false, [
                                 'class' => $errors->has('enfermedades.e3]')?'is-invalid form-control':'form-control',
                         ])}}
                     </td>
@@ -271,7 +277,7 @@
                         true=>"Si",
                         false=>"No",
                         ],
-                        isset($enfermedades->e5), [
+                        isset($enfermedades->e5)?$enfermedades->e5:false, [
                                 'class' => $errors->has('enfermedades.e5]')?'is-invalid form-control':'form-control',
                         ])}}
                     </td>
@@ -282,7 +288,7 @@
                         true=>"Si",
                         false=>"No",
                         ],
-                        isset($enfermedades->e6), [
+                        isset($enfermedades->e6)?$enfermedades->e6:false, [
                                 'class' => $errors->has('enfermedades.e6]')?'is-invalid form-control':'form-control',
                         ])}}
                     </td>
@@ -295,7 +301,7 @@
                         true=>"Si",
                         false=>"No",
                         ],
-                        isset($enfermedades->e7), [
+                        isset($enfermedades->e7)?$enfermedades->e7:false, [
                                 'class' => $errors->has('enfermedades.e7]')?'is-invalid form-control':'form-control',
                         ])}}
                     </td>
@@ -306,7 +312,7 @@
                         true=>"Si",
                         false=>"No",
                         ],
-                        isset($enfermedades->e8), [
+                        isset($enfermedades->e8)?$enfermedades->e8:false, [
                                 'class' => $errors->has('enfermedades.e8]')?'is-invalid form-control':'form-control',
                         ])}}
                     </td>
@@ -319,7 +325,7 @@
                         true=>"Si",
                         false=>"No",
                         ],
-                        isset($enfermedades->e9), [
+                        isset($enfermedades->e9)?$enfermedades->e9:false, [
                                 'class' => $errors->has('enfermedades.e9]')?'is-invalid form-control':'form-control',
                         ])}}
                     </td>
@@ -330,7 +336,7 @@
                         true=>"Si",
                         false=>"No",
                         ],
-                        isset($enfermedades->e10), [
+                        isset($enfermedades->e10)?$enfermedades->e10:false, [
                                 'class' => $errors->has('enfermedades.e10]')?'is-invalid form-control':'form-control',
                         ])}}
                     </td>
@@ -343,7 +349,7 @@
                         true=>"Si",
                         false=>"No",
                         ],
-                        isset($enfermedades->e11), [
+                        isset($enfermedades->e11)?$enfermedades->e11:false, [
                                 'class' => $errors->has('enfermedades.e11]')?'is-invalid form-control':'form-control',
                         ])}}
                     </td>
@@ -354,7 +360,7 @@
                         true=>"Si",
                         false=>"No",
                         ],
-                        isset($enfermedades->e12), [
+                        isset($enfermedades->e12)?$enfermedades->e12:false, [
                                 'class' => $errors->has('enfermedades.e12]')?'is-invalid form-control':'form-control',
                         ])}}
                     </td>
@@ -367,7 +373,7 @@
                         true=>"Si",
                         false=>"No",
                         ],
-                        isset($enfermedades->e13), [
+                        isset($enfermedades->e13)?$enfermedades->e13:false, [
                                 'class' => $errors->has('enfermedades.e13]')?'is-invalid form-control':'form-control',
                         ])}}
                     </td>
@@ -377,11 +383,10 @@
                 <td colspan="2">Especifique</td>
                 <td colspan="2">
                     {{ Form::text('enfermedades[especifique]',
-               isset($enfermedades->especifique), [
+               isset($enfermedades->especifique)?$enfermedades->especifique:"", [
               'class' => $errors->has('enfermedades[especifique]')?'is-invalid form-control':'form-control',
                ])}}
                 </td>
-
                 </tbody>
             </table>
         </div>
@@ -403,7 +408,7 @@
                             true=>"Si",
                             false=>"No",
                             ],
-                            isset($detectado->d1), [
+                            isset($detectado->d1)?$detectado->d1:false, [
                                     'class' => $errors->has('detectado[d1]')?'is-invalid form-control':'form-control',
                             ])}}
                     </td>
@@ -415,7 +420,7 @@
                         true=>"Si",
                         false=>"No",
                         ],
-                        isset($detectado->d2), [
+                        isset($detectado->d2)?$detectado->d2:false, [
                                 'class' => $errors->has('detectado[d2]')?'is-invalid form-control':'form-control',
                         ])}}
                     </td>
@@ -428,7 +433,7 @@
                         true=>"Si",
                         false=>"No",
                         ],
-                        isset($detectado->d3), [
+                        isset($detectado->d3)?$detectado->d3:false, [
                                 'class' => $errors->has('detectado[d3]')?'is-invalid form-control':'form-control',
                         ])}}
                     </td>
@@ -440,7 +445,7 @@
                         true=>"Si",
                         false=>"No",
                         ],
-                        isset($detectado->d4), [
+                        isset($detectado->d4)?$detectado->d4:false, [
                                 'class' => $errors->has('detectado[d4]')?'is-invalid form-control':'form-control',
                         ])}}
                     </td>
@@ -453,7 +458,7 @@
                         true=>"Si",
                         false=>"No",
                         ],
-                        isset($detectado->d5), [
+                        isset($detectado->d5)?$detectado->d5:false, [
                                 'class' => $errors->has('detectado[d5]')?'is-invalid form-control':'form-control',
                         ])}}
                     </td>
@@ -465,7 +470,7 @@
                         true=>"Si",
                         false=>"No",
                         ],
-                        isset($detectado->d6), [
+                        isset($detectado->d6)?$detectado->d6:false, [
                                 'class' => $errors->has('detectado[d6]')?'is-invalid form-control':'form-control',
                         ])}}
                     </td>
@@ -478,7 +483,7 @@
                         true=>"Si",
                         false=>"No",
                         ],
-                        isset($detectado->d7), [
+                        isset($detectado->d7)?$detectado->d7:false, [
                                 'class' => $errors->has('detectado[d7]')?'is-invalid form-control':'form-control',
                         ])}}
                     </td>
@@ -490,7 +495,7 @@
                         true=>"Si",
                         false=>"No",
                         ],
-                        isset($detectado->d8), [
+                        isset($detectado->d8)?$detectado->d8:false, [
                                 'class' => $errors->has('detectado[d8]')?'is-invalid form-control':'form-control',
                         ])}}
                     </td>
@@ -503,7 +508,7 @@
                         true=>"Si",
                         false=>"No",
                         ],
-                        isset($detectado->d9), [
+                        isset($detectado->d9)?$detectado->d9:false, [
                                 'class' => $errors->has('detectado[d9]')?'is-invalid form-control':'form-control',
                         ])}}
                     </td>
@@ -515,7 +520,7 @@
                         true=>"Si",
                         false=>"No",
                         ],
-                        isset($detectado->d10), [
+                        isset($detectado->d10)?$detectado->d10:false, [
                                 'class' => $errors->has('detectado[d10]')?'is-invalid form-control':'form-control',
                         ])}}
                     </td>
@@ -528,7 +533,7 @@
                         true=>"Si",
                         false=>"No",
                         ],
-                        isset($detectado->d11), [
+                        isset($detectado->d11)?$detectado->d11:false, [
                                 'class' => $errors->has('detectado[d11]')?'is-invalid form-control':'form-control',
                         ])}}
                     </td>
@@ -540,7 +545,7 @@
                         true=>"Si",
                         false=>"No",
                         ],
-                        isset($detectado->d12), [
+                        isset($detectado->d12)?$detectado->d12:false, [
                                 'class' => $errors->has('detectado[d12]')?'is-invalid form-control':'form-control',
                         ])}}
                     </td>
@@ -550,7 +555,6 @@
         </div>
     </div>
     <div class="col-12">
-
         <div>
             <table class="table table-striped">
                 <thead>
@@ -567,20 +571,18 @@
                             true=>"Si",
                             false=>"No",
                             ],
-                            isset($antecedente->fam_diab), [
+                            isset($antecedente->fam_diab)?$antecedente->fam_diab:false, [
                                     'class' => $errors->has('antecedente.fam_diab]')?'is-invalid form-control':'form-control',
                             ])}}
                     </td>
-
                     <td>Parentesco:</td>
                     <td>
                         {{ Form::text('antecedente[parentesco_diab]',
-                            isset($antecedente->parentesco_diab), [
+                            isset($antecedente->parentesco_diab)?$antecedente->parentesco_diab:false, [
                                     'class' => $errors->has('antecedente.parentesco_diab]')?'is-invalid form-control':'form-control',
                             ])}}
                     </td>
                 </tr>
-
                 <tr>
                     <td>¿Tiene algun familiar enfermo del corazón?</td>
                     <td width="10%">
@@ -589,7 +591,7 @@
                             true=>"Si",
                             false=>"No",
                             ],
-                            isset($antecedente->fam_cor), [
+                            isset($antecedente->fam_cor)?$antecedente->fam_cor:false, [
                                     'class' => $errors->has('antecedente.fam_cor]')?'is-invalid form-control':'form-control',
                             ])}}
                     </td>
@@ -597,7 +599,7 @@
                     <td>Parentesco:</td>
                     <td>
                         {{ Form::text('antecedente[parentesco_cor]',
-                            isset($antecedente->parentesco_cor), [
+                            isset($antecedente->parentesco_cor)?$antecedente->parentesco_cor:false, [
                                     'class' => $errors->has('antecedente.parentesco_cor]')?'is-invalid form-control':'form-control',
                             ])}}
                     </td>
@@ -611,7 +613,7 @@
                             true=>"Si",
                             false=>"No",
                             ],
-                            isset($antecedente->fam_hip), [
+                            isset($antecedente->fam_hip)?$antecedente->fam_hip:false, [
                                     'class' => $errors->has('antecedente.fam_hip]')?'is-invalid form-control':'form-control',
                             ])}}
                     </td>
@@ -619,7 +621,7 @@
                     <td>Parentesco:</td>
                     <td>
                         {{ Form::text('antecedente[parentesco_hip]',
-                            isset($antecedente->parentesco_hip), [
+                            isset($antecedente->parentesco_hip)?$antecedente->parentesco_hip:false, [
                                     'class' => $errors->has('antecedente.parentesco_hip]')?'is-invalid form-control':'form-control',
                             ])}}
                     </td>
@@ -633,7 +635,7 @@
                             true=>"Si",
                             false=>"No",
                             ],
-                            isset($antecedente->fam_can), [
+                            isset($antecedente->fam_can)?$antecedente->fam_can:false, [
                                     'class' => $errors->has('antecedente.fam_can]')?'is-invalid form-control':'form-control',
                             ])}}
                     </td>
@@ -641,7 +643,7 @@
                     <td>Parentesco:</td>
                     <td>
                         {{ Form::text('antecedente[parentesco_can]',
-                            isset($antecedente->parentesco_can), [
+                            isset($antecedente->parentesco_can)?$antecedente->parentesco_can:false, [
                                     'class' => $errors->has('antecedente.parentesco_can]')?'is-invalid form-control':'form-control',
                             ])}}
                     </td>

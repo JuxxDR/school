@@ -25,6 +25,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Grupo whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Grupo whereUpdatedAt($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Model\Tarea[] $tareas
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Grupo newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Grupo newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Grupo query()
  */
 class Grupo extends Model
 {

@@ -37,6 +37,7 @@ Route::post(
     'InscripcionController@folioPost'
 )->name('inscripcion_folio_post');
 
+
 Route::get(
     'inscripcion/{inscripcionId}/folio/{folioId}/alumno',
     'InscripcionController@datosAlumno'
@@ -46,6 +47,39 @@ Route::post(
     'inscripcion/{inscripcionId}/folio/{folioId}/alumno',
     'InscripcionController@datosAlumnoPost'
 )->name('inscripcion_datos_alumno_post');
+
+
+Route::get(
+    'inscripcion/{inscripcionId}/folio/{folioId}/integracion',
+    'InscripcionController@datosIntegracion'
+)->name('inscripcion_datos_integracion');
+
+Route::post(
+    'inscripcion/{inscripcionId}/folio/{folioId}/integracion',
+    'InscripcionController@datosIntegracionPost'
+)->name('inscripcion_datos_integracion_post');
+
+
+Route::get(
+    'inscripcion/{inscripcionId}/folio/{folioId}/padres',
+    'InscripcionController@datosPadres'
+)->name('inscripcion_datos_padres');
+
+Route::post(
+    'inscripcion/{inscripcionId}/folio/{folioId}/padres',
+    'InscripcionController@datosPadresPost'
+)->name('inscripcion_datos_padres_post');
+
+Route::get(
+    'inscripcion/{inscripcionId}/folio/{folioId}/emergencia',
+    'InscripcionController@datosEmergencia'
+)->name('inscripcion_datos_emergencia');
+
+Route::post(
+    'inscripcion/{inscripcionId}/folio/{folioId}/emergencia',
+    'InscripcionController@datosEmergenciaPost'
+)->name('inscripcion_datos_emergencia_post');
+
 
 Route::get(
     'inscripcion/{inscripcionId}/folio/{folioId}/salud',
@@ -57,8 +91,35 @@ Route::post(
     'InscripcionController@datosSaludPost'
 )->name('inscripcion_datos_salud_post');
 
+
+Route::get(
+    'inscripcion/{inscripcionId}/folio/{folioId}/personas_aut',
+    'InscripcionController@datosPersonasAut'
+)->name('inscripcion_datos_personas_aut');
+
 Route::post(
-    'inscripcion/{inscripcionId}/folio/{folioId}/view/pdf',
+    'inscripcion/{inscripcionId}/folio/{folioId}/personas_aut',
+    'InscripcionController@datosPersonasAutPost'
+)->name('inscripcion_datos_personas_aut_post');
+
+
+Route::get(
+    'inscripcion/{inscripcionId}/folio/{folioId}/eventos',
+    'InscripcionController@datosEventos'
+)->name('inscripcion_datos_eventos');
+
+Route::post(
+    'inscripcion/{inscripcionId}/folio/{folioId}/eventos',
+    'InscripcionController@datosEventosPost'
+)->name('inscripcion_datos_eventos_post');
+
+Route::post(
+    'inscripcion/{inscripcionId}/folio/{folioId}/saving_data',
+    'InscripcionController@finalSave'
+)->name('inscripcion_final_save');
+
+Route::get(
+    'inscripcion/pdf',
     'PdfController@createPdf'
 )->name('inscripcion_confirm_pdf');
 
