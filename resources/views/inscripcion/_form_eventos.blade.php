@@ -19,86 +19,7 @@ if (Session::has('eventos')){
             <div class="col-12 text-center">
                 <h5>¿Desea participar en alguno de los siguientes eventos?</h5>
             </div>
-            <div class="col-3">
-                <div class="form-group text-left">
-                    {!! Form::label('cultural','Culturales') !!}
-                    {{ Form::select('cultural',
-                      [
-                      true=>"Si",
-                      false=>"No",
-                      ],
-                      isset($eventos->cultural)?$eventos->cultural:false, [
-                              'class' => $errors->has('cultural')?'is-invalid form-control':'form-control',
-                      ])}}
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="form-group text-left">
-                    {!! Form::label('deportivo','Deportivos') !!}
-                    {{ Form::select('deportivo',
-                      [
-                      true=>"Si",
-                      false=>"No",
-                      ],
-                      isset($eventos->deportivo)?$eventos->deportivo:false, [
-                              'class' => $errors->has('deportivo')?'is-invalid form-control':'form-control',
-                      ])}}
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="form-group text-left">
-                    {!! Form::label('excursion','Excursiones') !!}
-                    {{ Form::select('excursion',
-                      [
-                      true=>"Si",
-                      false=>"No",
-                      ],
-                      isset($eventos->excursion)?$eventos->excursion:false, [
-                              'class' => $errors->has('excursion')?'is-invalid form-control':'form-control',
-                      ])}}
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="form-group text-left">
-                    {!! Form::label('recreativo','Recreativos') !!}
-                    {{ Form::select('recreativo',
-                      [
-                      true=>"Si",
-                      false=>"No",
-                      ],
-                      isset($eventos->recreativo)?$eventos->recreativo:false, [
-                              'class' => $errors->has('excursion')?'is-invalid form-control':'form-control',
-                      ])}}
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="form-group text-left">
-                    {!! Form::label('conv_fam','Convivencia familiar') !!}
-                    {{ Form::select('conv_fam',
-                      [
-                      true=>"Si",
-                      false=>"No",
-                      ],
-                      isset($eventos->conv_fam)?$eventos->conv_fam:false, [
-                              'class' => $errors->has('excursion')?'is-invalid form-control':'form-control',
-                      ])}}
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="form-group text-left">
-                    {!! Form::label('clase_abierta','Clases abiertas') !!}
-                    {{ Form::select('clase_abierta',
-                      [
-                      true=>"Si",
-                      false=>"No",
-                      ],
-                      isset($eventos->clase_abierta)?$eventos->clase_abierta:false, [
-                              'class' => $errors->has('excursion')?'is-invalid form-control':'form-control',
-                      ])}}
-                </div>
-            </div>
-
-            <div class="col-3">
+            <div class="col-2">
                 <div class="form-group text-left">
                     {!! Form::label('civicos','Civicos') !!}
                     {{ Form::select('civicos',
@@ -111,9 +32,88 @@ if (Session::has('eventos')){
                       ])}}
                 </div>
             </div>
-            <div class="col-3">
+
+            <div class="col-2">
                 <div class="form-group text-left">
-                    {!! Form::label('pos_asistir','¿Cuantas veces puede asisir?') !!}
+                    {!! Form::label('cultural','Culturales') !!}
+                    {{ Form::select('cultural',
+                      [
+                      true=>"Si",
+                      false=>"No",
+                      ],
+                      isset($eventos->cultural)?$eventos->cultural:false, [
+                              'class' => $errors->has('cultural')?'is-invalid form-control':'form-control',
+                      ])}}
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group text-left">
+                    {!! Form::label('deportivo','Deportivos') !!}
+                    {{ Form::select('deportivo',
+                      [
+                      true=>"Si",
+                      false=>"No",
+                      ],
+                      isset($eventos->deportivo)?$eventos->deportivo:false, [
+                              'class' => $errors->has('deportivo')?'is-invalid form-control':'form-control',
+                      ])}}
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group text-left">
+                    {!! Form::label('excursion','Excursiones') !!}
+                    {{ Form::select('excursion',
+                      [
+                      true=>"Si",
+                      false=>"No",
+                      ],
+                      isset($eventos->excursion)?$eventos->excursion:false, [
+                              'class' => $errors->has('excursion')?'is-invalid form-control':'form-control',
+                      ])}}
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group text-left">
+                    {!! Form::label('recreativo','Recreativos') !!}
+                    {{ Form::select('recreativo',
+                      [
+                      true=>"Si",
+                      false=>"No",
+                      ],
+                      isset($eventos->recreativo)?$eventos->recreativo:false, [
+                              'class' => $errors->has('excursion')?'is-invalid form-control':'form-control',
+                      ])}}
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group text-left">
+                    {!! Form::label('conv_fam','Convivencia familiar') !!}
+                    {{ Form::select('conv_fam',
+                      [
+                      true=>"Si",
+                      false=>"No",
+                      ],
+                      isset($eventos->conv_fam)?$eventos->conv_fam:false, [
+                              'class' => $errors->has('excursion')?'is-invalid form-control':'form-control',
+                      ])}}
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group text-left">
+                    {!! Form::label('clase_abierta','Clases abiertas') !!}
+                    {{ Form::select('clase_abierta',
+                      [
+                      true=>"Si",
+                      false=>"No",
+                      ],
+                      isset($eventos->clase_abierta)?$eventos->clase_abierta:false, [
+                              'class' => $errors->has('excursion')?'is-invalid form-control':'form-control',
+                      ])}}
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group text-left">
+                    {!! Form::label('pos_asistir','Al mes, ¿Cuantas veces puede asistir a eventos?') !!}
                     {{ Form::number('pos_asistir',isset($eventos->pos_asistir)?$eventos->pos_asistir:"", [
                   'class' => $errors->has('pos_asistir')?'is-invalid form-control':'form-control',
                     ])}}

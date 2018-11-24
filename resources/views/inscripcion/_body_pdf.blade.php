@@ -89,6 +89,7 @@ unset($antecedentesVal['fam_can']);
             {{----}}
             Nombre:
             <b>{{$alumno->nombre}} {{$alumno->apellidoP}} {{$alumno->apellidoM}}</b>
+            <br>
             {{----}}
             CURP:
             <b>{{$alumno->curp}}</b>
@@ -297,6 +298,7 @@ unset($antecedentesVal['fam_can']);
         </p>
     </div>
 
+    <div class="header"></div>
     <div id="datos-emergencia" class="new_page">
         <h5><b>Contactos de emergencia</b></h5>
         <p style="font-size: 1em; text-align: justify;">
@@ -383,7 +385,7 @@ unset($antecedentesVal['fam_can']);
         </p>
 
     </div>
-
+    <div class="footer"></div>
 
     <div id="datos-autorizadas" class="new_page">
         <h5><b>Datos administrativos</b></h5>
@@ -718,6 +720,21 @@ unset($antecedentesVal['fam_can']);
         </table>
     </div>
 
+    <div id="leyenda-8" class="new_page">
+        <p style="font-size: 1em; text-align: justify;">
+            Una vez se ha completado el proceso de Inscripción/reinscripción, se ha otorgado un Numero de Alumno y
+            Contraseña, los cuales permitirán acceder a la plataforma para lograr visualizar el seguimiento del alumno,
+            como también diversos avisos o notificaciones por parte de la institución. Esta informacion (No.Alumno y
+            Contraseña) deberá guardarla en un lugar seguro ,pues se le solicitará en caso de acceder a la plataforma en
+            línea, siendo único para cada alumno.
+            <br>
+            <br>
+            Datos de ingreso a plataforma web:
+        </p>
+        <h5><b>No. Alumno: {{$alumno->no_control}}</b></h5>
+        <h5><b>Contraseña: {{$alumno->password}}</b></h5>
+    </div>
+
     <div id="leyenda-7" style="border: 1px black solid; margin-top: 20px">
         <h6 style="text-align: center"><b>Tarjeta de emergencia</b></h6>
         <table style="border: none;width: 100%">
@@ -783,19 +800,6 @@ unset($antecedentesVal['fam_can']);
             AUTORIDAD EDUCATIVA”, ATENDIENDO AL PROTOCOLO DE ATENCIÓN EN CASO DE EMERGENCIA Y DE SEGURO ESCOLAR”
         </p>
     </div>
-    <div id="leyenda-8" class="new_page">
-        <p style="font-size: 1em; text-align: justify;">
-            Una vez se ha completado el proceso de Inscripción/reinscripción, se ha otorgado un Numero de Alumno y
-            Contraseña, los cuales permitirán acceder a la plataforma para lograr visualizar el seguimiento del alumno,
-            como también diversos avisos o notificaciones por parte de la institución. Esta informacion (No.Alumno y
-            Contraseña) deberá guardarla en un lugar seguro ,pues se le solicitará en caso de acceder a la plataforma en
-            línea, siendo único para cada alumno.
-            <br>
-            <br>
-            Datos de ingreso a plataforma web:
-        </p>
-        <h5><b>No. Alumno: {{$alumno->no_control}}</b></h5>
-        <h5><b>Contraseña: {{$alumno->password}}</b></h5>
-    </div>
+
 
 </div>

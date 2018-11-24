@@ -352,7 +352,7 @@ class InscripcionController extends Controller
             $año = 18;
             $cct = 27;
             if (Alumno::count() === 0) {
-                $ctrl = 10 + Alumno::count() + 1;
+                $ctrl = 10 + Alumno::cou() + 1;
                 $noCtrl = $año . $cct . $ctrl;
                 $alumno->no_control = $noCtrl;
             } else {
@@ -438,7 +438,7 @@ class InscripcionController extends Controller
                 ])->render();
                 $pdf = \App::make('dompdf.wrapper');
                 $pdf->loadHTML($view);
-                return $pdf->stream('invoice');
+                return $pdf->stream('Comprobante-inscripcion.pdf');
 //
 //                return view('inscripcion.confirmation_pdf', [
 //                    'alumno' => $alumno,

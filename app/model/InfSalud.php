@@ -87,7 +87,7 @@ class InfSalud extends Model
             $prefix . 'enfermedad_frecuente' => 'required',
             $prefix . 'medico_familiar' => 'required',
             $prefix . 'talla' => 'required',
-            $prefix . 'peso' => 'required',
+            $prefix . 'peso' => 'required|numeric|max:25',
         ];
     }
 
@@ -103,8 +103,11 @@ class InfSalud extends Model
             $prefix . 'medico_familiar.required' => 'El campo es requerido',
             $prefix . 'talla.required' => 'El campo es requerido',
             $prefix . 'peso.required' => 'El campo es requerido',
+            $prefix . 'peso.max' => 'Ingrese un valor más pequeño.',
+            $prefix . 'peso.numeric' => 'Ingrese un valor númerico.',
         ];
     }
+
     public function detectado()
     {
         return $this->belongsTo(

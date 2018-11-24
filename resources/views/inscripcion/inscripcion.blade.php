@@ -13,25 +13,27 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="row mt-3">
-                @if($confirmation)
-                    <div class="col-12" style="padding-left: 75px">
-                        <div class="alert alert-success text-center" role="alert">
-                            <b> Sus datos han sido registrados, por favor vuelva a confirmar que sus datos esten
-                                correctos,
-                                da
-                                click
-                                en el siguiente boton
-                                cuando verifiques todos tus datos
-                                <br>
-                            </b>
-                            <button
-                                    id="btn-confirm-all"
-                                    class="btn btn-success">Finalizar Inscripción
-                            </button>
+            <div class="col-12">
+                <div class="row mt-3">
+                    @if($confirmation)
+                        <div class="col-12" style="padding-left: 75px">
+                            <div class="alert alert-success text-center" role="alert">
+                                <b> Sus datos han sido registrados, por favor vuelva a confirmar que sus datos esten
+                                    correctos,
+                                    da
+                                    click
+                                    en el siguiente boton
+                                    cuando verifiques todos tus datos
+                                    <br>
+                                </b>
+                                <button
+                                        id="btn-confirm-all"
+                                        class="btn btn-success">Finalizar Inscripción
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                @endif
+                    @endif
+                </div>
             </div>
             <div class="col-2 mt-3 ml-5 pr-0">
                 <div class="nav flex-column nav-pills list-group" role="tablist" aria-orientation="vertical">
@@ -44,6 +46,17 @@
                        ]):"#"}}"
                        role="tab"
                        aria-selected="true">Alumno</a>
+                    <a class="list-group-item nav-link {{$select==2?'active':''}}"
+                       href="{{$confirmation?
+                       route('inscripcion_datos_salud',
+                         [
+                        'inscripcionId'=>$inscripcion->id,
+                        'folioId'=>$folio->id,
+                        'confirmation'=>$confirmation
+                       ]):
+                       "#"}}"
+                       role="tab"
+                       aria-selected="false">Salud</a>
                     <a class="list-group-item nav-link {{$select==3?'active':''}}"
                        href="{{$confirmation?
                        route('inscripcion_datos_integracion',
@@ -66,17 +79,7 @@
                        "#"}}"
                        role="tab"
                        aria-selected="false">Padres</a>
-                    <a class="list-group-item nav-link {{$select==2?'active':''}}"
-                       href="{{$confirmation?
-                       route('inscripcion_datos_salud',
-                         [
-                        'inscripcionId'=>$inscripcion->id,
-                        'folioId'=>$folio->id,
-                        'confirmation'=>$confirmation
-                       ]):
-                       "#"}}"
-                       role="tab"
-                       aria-selected="false">Salud</a>
+
                     <a class="list-group-item nav-link {{$select==5?'active':''}}"
                        href="{{$confirmation?
                        route('inscripcion_datos_emergencia',

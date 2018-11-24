@@ -233,6 +233,7 @@
             {!! Form::label('cp','Código postal') !!}
             {{ Form::number('cp',isset($alumno->cp)?$alumno->cp:"", [
           'class' => $errors->has('cp')?'is-invalid form-control':'form-control',
+          'maxlength'=>5
             ])}}
             @if($errors->has('cp'))
                 <div class="invalid-feedback">

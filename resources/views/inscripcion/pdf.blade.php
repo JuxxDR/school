@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{{ asset('img/configuration.png') }}" type="image/png">
-    <title>@yield('title')</title>
+    <title>Comprobante_Inscripción_{{$alumno->nombre}}_{{$alumno->apellidoP}}_{{$alumno->apellidoM}}</title>
     <!-- Style sheets -->
     @include('template.global_css')
 
@@ -34,9 +34,14 @@
         body {
             font-family: Arial, Arial, sans-serif !important;
             color: black;
-            background-color:white !important
+            background-color: white !important
         }
 
+        .header {
+            background-image: {{asset('img/tu imagen.png')}};
+        }
+
+        _
 
     </style>
 </head>

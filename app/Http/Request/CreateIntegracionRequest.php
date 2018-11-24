@@ -22,7 +22,16 @@ class CreateIntegracionRequest extends FormRequest
 
     public function rules()
     {
-        return Familias::rules();
+//        return dd(\Request::all());
+        $numeroHermanos = \Request::input('numero_hermanos', 1);
+        $numeroHermanos = $numeroHermanos !== 0 ?: "1";
+        return array_merge(
+            Familias::rules(),
+            [
+                'lugar_hermanos' => 'required|max:' . $numeroHermanos . '|numeric|min:1',
+            ]
+        );
+
     }
 
     public function messages()

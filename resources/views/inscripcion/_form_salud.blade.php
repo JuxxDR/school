@@ -4,7 +4,7 @@
 /* @var $detectado \App\Model\Detectado */
 /* @var $antecedente \App\Model\AntecedesntesHereditarios */
 if (Session::has('salud')) {
-    $session=Session::get('salud');
+    $session = Session::get('salud');
     $salud = $session['infSalud'];
     $enfermedades = $session['enfermedades'];
     $detectado = $session['detectado'];
@@ -164,9 +164,10 @@ if (Session::has('salud')) {
         <div class="form-group text-left">
             {{-- TODO PRIMER PARAMETRO NOMBRE CON QUE SE ENVIA AL SERVER, SEGUNDO PARAMETRO ENCABEZADO DEL INPUT--}}
             {!! Form::label('inf_salud[talla]','Talla(estatura)') !!}
-            {{ Form::text ('inf_salud[talla]',
+            {{ Form::number ('inf_salud[talla]',
                             isset($salud->talla)?$salud->talla:"", [
-                          'class' => $errors->has('inf_salud.talla')?'is-invalid form-control':'form-control'
+                          'class' => $errors->has('inf_salud.talla')?'is-invalid form-control':'form-control',
+                          'step'=>".01"
             ])}}
             @if($errors->has('inf_salud.talla'))
                 <div class="invalid-feedback">
@@ -179,9 +180,10 @@ if (Session::has('salud')) {
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('inf_salud[peso]','Peso(kg)') !!}
-            {{ Form::text ('inf_salud[peso]',
+            {{ Form::number ('inf_salud[peso]',
                             isset($salud->peso)?$salud->peso:"", [
-                          'class' => $errors->has('inf_salud.peso')?'is-invalid form-control':'form-control'
+                          'class' => $errors->has('inf_salud.peso')?'is-invalid form-control':'form-control',
+                          'step'=>".1"
             ])}}
             @if($errors->has('inf_salud.peso'))
                 <div class="invalid-feedback">
