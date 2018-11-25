@@ -1,13 +1,5 @@
 $(document).ready(function () {
 
-    /*
-        $("#inp-alergia").hide();
-        $("#tr-cronicas").hide();
-        $("#inp-p1").attr("disabled", true);
-        $("#inp-p2").attr("disabled", true);
-        $("#inp-p3").attr("disabled", true);
-        $("#inp-p4").attr("disabled", true);
-    */
     selectAlergia();
     selectCronicas();
     selectP1();
@@ -26,7 +18,8 @@ $(document).ready(function () {
             $("#inp-alergia").hide();
             // $("#inp-alergia").attr('required', false);
         }
-        $("#inp-alergia").find("input").val("");
+        var $val = $("#inp-alergia").find("input").val();
+        $("#inp-alergia").find("input").val($val)
         // $("#inp-alergia").attr('required', true);
     }
 
@@ -42,7 +35,8 @@ $(document).ready(function () {
             $("#tr-cronicas").hide();
             // $("#tr-cronicas").find("input").attr('required', false)
         }
-        $("#tr-cronicas").find("input").val("");
+        var $val = $("#tr-cronicas").find("input").val();
+        $("#tr-cronicas").find("input").val($val);
         // $("#tr-cronicas").find("input").attr('required', true)
     }
 
@@ -60,7 +54,8 @@ $(document).ready(function () {
             $("#inp-p1").attr("disabled", true);
             // $("#inp-p1").attr("required", false);
         }
-        $("#inp-p1").val("");
+        $val = $("#inp-p1").val();
+        $("#inp-p1").val($val);
     }
 
     $('#select-p2').change(function () {
@@ -76,7 +71,8 @@ $(document).ready(function () {
             $("#inp-p2").attr("disabled", true);
             // $("#inp-p2").attr("required", false);
         }
-        $("#inp-p2").val("");
+        $val = $("#inp-p2").val();
+        $("#inp-p2").val($val);
     }
 
     $('#select-p3').change(function () {
@@ -92,7 +88,8 @@ $(document).ready(function () {
             $("#inp-p3").attr("disabled", true);
             // $("#inp-p3").attr("required", false);
         }
-        $("#inp-p3").val("");
+        $val = $("#inp-p3").val();
+        $("#inp-p3").val($val);
     }
 
     $('#select-p4').change(function () {
@@ -108,7 +105,8 @@ $(document).ready(function () {
             // $("#inp-p4").attr("required", false);
             $("#inp-p4").attr("disabled", true);
         }
-        $("#inp-p4").val("");
+        $val = $("#inp-p4").val();
+        $("#inp-p4").val($val);
     }
 
 });

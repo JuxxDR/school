@@ -43,8 +43,9 @@ class Inscripciones extends Model
         );
     }
 
-    public function alumno(){
-        return $this->hasMany(
+    public function alumno()
+    {
+        return $this->hasOne(
             Alumno::class,
             'inscripcion_id',
             'id'

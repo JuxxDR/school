@@ -2,10 +2,10 @@
 
         @endphp
 @extends('template.main')
-@section('title', 'Inscripcion')
+@section('title', Session::has('reinscripcion')?'Reinscripcion':"Inscripcion")
 
 @push('scripts')
-    @if($confirmation)
+    @if($confirmation || Session::has('reinscripcion'))
         <script src="{{ asset('js/inscripcion/inscripcion_general.js') }}"></script>
     @endif
 @endpush
@@ -19,30 +19,41 @@
             </div>
         </div>
         <div id="form_events" class="row">
-            <div class="row mt-3">
-                @if($confirmation)
-                    <div class="col-12" style="padding-left: 75px">
-                        <div class="alert alert-success text-center" role="alert">
-                            <b> Sus datos han sido registrados, por favor vuelva a confirmar que sus datos esten
-                                correctos,
-                                da
-                                click
-                                en el siguiente boton
-                                cuando verifiques todos tus datos
-                                <br>
-                            </b>
-                            <button
-                                    id="btn-confirm-all"
-                                    class="btn btn-success">Finalizar Inscripción
-                            </button>
+            <div class="col-12">
+                <div class="row mt-3">
+                    @if($confirmation || Session::has('reinscripcion'))
+                        <div class="col-12" style="padding-left: 75px">
+                            <div class="alert alert-success text-center" role="alert">
+                                @if(!Session::has('reinscripcion'))
+                                    <b> Sus datos han sido registrados, por favor vuelva a confirmar que sus datos esten
+                                        correctos,
+                                        da
+                                        click
+                                        en el siguiente boton
+                                        cuando verifiques todos tus datos.
+                                        <br>
+                                    </b>
+                                @else
+                                    <b>
+                                        Para concluir la reinscripcion verifique que todos sus datos son correctos
+                                        y haga click en el siguiente boton.
+                                        <br>
+                                        <br>
+                                    </b>
+                                @endif
+                                <button
+                                        id="btn-confirm-all"
+                                        class="btn btn-success">Finalizar
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                @endif
+                    @endif
+                </div>
             </div>
             <div class="col-2 mt-3 ml-5 pr-0">
                 <div class="nav flex-column nav-pills list-group" role="tablist" aria-orientation="vertical">
                     <a class="list-group-item nav-link {{$select==1?'active':''}}"
-                       href="{{$confirmation?route('inscripcion_datos_alumno',
+                       href="{{($confirmation||Session::has('reinscripcion'))?route('inscripcion_datos_alumno',
                        [
                         'inscripcionId'=>$inscripcion->id,
                         'folioId'=>$folio->id,
@@ -51,7 +62,7 @@
                        role="tab"
                        aria-selected="true">Alumno</a>
                     <a class="list-group-item nav-link {{$select==3?'active':''}}"
-                       href="{{$confirmation?
+                       href="{{($confirmation||Session::has('reinscripcion'))?
                        route('inscripcion_datos_integracion',
                         [
                         'inscripcionId'=>$inscripcion->id,
@@ -62,7 +73,7 @@
                        role="tab"
                        aria-selected="false">Integración</a>
                     <a class="list-group-item nav-link {{$select==4?'active':''}}"
-                       href="{{$confirmation?
+                       href="{{($confirmation||Session::has('reinscripcion'))?
                        route('inscripcion_datos_padres',
                         [
                         'folioId'=>$inscripcion->id,
@@ -73,7 +84,7 @@
                        role="tab"
                        aria-selected="false">Padres</a>
                     <a class="list-group-item nav-link {{$select==2?'active':''}}"
-                       href="{{$confirmation?
+                       href="{{($confirmation||Session::has('reinscripcion'))?
                        route('inscripcion_datos_salud',
                          [
                         'inscripcionId'=>$inscripcion->id,
@@ -84,7 +95,7 @@
                        role="tab"
                        aria-selected="false">Salud</a>
                     <a class="list-group-item nav-link {{$select==5?'active':''}}"
-                       href="{{$confirmation?
+                       href="{{($confirmation||Session::has('reinscripcion'))?
                        route('inscripcion_datos_emergencia',
                          [
                         'inscripcionId'=>$inscripcion->id,
@@ -95,7 +106,7 @@
                        role="tab"
                        aria-selected="false">Emergencia</a>
                     <a class="list-group-item nav-link {{$select==6?'active':''}}"
-                       href="{{$confirmation?
+                       href="{{($confirmation||Session::has('reinscripcion'))?
                        route('inscripcion_datos_personas_aut',
                          [
                         'inscripcionId'=>$folio->id,
@@ -106,7 +117,7 @@
                        role="tab"
                        aria-selected="false">Personas autorizadas</a>
                     <a class="list-group-item nav-link {{$select==7?'active':''}}"
-                       href="{{$confirmation?
+                       href="{{($confirmation||Session::has('reinscripcion'))?
                        route('inscripcion_datos_eventos',
                             [
                         'inscripcionId'=>$inscripcion->id,
@@ -130,7 +141,7 @@
                             'inscripcionId'=>$inscripcion->id])])!!}
                             @include ('inscripcion._form_datos_alumno')
                             <div class="col-12 text-center" style="text-align: center">
-                                <button class="btn btn-primary" type="submit">Continuar</button>
+                                <button class="btn btn-primary" type="submit">Guardar</button>
                             </div>
                             <input type="hidden" name="confirmation" value="{{$confirmation}}">
                             {!! Form::close()!!}
@@ -145,7 +156,7 @@
                                 @include('inscripcion._form_salud')
                             </div>
                             <div class="col-12 text-center" style="text-align: center">
-                                <button class="btn btn-primary" type="submit">Continuar</button>
+                                <button class="btn btn-primary" type="submit">Guardar</button>
                             </div>
                             <input type="hidden" name="confirmation" value="{{$confirmation}}">
                             {!! Form::close()!!}
@@ -160,7 +171,7 @@
                                 @include('inscripcion._form_integracion')
                             </div>
                             <div class="col-12 text-center" style="text-align: center">
-                                <button class="btn btn-primary" type="submit">Continuar</button>
+                                <button class="btn btn-primary" type="submit">Guardar</button>
                             </div>
                             <input type="hidden" name="confirmation" value="{{$confirmation}}">
                             {!! Form::close()!!}
@@ -175,7 +186,7 @@
                                 @include('inscripcion._form_padres')
                             </div>
                             <div class="col-12 text-center" style="text-align: center">
-                                <button class="btn btn-primary" type="submit">Continuar</button>
+                                <button class="btn btn-primary" type="submit">Guardar</button>
                             </div>
                             <input type="hidden" name="confirmation" value="{{$confirmation}}">
                             {!! Form::close()!!}
@@ -190,7 +201,7 @@
                                 @include('inscripcion._form_emergencia')
                             </div>
                             <div class="col-12 text-center" style="text-align: center">
-                                <button class="btn btn-primary" type="submit">Continuar</button>
+                                <button class="btn btn-primary" type="submit">Guardar</button>
                             </div>
                             <input type="hidden" name="confirmation" value="{{$confirmation}}">
                             {!! Form::close()!!}
@@ -205,7 +216,7 @@
                                 @include('inscripcion._form_personas_aut')
                             </div>
                             <div class="col-12 text-center" style="text-align: center">
-                                <button class="btn btn-primary" type="submit">Continuar</button>
+                                <button class="btn btn-primary" type="submit">Guardar</button>
                             </div>
                             <input type="hidden" name="confirmation" value="{{$confirmation}}">
                             {!! Form::close()!!}
@@ -219,9 +230,9 @@
                             <div>
                                 @include('inscripcion._form_eventos')
                             </div>
-                            @if(!$confirmation)
+                            @if(!$confirmation && !Session::has("reinscripcion"))
                                 <div class="col-12 text-center" style="text-align: center">
-                                    <button id="btn-end" class="btn btn-primary" type="submit">Continuar</button>
+                                    <button id="btn-end" class="btn btn-primary" type="submit">Guardar</button>
                                 </div>
                             @endif
                             <input type="hidden" name="confirmation" value="{{$confirmation}}">

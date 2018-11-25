@@ -1,8 +1,8 @@
 <?php
 /* @var $familia \App\Model\Familias */
 
-if (Session::has('familia')){
-    $familia=Session::get('familia');
+if (Session::has('familia')) {
+    $familia = Session::get('familia');
 }
 ?>
 
@@ -58,7 +58,7 @@ if (Session::has('familia')){
             true=>"Si",
             false=>"No"
             ],
-            isset($familia->padres_juntos), [
+            isset($familia->padres_juntos)?$familia->padres_juntos:false, [
           'class' => $errors->has('padres_juntos')?'is-invalid form-control':'form-control',
             ])}}
             @if($errors->has('padres_juntos'))

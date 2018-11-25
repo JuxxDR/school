@@ -391,6 +391,7 @@ if (Session::has('salud')) {
                     <td></td>
                 </tr>
                 <tr id="tr-cronicas">
+
                     <td>Especifique</td>
                     <td colspan="3">
                         {{Form::text('enfermedades[especifique]',

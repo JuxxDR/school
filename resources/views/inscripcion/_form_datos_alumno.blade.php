@@ -106,6 +106,7 @@
             {!! Form::label('grado','Grado') !!}
             {{ Form::select('grado',['1'=>1,'2'=>2,'3'=>3],isset($alumno->grado)?$alumno->grado:"",[
                 'class' => $errors->has('grado')?'is-invalid form-control':'form-control',
+                'disabled'=>Session::has("reinscripcion")
             ])}}
             @if($errors->has('grado'))
                 <div class="invalid-feedback">

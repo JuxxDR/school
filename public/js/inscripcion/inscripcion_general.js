@@ -9,5 +9,9 @@ $(document).ready(function () {
         $("#wait").attr("hidden", false);
         $form.attr('action', $url).submit();
     });
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+        history.go(1);
+    };
 });
 

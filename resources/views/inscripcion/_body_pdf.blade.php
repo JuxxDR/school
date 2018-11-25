@@ -31,11 +31,13 @@ $enfermedadesDef[]="Hepatitis";
 $enfermedadesDef[]="Neoplasias";
 $enfermedadesDef[]="Enfermedades cónicas";
 $enfermedadesDef[]=" ";
+$enfermedadesDef[]=" ";
 
 $enfermedadesVal=$enfermedades->attributesToArray();
 unset($enfermedadesVal['salud_id']);
 unset($enfermedadesVal['updated_at']);
 unset($enfermedadesVal['created_at']);
+unset($enfermedadesVal['remember_token']);
 unset($enfermedadesVal['id']);
 
 $detectadoDef[]="¿Duerme bien durante la noche?";
@@ -55,6 +57,7 @@ $detectadoVal=$detectado->attributesToArray();
 unset($detectadoVal['salud_id']);
 unset($detectadoVal['updated_at']);
 unset($detectadoVal['created_at']);
+unset($detectadoVal['remember_token']);
 unset($detectadoVal['id']);
 
 
@@ -72,12 +75,17 @@ unset($antecedentesVal['fam_diab']);
 unset($antecedentesVal['fam_cor']);
 unset($antecedentesVal['fam_hip']);
 unset($antecedentesVal['fam_can']);
+unset($antecedentesVal['remember_token']);
 
 @endphp
 <div style="text-align: justify; font: menu">
     <div id="cabecera" style="text-align: right">
         <p style="">
-            <b>Ficha de inscripcion: {{$inscripcion->folio->folio}}</b>
+            @if(Session::has('reinscripcion'))
+                <b>No. Control del alumno: {{$alumno->no_control}}</b>
+            @else
+                <b>Ficha de inscripcion: {{$inscripcion->folio->folio}}</b>
+            @endif
         </p>
         <p style="">
             Ciclo Escolar 2018-2019
@@ -300,7 +308,6 @@ unset($antecedentesVal['fam_can']);
         </p>
     </div>
 
-
     <div id="datos-enfermedades" class="new_page">
         <table>
             <thead>
@@ -309,6 +316,7 @@ unset($antecedentesVal['fam_can']);
             </tr>
             </thead>
             <tbody>
+
             @foreach($enfermedadesVal as $enfermedad)
                 @if($loop->index %2 ===0)
                     <tr>
@@ -793,8 +801,10 @@ unset($antecedentesVal['fam_can']);
             POR ESCRITO A LA AUTORIDAD EDUCATIVA”, ATENDIENDO AL PROTOCOLO DE ATENCIÓN EN CASO DE EMERGENCIA Y DE SEGURO
             ESCOLAR”
         </p>
-        <h5><b>No. Alumno: {{$alumno->no_control}}</b></h5>
-        <h5><b>Contraseña: {{$alumno->password}}</b></h5>
+        @if(!Session::has('reinscripcion'))
+            <h5><b>No. Alumno: {{$alumno->no_control}}</b></h5>
+            <h5><b>Contraseña: {{$alumno->password}}</b></h5>
+        @endif
     </div>
 
 </div>

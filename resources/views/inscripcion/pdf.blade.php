@@ -11,7 +11,12 @@
     <title>@yield('title')</title>
     <!-- Style sheets -->
     @include('template.global_css')
-
+    <script>
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+    </script>
     <style>
         .new_page {
             page-break-before: always;
@@ -36,16 +41,6 @@
 <body>
 <img src="{{asset('img/ENCABEZADO.jpg')}}" alt="encabezado" width="100%">
 @include('inscripcion._body_pdf')
-<p>
-    Aqui la metes
-    :3
-</p>
-<p>
-<h4>Porfavor guarda la siguiente información</h4>
-<h5><b>No. Control: </b> {{$alumno->no_control}} </h5>
-<h5><b>Contraseña: </b> {{$alumno->password}} </h5>
-</p>
-
 @include('template.global_js')
 @stack('scripts')
 </body>

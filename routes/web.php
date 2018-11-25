@@ -23,6 +23,21 @@ Route::get(
 
 
 //====================================
+//          Rutas Reinscripcion
+//======================================
+
+
+Route::get(
+    'reinscripcion/',
+    'ReinscripcionController@index'
+)->name('reinscripcion_no_control');
+
+Route::post(
+    'reinscripcion/',
+    'ReinscripcionController@indexPost'
+)->name('reinscripcion_no_control_post');
+
+//====================================
 //          Rutas Inscripcioón
 //======================================
 
