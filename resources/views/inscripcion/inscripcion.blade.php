@@ -12,7 +12,13 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="row">
+        <div id="wait" class="row mt-5" hidden>
+            <div class="col-12 text-center">
+                <i class="fas fa-cog fa-spin" style="font-size: 4em"></i>
+                <h5 class="mt-3"><b>Espere mientras se genera su comprobante, esto puede tardar unos minutos...</b></h5>
+            </div>
+        </div>
+        <div id="form_events" class="row">
             <div class="row mt-3">
                 @if($confirmation)
                     <div class="col-12" style="padding-left: 75px">
@@ -215,7 +221,7 @@
                             </div>
                             @if(!$confirmation)
                                 <div class="col-12 text-center" style="text-align: center">
-                                    <button class="btn btn-primary" type="submit">Continuar</button>
+                                    <button id="btn-end" class="btn btn-primary" type="submit">Continuar</button>
                                 </div>
                             @endif
                             <input type="hidden" name="confirmation" value="{{$confirmation}}">

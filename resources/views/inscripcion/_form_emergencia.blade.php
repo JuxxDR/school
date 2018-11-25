@@ -35,6 +35,7 @@
                     {!! Form::label('tel_fijo1','Telefono fijo') !!}
                     {{ Form::number('tel_fijo1',isset($emergencia->tel_fijo1)?$emergencia->tel_fijo1:"", [
                   'class' => $errors->has('tel_fijo1')?'is-invalid form-control':'form-control',
+                      "maxlength"=>10
                     ])}}
                     @if($errors->has('tel_fijo1'))
                         <div class="invalid-feedback">
@@ -48,6 +49,7 @@
                     {!! Form::label('celular1','Celular') !!}
                     {{ Form::number('celular1',isset($emergencia->celular1)?$emergencia->celular1:"", [
                   'class' => $errors->has('celular1')?'is-invalid form-control':'form-control',
+                  "maxlength"=>10
                     ])}}
                     @if($errors->has('celular1'))
                         <div class="invalid-feedback">
@@ -95,6 +97,7 @@
                     {!! Form::label('tel_fijo2','Telefono fijo') !!}
                     {{ Form::number('tel_fijo2',isset($emergencia->tel_fijo2)?$emergencia->tel_fijo2:"", [
                   'class' => $errors->has('tel_fijo2')?'is-invalid form-control':'form-control',
+                  "maxlength"=>10
                     ])}}
                     @if($errors->has('tel_fijo2'))
                         <div class="invalid-feedback">
@@ -108,6 +111,7 @@
                     {!! Form::label('celular2','Celular') !!}
                     {{ Form::number('celular2',isset($emergencia->celular2)?$emergencia->celular2:"", [
                   'class' => $errors->has('celular2')?'is-invalid form-control':'form-control',
+                  "maxlength"=>10
                     ])}}
                     @if($errors->has('celular2'))
                         <div class="invalid-feedback">
@@ -144,7 +148,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 

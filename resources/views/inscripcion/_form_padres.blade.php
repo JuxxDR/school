@@ -29,6 +29,7 @@ if (Session::has('padres')) {
                     {!! Form::label('padres[0][nombre_completo]','Nombre') !!}
                     {{ Form::text('padres[0][nombre_completo]',isset($madre->nombre_completo)?$madre->nombre_completo:"", [
                   'class' => $errors->has('padres.0.nombre_completo')?'is-invalid form-control':'form-control',
+
                     ])}}
                     @if($errors->has('padres.0.nombre_completo'))
                         <div class="invalid-feedback">
@@ -42,6 +43,7 @@ if (Session::has('padres')) {
                     {!! Form::label('padres[0][curp]','CURP') !!}
                     {{ Form::text('padres[0][curp]',isset($madre->curp)?$madre->curp:"", [
                   'class' => $errors->has('padres.0.curp')?'is-invalid form-control':'form-control',
+                      "maxlength"=>18
                     ])}}
                     @if($errors->has('padres.0.curp'))
                         <div class="invalid-feedback">
@@ -111,6 +113,7 @@ if (Session::has('padres')) {
                     {!! Form::label('padres[0][tel_fijo]','Teléfono fijo') !!}
                     {{ Form::number('padres[0][tel_fijo]',isset($madre->tel_fijo)?$madre->tel_fijo:"",[
                         'class' => $errors->has('padres.0.tel_fijo')?'is-invalid form-control':'form-control',
+                            "maxlength"=>10
                     ])}}
                     @if($errors->has('padres.0.tel_fijo'))
                         <div class="invalid-feedback">
@@ -125,6 +128,7 @@ if (Session::has('padres')) {
                     {!! Form::label('padres[0][celular]','Celular') !!}
                     {{ Form::number('padres[0][celular]',isset($madre->celular)?$madre->celular:"",[
                         'class' => $errors->has('padres.0.celular')?'is-invalid form-control':'form-control',
+                            "maxlength"=>10
                     ])}}
                     @if($errors->has('padres.0.celular'))
                         <div class="invalid-feedback">
@@ -255,6 +259,7 @@ if (Session::has('padres')) {
                     {!! Form::label('padres[0][cp]','Código postal') !!}
                     {{ Form::number('padres[0][cp]',isset($madre->cp)?$madre->cp:"", [
                   'class' => $errors->has('padres.0.cp')?'is-invalid form-control':'form-control',
+                      "maxlength"=>5
                     ])}}
                     @if($errors->has('padres.0.cp'))
                         <div class="invalid-feedback">
@@ -296,6 +301,7 @@ if (Session::has('padres')) {
                     {!! Form::label('padres[1][curp]','CURP') !!}
                     {{ Form::text('padres[1][curp]',isset($padre->curp)?$padre->curp:"", [
                   'class' => $errors->has('padres.1.curp')?'is-invalid form-control':'form-control',
+                      "maxlength"=>18
                     ])}}
                     @if($errors->has('padres.1.curp'))
                         <div class="invalid-feedback">
@@ -509,6 +515,7 @@ if (Session::has('padres')) {
                     {!! Form::label('padres[1][cp]','Código postal') !!}
                     {{ Form::number('padres[1][cp]',isset($padre->cp)?$padre->cp:"", [
                   'class' => $errors->has('padres.1.cp')?'is-invalid form-control':'form-control',
+                      "maxlength"=>5
                     ])}}
                     @if($errors->has('padres.1.cp'))
                         <div class="invalid-feedback">

@@ -52,6 +52,7 @@
             {!! Form::label('curp','CURP') !!}
             {{ Form::text('curp',isset($alumno->curp)?$alumno->curp:"", [
           'class' => $errors->has('curp')?'is-invalid form-control':'form-control',
+          "maxlength"=>18
             ])}}
             @if($errors->has('curp'))
                 <div class="invalid-feedback">
@@ -73,6 +74,7 @@
             @endif
         </div>
     </div>
+
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('edad','Edad') !!}
@@ -86,7 +88,6 @@
             @endif
         </div>
     </div>
-
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('meses','Meses') !!}
@@ -160,7 +161,7 @@
         </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-2">
         <div class="form-group text-left">
             {!! Form::label('no_ext','No. Exterior') !!}
             {{ Form::number('no_ext',isset($alumno->no_ext)?$alumno->no_ext:"", [
@@ -173,7 +174,7 @@
             @endif
         </div>
     </div>
-    <div class="col-4">
+    <div class="col-2">
         <div class="form-group text-left">
             {!! Form::label('no_int','No. Interior') !!}
             {{ Form::number('no_int',isset($alumno->no_int)?$alumno->no_int:"", [
@@ -258,6 +259,7 @@
             {!! Form::label('tel_casa','Telefóno de casa') !!}
             {{ Form::text('tel_casa',isset($alumno->tel_casa)?$alumno->tel_casa:"", [
           'class' => $errors->has('tel_casa')?'is-invalid form-control':'form-control',
+                    "maxlength"=>10
             ])}}
             @if($errors->has('tel_casa'))
                 <div class="invalid-feedback">
@@ -271,6 +273,7 @@
             {!! Form::label('cel','Celular') !!}
             {{ Form::text('cel',isset($alumno->cel)?$alumno->cel:"", [
           'class' => $errors->has('cel')?'is-invalid form-control':'form-control',
+            "maxlength"=>10
             ])}}
             @if($errors->has('cel'))
                 <div class="invalid-feedback">
