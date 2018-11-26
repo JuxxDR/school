@@ -2,12 +2,11 @@
         @endphp
 <?php
 /* @var $eventos \App\Model\Eventos */
-if (Session::has('eventos')){
-    $eventos=Session::get('eventos');
+if (Session::has('eventos')) {
+    $eventos = Session::get('eventos');
 }
 
 ?>
-
 <div class="row">
     <div class="col-12 mb-3">
         <h2 class="text-center" style="background-color:#c4e3f3">Información Adicional</h2>

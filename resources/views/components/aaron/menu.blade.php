@@ -54,5 +54,8 @@
         <li>
             <a href="{{ route('docente_cuenta') }}" class="article">Cuenta</a>
         </li>
+        @if(auth()->check())
+            <p style="color: white;font-size: 9pt;text-align: center;">{{ \App\Model\Docente::find(auth()->user()->id)->email }}</p>
+        @endif
     </ul>
 </nav>

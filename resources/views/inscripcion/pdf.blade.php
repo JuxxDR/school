@@ -12,7 +12,12 @@
     <title>Comprobante_Inscripción_{{$alumno->nombre}}_{{$alumno->apellidoP}}_{{$alumno->apellidoM}}</title>
     <!-- Style sheets -->
     @include('template.global_css')
-
+    <script>
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+    </script>
     <style>
         .new_page {
             page-break-before: always;

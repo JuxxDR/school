@@ -48,13 +48,6 @@
                     {{ session('notification') }}
                 </div>
             @endif
-            @if(session('confirmation'))
-                <div class="alert alert-dismissible alert-success">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong>Información </strong><br>
-                    {{ session('confirmation') }}
-                </div>
-            @endif
             @if( !\App\Model\EntregaTarea::where('tarea_id',$tarea->id)->first() )
                 <form action="registro" method="POST">
                     {{ csrf_field() }}

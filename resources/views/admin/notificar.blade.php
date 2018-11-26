@@ -7,6 +7,8 @@
         <div class="container">
             <h2>Notificaciones a Padres</h2>
             <br>
+            <a href="HistorialNotificaciones" class="btn btn-success" style="float: right">Historial de Anuncios</a>
+            <br>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">

@@ -72,13 +72,18 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Alumno newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Alumno newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Alumno query()
+ * @property-read \App\model\Eventos $eventos
+ * @property-read \App\model\Familias $familia
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\model\InfSalud[] $infSalud
+ * @property-read \App\model\Inscripciones $inscripcion
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\model\Reinscripcion[] $reinscripciones
+ * @property-write mixed $date
+ * @property-read \App\model\InfSalud $singleInfSalud
  */
 class Alumno extends Model
 {
     protected $table = 'alumnos';
     protected $fillable = [
-        'grado',
-        'inscripcion_id',
         'nombre',
         'apellidoP',
         'apellidoM',
@@ -87,7 +92,6 @@ class Alumno extends Model
         'edad',
         'grado',
         'estado',
-        'inscripcion_id',
         'meses',
         'calle',
         'no_ext',
@@ -163,9 +167,14 @@ class Alumno extends Model
             ];
     }
 
-    protected $dateFormat = 'Y-m-d';
-
+    protected $dateFormat = 'Y-m-d H:i:s';
+    public $timestamps = false;
     protected $dates = ['fecha_nacimiento'];
+
+    public function getDateFormat()
+    {
+        return 'Y-m-d H:i:s';
+    }
 
     public static function setDateAttribute($value)
     {
@@ -221,6 +230,51 @@ class Alumno extends Model
     {
         return $this->HasMany(
             InfSalud::class,
+            'alumno_id',
+            'id'
+        );
+    }
+
+    public function reinscripciones()
+    {
+        return $this->hasMany(
+            Reinscripcion::class,
+            'alumno_id',
+            'id'
+        );
+    }
+
+    public function inscripcion()
+    {
+        return $this->belongsTo(
+            Inscripciones::class,
+            'inscripcion_id',
+            'id'
+        );
+    }
+
+    public function familia()
+    {
+        return $this->hasOne(
+            Familias::class,
+            'alumno_id',
+            'id'
+        );
+    }
+
+    public function singleInfSalud()
+    {
+        return $this->hasOne(
+            InfSalud::class,
+            'alumno_id',
+            'id'
+        );
+    }
+
+    public function eventos()
+    {
+        return $this->hasOne(
+            Eventos::class,
             'alumno_id',
             'id'
         );

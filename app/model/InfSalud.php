@@ -54,6 +54,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\InfSalud newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\InfSalud newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\InfSalud query()
+ * @property-read \App\model\AntecedesntesHereditarios $antecedentes
+ * @property-read \App\model\Detectado $detectado
+ * @property-read \App\model\Enfermedades $enfermedades
  */
 class InfSalud extends Model
 {
@@ -110,8 +113,26 @@ class InfSalud extends Model
 
     public function detectado()
     {
-        return $this->belongsTo(
+        return $this->hasOne(
             Detectado::class,
+            'salud_id',
+            'id'
+        );
+    }
+
+    public function antecedentes()
+    {
+        return $this->hasOne(
+            AntecedesntesHereditarios::class,
+            'salud_id',
+            'id'
+        );
+    }
+
+    public function enfermedades()
+    {
+        return $this->hasOne(
+            Enfermedades::class,
             'salud_id',
             'id'
         );

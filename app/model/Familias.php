@@ -34,6 +34,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Familias newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Familias newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Familias query()
+ * @property-read \App\model\PersonasAut $autorizadas
+ * @property-read \App\model\Emergencia $emergencia
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\model\Padre[] $padres
  */
 class Familias extends Model
 {
@@ -76,5 +79,30 @@ class Familias extends Model
             ];
     }
 
+    public function padres()
+    {
+        return $this->hasMany(
+            Padre::class,
+            'familia_id',
+            'id'
+        );
+    }
 
+    public function emergencia()
+    {
+        return $this->hasOne(
+            Emergencia::class,
+            'familia_id',
+            'id'
+        );
+    }
+
+    public function autorizadas()
+    {
+        return $this->hasOne(
+            PersonasAut::class,
+            'familia_id',
+            'id'
+        );
+    }
 }

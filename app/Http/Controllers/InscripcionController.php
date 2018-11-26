@@ -29,6 +29,7 @@ use App\model\InfSalud;
 use App\model\Inscripciones;
 use App\model\Padre;
 use App\model\PersonasAut;
+use App\model\Reinscripcion;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
@@ -48,6 +49,7 @@ class InscripcionController extends Controller
         $inscripcion = new Inscripciones();
         $inscripcion->folio_id = $folio->id;
         $inscripcion->save();
+        \Session::flush();
         return redirect()->route(
             'inscripcion_datos_alumno', ['inscripcion' => $inscripcion,
             'folio' => $folio
@@ -75,8 +77,13 @@ class InscripcionController extends Controller
     public function datosAlumnoPost(CreateAlumnoRequest $request, $folioId, $inscripcionId)
     {
         $final = $request->get('save_data', false);
-        $alumno = new Alumno();
+//        $alumno = new Alumno();
+        $alumno = \Session::has('alumno') ? \Session::get('alumno') : new Alumno();
+        $grado = $alumno->grado;
         $alumno->fill($request->all());
+        if (\Session::has("reinscripcion")) {
+            $alumno->grado = $grado;
+        }
         $inscripcion = Inscripciones::find($inscripcionId);
         $folio = Folios::find($inscripcion->folio_id);
         \Session::put('alumno', $alumno);
@@ -112,8 +119,10 @@ class InscripcionController extends Controller
 
         $folio = Folios::find($folioId);
         $inscripcion = Inscripciones::find($inscripcionId);
-        $madre = new Padre();
-        $padre = new Padre();
+
+        $padre = \Session::get('padres')['padre'] !== null ? \Session::get('padres')['padre'] : new Padre();
+        $madre = \Session::get('padres')['madre'] !== null ? \Session::get('padres')['madre'] : new Padre();
+
         $madre->fill($request->padres[0]);
         $madre->parentesco = "madre";
         $padre->fill($request->padres[1]);
@@ -154,7 +163,7 @@ class InscripcionController extends Controller
 
         $folio = Folios::find($folioId);
         $inscripcion = Inscripciones::find($inscripcionId);
-        $emergencia = new Emergencia();
+        $emergencia = \Session::has('emergencia') ? \Session::get('emergencia') : new Emergencia();
         $emergencia->fill($request->all());
         \Session::put('emergencia', $emergencia);
         $confirmation = $request->input('confirmation', false);
@@ -186,8 +195,7 @@ class InscripcionController extends Controller
     public function datosPersonasAutPost(CreatePersonasAutRequest $request, $folioId, $inscripcionId)
     {
         $final = $request->get('save_data', false);
-
-        $aut = new PersonasAut();
+        $aut = \Session::has('personasAut') ? \Session::get('personasAut') : new PersonasAut();
         $aut->fill($request->all());
         \Session::put('personasAut', $aut);
         $confirmation = $request->input('confirmation', false);
@@ -219,8 +227,7 @@ class InscripcionController extends Controller
     public function datosEventosPost(CreateEventosRequest $request, $folioId, $inscripcionId)
     {
         $final = $request->get('save_data', false);
-
-        $eventos = new Eventos();
+        $eventos = \Session::has('eventos') ? \Session::get('eventos') : new Eventos();
         $eventos->fill($request->all());
         \Session::put('eventos', $eventos);
 //       return $this->finalSave($folioId, $inscripcionId);
@@ -248,8 +255,7 @@ class InscripcionController extends Controller
     public function datosIntegracionPost(CreateIntegracionRequest $request, $inscripcionId, $folioId)
     {
         $final = $request->get('save_data', false);
-
-        $familia = new Familias();
+        $familia = \Session::has('familia') ? \Session::get('familia') : new Familias();
         $familia->fill($request->all());
         \Session::put("familia", $familia);
         $confirmation = $request->input('confirmation', false);
@@ -289,14 +295,22 @@ class InscripcionController extends Controller
 //        $alumno->fill($request->all());
         $alumno->inscripcion_id = $inscripcionId;
 
-        $infSalud = new InfSalud();
+        $infSalud = \Session::get('salud')['infSalud'] !== null ?
+            \Session::get('salud')['infSalud'] :
+            new InfSalud();
+        $enfermedades = \Session::get('salud')['enfermedades'] !== null ?
+            \Session::get('salud')['enfermedades'] :
+            new Enfermedades();
+        $detectado = \Session::get('salud')['detectado'] !== null ?
+            \Session::get('salud')['detectado'] :
+            new Detectado();
+        $antecedente = \Session::get('salud')['antecedente'] !== null ?
+            \Session::get('salud')['antecedente'] :
+            new AntecedesntesHereditarios();
+
         $infSalud->fill($request->inf_salud);
-//        return dd($infSalud);
-        $enfermedades = new Enfermedades();
         $enfermedades->fill($request->enfermedades);
-        $detectado = new Detectado();
         $detectado->fill($request->detectado);
-        $antecedente = new AntecedesntesHereditarios();
         $antecedente->fill($request->antecedente);
 
         $salud["infSalud"] = $infSalud;
@@ -347,12 +361,14 @@ class InscripcionController extends Controller
             $personasAut = \Session::get('personasAut');
             $inscripcion = Inscripciones::find($inscripcionId);
 
-
+            $reinscripcion = null;
             DB::beginTransaction();
             $año = 18;
             $cct = 27;
-            if (Alumno::count() === 0) {
-                $ctrl = 10 + Alumno::cou() + 1;
+            if (\Session::has('reinscripcion')) {
+                $reinscripcion = new Reinscripcion();
+            } elseif (Alumno::count() === 0) {
+                $ctrl = 10 + Alumno::count() + 1;
                 $noCtrl = $año . $cct . $ctrl;
                 $alumno->no_control = $noCtrl;
             } else {
@@ -362,15 +378,21 @@ class InscripcionController extends Controller
                 $noCtrl = $año . $cct . $ctrl;
                 $alumno->no_control = $noCtrl;
             }
+            if ($reinscripcion === null) {
+                $base = 'JN';
+                $digits = 4;
+                $rnd = str_pad(rand(0, pow(10, $digits) - 1), $digits, '0', STR_PAD_LEFT);
+                $password = $base . $rnd;
+                $alumno->password = $password;
+                //$alumno->password = bcrypt($alumno->password);
+                $alumno->inscripcion_id = $inscripcion->id;
+            }
 
-            $base = 'JN';
-            $digits = 4;
-            $rnd = str_pad(rand(0, pow(10, $digits) - 1), $digits, '0', STR_PAD_LEFT);
-            $password = $base . $rnd;
-            $alumno->password = $password;
-            //$alumno->password = bcrypt($alumno->password);
-            $alumno->inscripcion_id = $inscripcion->id;
             $transactionOk = $alumno->save();
+            if ($transactionOk && $reinscripcion !== null) {
+                $reinscripcion->alumno_id = $alumno->id;
+                $transactionOk = $reinscripcion->save();
+            }
             if ($transactionOk) {
                 $inf_salud->alumno_id = $alumno->id;
                 $transactionOk = $inf_salud->save();
@@ -436,10 +458,10 @@ class InscripcionController extends Controller
                     'inscripcion' => $inscripcion,
                     'pdfOk' => $pdfOk
                 ])->render();
+                \Session::flush();
                 $pdf = \App::make('dompdf.wrapper');
                 $pdf->loadHTML($view);
-                //Nombre de archivo generado
-                return $pdf->stream('Comprobante-inscripción.pdf');
+                return $pdf->stream('invoice');
 //
 //                return view('inscripcion.confirmation_pdf', [
 //                    'alumno' => $alumno,

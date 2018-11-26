@@ -11,12 +11,16 @@ if (Session::has('salud')) {
     $antecedente = $session['antecedente'];
 }
 ?>
+@push('scripts')
+    <script src="{{ asset('js/inscripcion/_form_salud.js') }}"></script>
+@endpush
 <div class="row">
     <div class="col-12 mb-3">
         <h2 class="text-center" style="background-color:#c4e3f3">Datos de Salud del Alumno</h2>
         <hr>
     </div>
-    <div class="col-4">
+
+    <div class="col-2">
         <div class="form-group text-left">
             {!! Form::label('inf_salud[sexo]','Sexo') !!}
             {{ Form::select('inf_salud[sexo]',
@@ -34,38 +38,7 @@ if (Session::has('salud')) {
             @endif
         </div>
     </div>
-
-    <div class="col-4">
-        <div class="form-group text-left">
-            {!! Form::label('inf_salud[enfermedad]','Enfermedades que ha padecido') !!}
-            {{ Form::text('inf_salud[enfermedad]',
-            isset($salud->enfermedad)?$salud->enfermedad:"", [
-          'class' => $errors->has('inf_salud.enfermedad')?'is-invalid form-control':'form-control',
-            ])}}
-            @if($errors->has('inf_salud.enfermedad'))
-                <div class="invalid-feedback">
-                    {{ $errors->first('inf_salud.enfermedad') }}
-                </div>
-            @endif
-        </div>
-    </div>
-
-    <div class="col-4">
-        <div class="form-group text-left">
-            {!! Form::label('inf_salud[vacunas_aplicadas]','Vacunas que han sido aplicadas') !!}
-            {{ Form::text('inf_salud[vacunas_aplicadas]',
-            isset($salud->vacunas_aplicadas)?$salud->vacunas_aplicadas:"", [
-          'class' => $errors->has('inf_salud.vacunas_aplicadas')?'is-invalid form-control':'form-control',
-            ])}}
-            @if($errors->has('inf_salud.vacunas_aplicadas'))
-                <div class="invalid-feedback">
-                    {{ $errors->first('inf_salud.vacunas_aplicadas') }}
-                </div>
-            @endif
-        </div>
-    </div>
-
-    <div class="col-4">
+    <div class="col-2">
         <div class="form-group text-left">
             {!! Form::label('inf_salud[ban_alergia]','¿Alergias?') !!}
             {{ Form::select('inf_salud[ban_alergia]',
@@ -73,8 +46,9 @@ if (Session::has('salud')) {
             true=>"Si",
             false=>"No"
             ],
-            isset($salud->ban_alergia)?$salud->ban_alergia:"", [
+            isset($salud->ban_alergia)?$salud->ban_alergia:false, [
           'class' => $errors->has('inf_salud.ban_alergia')?'is-invalid form-control':'form-control',
+          'id'=>"select-alergia"
             ])}}
             @if($errors->has('inf_salud.ban_alergia'))
                 <div class="invalid-feedback">
@@ -84,9 +58,9 @@ if (Session::has('salud')) {
         </div>
     </div>
 
-    <div class="col-4">
+    <div id="inp-alergia" class="col-4">
         <div class="form-group text-left">
-            {!! Form::label('inf_salud[alergia]','¿Que tipo de alergia?') !!}
+            {!! Form::label('inf_salud[alergia]','¿Que alergia?') !!}
             {{ Form::text('inf_salud[alergia]',
                             isset($salud->alergia)?$salud->alergia:"", [
                           'class' => $errors->has('inf_salud.alergia')?'is-invalid form-control':'form-control',
@@ -101,7 +75,37 @@ if (Session::has('salud')) {
 
     <div class="col-4">
         <div class="form-group text-left">
-            {!! Form::label('inf_salud[carac_especial]','¿Alguna característica especial del niño? (lunar)') !!}
+            {!! Form::label('inf_salud[enfermedad]','Enfermedad que ha padecido') !!}
+            {{ Form::text('inf_salud[enfermedad]',
+            isset($salud->enfermedad)?$salud->enfermedad:"", [
+          'class' => $errors->has('inf_salud.enfermedad')?'is-invalid form-control':'form-control',
+            ])}}
+            @if($errors->has('inf_salud.enfermedad'))
+                <div class="invalid-feedback">
+                    {{ $errors->first('inf_salud.enfermedad') }}
+                </div>
+            @endif
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="form-group text-left">
+            {!! Form::label('inf_salud[vacunas_aplicadas]','Vacunas aplicadas') !!}
+            {{ Form::text('inf_salud[vacunas_aplicadas]',
+            isset($salud->vacunas_aplicadas)?$salud->vacunas_aplicadas:"", [
+          'class' => $errors->has('inf_salud.vacunas_aplicadas')?'is-invalid form-control':'form-control',
+            ])}}
+            @if($errors->has('inf_salud.vacunas_aplicadas'))
+                <div class="invalid-feedback">
+                    {{ $errors->first('inf_salud.vacunas_aplicadas') }}
+                </div>
+            @endif
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="form-group text-left">
+            {!! Form::label('inf_salud[carac_especial]','¿Alguna característica especial del niño?') !!}
             {{ Form::text('inf_salud[carac_especial]',
                             isset($salud->carac_especial)?$salud->carac_especial:"", [
                           'class' => $errors->has('inf_salud.carac_especial')?'is-invalid form-control':'form-control',
@@ -131,21 +135,6 @@ if (Session::has('salud')) {
 
     <div class="col-4">
         <div class="form-group text-left">
-            {!! Form::label('inf_salud[tipo_sangre]','Tipo de Sangre') !!}
-            {{ Form::text ('inf_salud[tipo_sangre]',
-                            isset($salud->tipo_sangre)?$salud->tipo_sangre:"", [
-                          'class' => $errors->has('inf_salud.tipo_sangre')?'is-invalid form-control':'form-control'
-            ])}}
-            @if($errors->has('inf_salud.tipo_sangre'))
-                <div class="invalid-feedback">
-                    {{ $errors->first('inf_salud.tipo_sangre') }}
-                </div>
-            @endif
-        </div>
-    </div>
-
-    <div class="col-4">
-        <div class="form-group text-left">
             {!! Form::label('inf_salud[medico_familiar]','Institución de derechohabiente del alumno') !!}
             {{ Form::text ('inf_salud[medico_familiar]',
                             isset($salud->medico_familiar)?$salud->medico_familiar:"", [
@@ -158,54 +147,69 @@ if (Session::has('salud')) {
             @endif
         </div>
     </div>
-
-    <div class="col-4">
-
-        <div class="form-group text-left">
-            {{-- TODO PRIMER PARAMETRO NOMBRE CON QUE SE ENVIA AL SERVER, SEGUNDO PARAMETRO ENCABEZADO DEL INPUT--}}
-            {!! Form::label('inf_salud[talla]','Talla(estatura)') !!}
-            {{ Form::number ('inf_salud[talla]',
-                            isset($salud->talla)?$salud->talla:"", [
-                          'class' => $errors->has('inf_salud.talla')?'is-invalid form-control':'form-control',
-                          'step'=>".01"
-            ])}}
-            @if($errors->has('inf_salud.talla'))
-                <div class="invalid-feedback">
-                    {{ $errors->first('inf_salud.talla') }}
+    <div class="col-12">
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group text-left">
+                            {!! Form::label('inf_salud[enfermedad_ult_mes]','¿Escriba las enfermedades que ha tenido su hijo(a) durante los últimos 12 meses?') !!}
+                            {{ Form::textarea ('inf_salud[enfermedad_ult_mes]',
+                                            isset($salud->enfermedad_ult_mes)?$salud->enfermedad_ult_mes:"", [
+                                          'class' => $errors->has('inf_salud.enfermedad_ult_mes')?'is-invalid form-control':'form-control',
+                                          'rows'=>3
+                            ])}}
+                            @if($errors->has('inf_salud.enfermedad_ult_mes'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('inf_salud.enfermedad_ult_mes') }}
+                                </div>
+                            @endif
+                        </div>
+                    </div>
                 </div>
-            @endif
-        </div>
-    </div>
-
-    <div class="col-4">
-        <div class="form-group text-left">
-            {!! Form::label('inf_salud[peso]','Peso(kg)') !!}
-            {{ Form::number ('inf_salud[peso]',
-                            isset($salud->peso)?$salud->peso:"", [
-                          'class' => $errors->has('inf_salud.peso')?'is-invalid form-control':'form-control',
-                          'step'=>".1"
-            ])}}
-            @if($errors->has('inf_salud.peso'))
-                <div class="invalid-feedback">
-                    {{ $errors->first('inf_salud.peso') }}
+            </div>
+            <div class="col-2">
+                <div class="form-group text-left">
+                    {!! Form::label('inf_salud[tipo_sangre]','Tipo de sangre') !!}
+                    {{ Form::text ('inf_salud[tipo_sangre]',
+                                    isset($salud->tipo_sangre)?$salud->tipo_sangre:"", [
+                                  'class' => $errors->has('inf_salud.tipo_sangre')?'is-invalid form-control':'form-control'
+                    ])}}
+                    @if($errors->has('inf_salud.tipo_sangre'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('inf_salud.tipo_sangre') }}
+                        </div>
+                    @endif
                 </div>
-            @endif
-        </div>
-    </div>
-
-    <div class="col-8">
-        <div class="form-group text-left">
-            {!! Form::label('inf_salud[enfermedad_ult_mes]','¿Escriba las enfermedades que ha tenido su hijo(a) durante los últimos 12 meses?') !!}
-            {{ Form::textarea ('inf_salud[enfermedad_ult_mes]',
-                            isset($salud->enfermedad_ult_mes)?$salud->enfermedad_ult_mes:"", [
-                          'class' => $errors->has('inf_salud.enfermedad_ult_mes')?'is-invalid form-control':'form-control',
-                          'rows'=>3
-            ])}}
-            @if($errors->has('inf_salud.enfermedad_ult_mes'))
-                <div class="invalid-feedback">
-                    {{ $errors->first('inf_salud.enfermedad_ult_mes') }}
+            </div>
+            <div class="col-2">
+                <div class="form-group text-left">
+                    {!! Form::label('inf_salud[talla]','Talla') !!}
+                    {{ Form::text ('inf_salud[talla]',
+                                    isset($salud->talla)?$salud->talla:"", [
+                                  'class' => $errors->has('inf_salud.talla')?'is-invalid form-control':'form-control'
+                    ])}}
+                    @if($errors->has('inf_salud.talla'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('inf_salud.talla') }}
+                        </div>
+                    @endif
                 </div>
-            @endif
+            </div>
+            <div class="col-2">
+                <div class="form-group text-left">
+                    {!! Form::label('inf_salud[peso]','Peso') !!}
+                    {{ Form::text ('inf_salud[peso]',
+                                    isset($salud->peso)?$salud->peso:"", [
+                                  'class' => $errors->has('inf_salud.peso')?'is-invalid form-control':'form-control'
+                    ])}}
+                    @if($errors->has('inf_salud.peso'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('inf_salud.peso') }}
+                        </div>
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
 
@@ -378,18 +382,22 @@ if (Session::has('salud')) {
                         ],
                         isset($enfermedades->e13)?$enfermedades->e13:false, [
                                 'class' => $errors->has('enfermedades.e13]')?'is-invalid form-control':'form-control',
+                                'id'=>'select-cronicas'
                         ])}}
                     </td>
                     <td></td>
                     <td></td>
                 </tr>
-                <td colspan="2">Especifique</td>
-                <td colspan="2">
-                    {{ Form::text('enfermedades[especifique]',
-               isset($enfermedades->especifique)?$enfermedades->especifique:"", [
-              'class' => $errors->has('enfermedades[especifique]')?'is-invalid form-control':'form-control',
-               ])}}
-                </td>
+                <tr id="tr-cronicas">
+
+                    <td>Especifique</td>
+                    <td colspan="3">
+                        {{Form::text('enfermedades[especifique]',
+                   isset($enfermedades->especifique)?$enfermedades->especifique:"", [
+                  'class' => $errors->has('enfermedades[especifique]')?'is-invalid form-control':'form-control',
+                   ])}}
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>
@@ -576,6 +584,7 @@ if (Session::has('salud')) {
                             ],
                             isset($antecedente->fam_diab)?$antecedente->fam_diab:false, [
                                     'class' => $errors->has('antecedente.fam_diab]')?'is-invalid form-control':'form-control',
+                                    'id'=>'select-p1'
                             ])}}
                     </td>
                     <td>Parentesco:</td>
@@ -583,6 +592,7 @@ if (Session::has('salud')) {
                         {{ Form::text('antecedente[parentesco_diab]',
                             isset($antecedente->parentesco_diab)?$antecedente->parentesco_diab:false, [
                                     'class' => $errors->has('antecedente.parentesco_diab]')?'is-invalid form-control':'form-control',
+                                    'id'=>'inp-p1'
                             ])}}
                     </td>
                 </tr>
@@ -596,6 +606,7 @@ if (Session::has('salud')) {
                             ],
                             isset($antecedente->fam_cor)?$antecedente->fam_cor:false, [
                                     'class' => $errors->has('antecedente.fam_cor]')?'is-invalid form-control':'form-control',
+                                    'id'=>'select-p2'
                             ])}}
                     </td>
 
@@ -604,6 +615,7 @@ if (Session::has('salud')) {
                         {{ Form::text('antecedente[parentesco_cor]',
                             isset($antecedente->parentesco_cor)?$antecedente->parentesco_cor:false, [
                                     'class' => $errors->has('antecedente.parentesco_cor]')?'is-invalid form-control':'form-control',
+                                    'id'=>'inp-p2'
                             ])}}
                     </td>
                 </tr>
@@ -618,6 +630,7 @@ if (Session::has('salud')) {
                             ],
                             isset($antecedente->fam_hip)?$antecedente->fam_hip:false, [
                                     'class' => $errors->has('antecedente.fam_hip]')?'is-invalid form-control':'form-control',
+                                    'id'=>'select-p3'
                             ])}}
                     </td>
 
@@ -626,6 +639,7 @@ if (Session::has('salud')) {
                         {{ Form::text('antecedente[parentesco_hip]',
                             isset($antecedente->parentesco_hip)?$antecedente->parentesco_hip:false, [
                                     'class' => $errors->has('antecedente.parentesco_hip]')?'is-invalid form-control':'form-control',
+                                    'id'=>'inp-p3'
                             ])}}
                     </td>
                 </tr>
@@ -640,6 +654,7 @@ if (Session::has('salud')) {
                             ],
                             isset($antecedente->fam_can)?$antecedente->fam_can:false, [
                                     'class' => $errors->has('antecedente.fam_can]')?'is-invalid form-control':'form-control',
+                                    'id'=>'select-p4'
                             ])}}
                     </td>
 
@@ -648,6 +663,7 @@ if (Session::has('salud')) {
                         {{ Form::text('antecedente[parentesco_can]',
                             isset($antecedente->parentesco_can)?$antecedente->parentesco_can:false, [
                                     'class' => $errors->has('antecedente.parentesco_can]')?'is-invalid form-control':'form-control',
+                                    'id'=>'inp-p4'
                             ])}}
                     </td>
                 </tr>
