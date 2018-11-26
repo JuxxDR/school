@@ -7,6 +7,7 @@
 @section('content')
     <div class="container">
         <div class="row" style="height: 614px">
+
             <div class="col-6 offset-3 mt-5">
                 <div class="card">
                     <div class="card-header text-center card bg-secondary" style="color: white">
@@ -24,6 +25,19 @@
                                     @if($errors->has('no_control'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('no_control') }}
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-8 offset-2">
+                                <div class="form-group text-left">
+                                    {!! Form::label('password','Contraseña') !!}
+                                    {{ Form::password('password', [
+                                  'class' => $errors->has('password')?'is-invalid form-control':'form-control',
+                                    ])}}
+                                    @if($errors->has('password'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('password') }}
                                         </div>
                                     @endif
                                 </div>

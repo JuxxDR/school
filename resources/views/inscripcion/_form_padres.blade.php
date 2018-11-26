@@ -188,8 +188,21 @@ if (Session::has('padres')) {
                     @endif
                 </div>
             </div>
-
             <div class="col-4">
+                <div class="form-group text-left">
+                    {!! Form::label('padres[0][colonia]','Colonia') !!}
+                    {{ Form::text('padres[0][colonia]',isset($madre->colonia)?$madre->colonia:"", [
+                  'class' => $errors->has('padres.0.colonia')?'is-invalid form-control':'form-control',
+                    ])}}
+                    @if($errors->has('padres.0.colonia'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('padres.0.colonia') }}
+                        </div>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-2">
                 <div class="form-group text-left">
                     {!! Form::label('padres[0][no_ext]','No. Exterior') !!}
                     {{ Form::number('padres[0][no_ext]',isset($madre->no_ext)?$madre->no_ext:"", [
@@ -202,7 +215,7 @@ if (Session::has('padres')) {
                     @endif
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-2">
                 <div class="form-group text-left">
                     {!! Form::label('padres[0][no_int]','No. Interior') !!}
                     {{ Form::number('padres[0][no_int]',isset($madre->no_int)?$madre->no_int:"", [
@@ -211,19 +224,6 @@ if (Session::has('padres')) {
                     @if($errors->has('padres.0.no_int'))
                         <div class="invalid-feedback">
                             {{ $errors->first('padres.0.no_int') }}
-                        </div>
-                    @endif
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="form-group text-left">
-                    {!! Form::label('padres[0][colonia]','Colonia') !!}
-                    {{ Form::text('padres[0][colonia]',isset($madre->colonia)?$madre->colonia:"", [
-                  'class' => $errors->has('padres.0.colonia')?'is-invalid form-control':'form-control',
-                    ])}}
-                    @if($errors->has('padres.0.colonia'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('padres.0.colonia') }}
                         </div>
                     @endif
                 </div>
@@ -255,10 +255,10 @@ if (Session::has('padres')) {
                     @endif
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-2">
                 <div class="form-group text-left">
                     {!! Form::label('padres[0][cp]','Código Postal') !!}
-                    {{ Form::number('padres[0][cp]',isset($madre->cp)?$madre->cp:"", [
+                    {{ Form::text('padres[0][cp]',isset($madre->cp)?$madre->cp:"", [
                   'class' => $errors->has('padres.0.cp')?'is-invalid form-control':'form-control',
                       "maxlength"=>5
                     ])}}
@@ -447,33 +447,6 @@ if (Session::has('padres')) {
                     @endif
                 </div>
             </div>
-
-            <div class="col-4">
-                <div class="form-group text-left">
-                    {!! Form::label('padres[1][no_ext]','No. Exterior') !!}
-                    {{ Form::number('padres[1][no_ext]',isset($padre->no_ext)?$padre->no_ext:"", [
-                  'class' => $errors->has('padres.1.no_ext')?'is-invalid form-control':'form-control',
-                    ])}}
-                    @if($errors->has('padres.1.no_ext'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('padres.1.no_ext') }}
-                        </div>
-                    @endif
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="form-group text-left">
-                    {!! Form::label('padres[1][no_int]','No. Interior') !!}
-                    {{ Form::number('padres[1][no_int]',isset($padre->no_int)?$padre->no_int:"", [
-                  'class' => $errors->has('padres.1.no_int')?'is-invalid form-control':'form-control',
-                    ])}}
-                    @if($errors->has('padres.1.no_int'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('padres.1.no_int') }}
-                        </div>
-                    @endif
-                </div>
-            </div>
             <div class="col-4">
                 <div class="form-group text-left">
                     {!! Form::label('padres[1][colonia]','Colonia') !!}
@@ -487,6 +460,33 @@ if (Session::has('padres')) {
                     @endif
                 </div>
             </div>
+            <div class="col-2">
+                <div class="form-group text-left">
+                    {!! Form::label('padres[1][no_ext]','No. Exterior') !!}
+                    {{ Form::number('padres[1][no_ext]',isset($padre->no_ext)?$padre->no_ext:"", [
+                  'class' => $errors->has('padres.1.no_ext')?'is-invalid form-control':'form-control',
+                    ])}}
+                    @if($errors->has('padres.1.no_ext'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('padres.1.no_ext') }}
+                        </div>
+                    @endif
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group text-left">
+                    {!! Form::label('padres[1][no_int]','No. Interior') !!}
+                    {{ Form::number('padres[1][no_int]',isset($padre->no_int)?$padre->no_int:"", [
+                  'class' => $errors->has('padres.1.no_int')?'is-invalid form-control':'form-control',
+                    ])}}
+                    @if($errors->has('padres.1.no_int'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('padres.1.no_int') }}
+                        </div>
+                    @endif
+                </div>
+            </div>
+
 
             <div class="col-4">
                 <div class="form-group text-left">
@@ -514,7 +514,7 @@ if (Session::has('padres')) {
                     @endif
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-2">
                 <div class="form-group text-left">
                     {!! Form::label('padres[1][cp]','Código postal') !!}
                     {{ Form::number('padres[1][cp]',isset($padre->cp)?$padre->cp:"", [

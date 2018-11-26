@@ -82,9 +82,9 @@ unset($antecedentesVal['remember_token']);
     <div id="cabecera" style="text-align: right">
         <p style="">
             @if(Session::has('reinscripcion'))
-                <b>No. Control del alumno: {{$alumno->no_control}}</b>
+                <b>Ficha de reinscripción</b>
             @else
-                <b>Ficha : {{$inscripcion->folio->folio}}</b>
+                <b>Ficha de inscripción : {{$inscripcion->folio->folio}}</b>
             @endif
         </p>
         <p style="">
@@ -367,7 +367,7 @@ unset($antecedentesVal['remember_token']);
         <b>{{$eventos->pos_asistir}}</b>
         </p>
         <p style="font-size: 1em; text-align: justify;">
-        <br>
+            <br>
         <h6><b>1) ¿Como sugiere que se realice el mantenimiento y equipamiento de la escuela?</b></h6>
         {{$eventos->manto_equip}}
         </p>
@@ -376,11 +376,13 @@ unset($antecedentesVal['remember_token']);
         {{$eventos->participacion}}
         </p>
         <p style="font-size: 1em; text-align: justify;">
-        <h6><b>3) ¿De que manera comprende mejor usted, acerca  de los avances en los logros del aprendizaje de su hijo(a)?</b></h6>
+        <h6><b>3) ¿De que manera comprende mejor usted, acerca de los avances en los logros del aprendizaje de su
+                hijo(a)?</b></h6>
         {{$eventos->avances}}
         </p>
         <p style="font-size: 1em; text-align: justify;">
-        <h6><b>4) ¿Esta de acuerdo que la docente de su hijo(a) lo premie en algunas ocasiones con una etiqueta adherible o con un dulce?</b></h6>
+        <h6><b>4) ¿Esta de acuerdo que la docente de su hijo(a) lo premie en algunas ocasiones con una etiqueta
+                adherible o con un dulce?</b></h6>
         {{$eventos->premio}}
         </p>
         <p style="font-size: 1em; text-align: justify;">
@@ -515,7 +517,7 @@ unset($antecedentesVal['remember_token']);
             <b>{{isset($salud->recomendaciones_especiales)?:'S/n'}}</b>
         </p>
     </div>
-    <div id="datos-enfermedades" >
+    <div id="datos-enfermedades">
         <table>
             <thead>
             <tr style="text-align: center">
@@ -741,10 +743,14 @@ unset($antecedentesVal['remember_token']);
             línea, siendo único para cada alumno.
             <br>
             <br>
+        @if(!Session::has('reinscripcion'))
+            <h5><b>No. Alumno: {{$alumno->no_control}}</b></h5>
+            <h5><b>Contraseña: {{$alumno->password}}</b></h5>
             Datos de ingreso a plataforma web:
-        </p>
-        <h5><b>No. Alumno: {{$alumno->no_control}}</b></h5>
-        <h5><b>Contraseña: {{$alumno->password}}</b></h5>
+            </p>
+            <h5><b>No. Alumno: {{$alumno->no_control}}</b></h5>
+            <h5><b>Contraseña: {{$alumno->password}}</b></h5>
+        @endif
     </div>
 
     <div id="leyenda-7" style="border: 1px black solid; margin-top: 20px">
@@ -811,17 +817,6 @@ unset($antecedentesVal['remember_token']);
             POR ESCRITO A LA
             AUTORIDAD EDUCATIVA”, ATENDIENDO AL PROTOCOLO DE ATENCIÓN EN CASO DE EMERGENCIA Y DE SEGURO ESCOLAR”
         </p>
-    </div>
-    <div id="leyenda-8" class="new_page">
-        <p style="font-size: 1em; text-align: justify; font-family: Arial,serif; font-style: normal">
-            “ME COMPROMETO A QUE EN CASO DE ALGUN CAMBIO EN MI NUMERO TELEFÓNICO Y/O DOMICILIO, INFORMARÉ INMEDIATAMENTE
-            POR ESCRITO A LA AUTORIDAD EDUCATIVA”, ATENDIENDO AL PROTOCOLO DE ATENCIÓN EN CASO DE EMERGENCIA Y DE SEGURO
-            ESCOLAR”
-        </p>
-        @if(!Session::has('reinscripcion'))
-            <h5><b>No. Alumno: {{$alumno->no_control}}</b></h5>
-            <h5><b>Contraseña: {{$alumno->password}}</b></h5>
-        @endif
     </div>
 
 </div>

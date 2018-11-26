@@ -85,12 +85,11 @@ class InfSalud extends Model
             $prefix . 'enfermedad' => 'required',
             $prefix . 'vacunas_aplicadas' => 'required',
             $prefix . 'carac_especial' => 'required',
-            $prefix . 'tipo_sangre' => 'required',
             $prefix . 'enfermedad_ult_mes' => 'required',
             $prefix . 'enfermedad_frecuente' => 'required',
             $prefix . 'medico_familiar' => 'required',
-            $prefix . 'talla' => 'required',
-            $prefix . 'peso' => 'required|numeric|max:25',
+            $prefix . 'talla' => 'required|integer|max:200',
+            $prefix . 'peso' => 'required|numeric|max:50',
         ];
     }
 
@@ -100,11 +99,12 @@ class InfSalud extends Model
             $prefix . 'enfermedad.required' => 'El campo es requerido',
             $prefix . 'vacunas_aplicadas.required' => 'El campo es requerido',
             $prefix . 'carac_especial.required' => 'El campo es requerido',
-            $prefix . 'tipo_sangre.required' => 'El campo es requerido',
             $prefix . 'enfermedad_ult_mes.required' => 'El campo es requerido',
             $prefix . 'enfermedad_frecuente.required' => 'El campo es requerido',
             $prefix . 'medico_familiar.required' => 'El campo es requerido',
             $prefix . 'talla.required' => 'El campo es requerido',
+            $prefix . 'talla.integer' => 'Ingrese valores enteros',
+            $prefix . 'talla.max' => 'Ingrese un valor más pequeño',
             $prefix . 'peso.required' => 'El campo es requerido',
             $prefix . 'peso.max' => 'Ingrese un valor más pequeño.',
             $prefix . 'peso.numeric' => 'Ingrese un valor númerico.',

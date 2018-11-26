@@ -132,7 +132,11 @@
             </div>
             <div class="col mt-3 ml-0 pl-0">
                 <div class="card">
-
+                    @if($confirmation || Session::has('reinscripcion'))
+                        <div class="col-12 mt-3 text-right">
+                            <button id="btn-save-changes" class="btn btn-primary">Guardar cambios</button>
+                        </div>
+                    @endif
                     @switch($select)
                         @case(1)
                         <div class="card-body">

@@ -52,8 +52,8 @@ class Familias extends Model
     {
         return
             [
-                'integrantes' => 'required|max:255|numeric|min:1',
-                'numero_hermanos' => 'required|max:255|numeric|min:0',
+                'integrantes' => 'required|max:255|numeric|min:2',
+                'numero_hermanos' => 'required|max:255|numeric|min:1',
                 'lugar_hermanos' => 'required|max:255|numeric|min:1',
                 'padres_juntos' => 'required',
             ];
@@ -65,8 +65,9 @@ class Familias extends Model
             [
                 'integrantes.required' => 'El campo es requerido.',
                 'integrantes.max' => 'Ingrese un valor mas pequeño.',
+                'numero_hermanos.max' => 'Ingrese un valor mas pequeño.',
                 'integrantes.numeric' => 'Ingrese un valor númerico.',
-                'integrantes.min' => 'Ingrese un valor mayor a 0',
+                'integrantes.min' => 'Ingrese un valor mayor a 1',
                 'numero_hermanos.required' => 'El campo es requerido.',
                 'numero_hermanos.max' => 'Ingrese un valor mas pequeño.',
                 'numero_hermanos.numeric' => 'Ingrese un valor númerico.',

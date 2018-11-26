@@ -155,7 +155,7 @@ class CreateDatabase extends Migration
             $table->smallInteger('ban_alergia');
             $table->string('alergia')->nullable();
             $table->string('carac_especial');
-            $table->string('tipo_sangre');
+            $table->string('tipo_sangre')->nullable();
             $table->string('enfermedad_ult_mes');
             $table->string('enfermedad_frecuente');
             $table->string('medico_familiar');

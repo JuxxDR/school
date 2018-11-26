@@ -24,10 +24,12 @@ class CreateIntegracionRequest extends FormRequest
     {
 //        return dd(\Request::all());
         $numeroHermanos = \Request::input('numero_hermanos', 1);
+        $integrantes = \Request::input('integrantes', 1);
         $numeroHermanos = $numeroHermanos !== 0 ?: "1";
         return array_merge(
             Familias::rules(),
             [
+                'numero_hermanos' => 'required|max:255|numeric|min:1|max:.integrantes',
                 'lugar_hermanos' => 'required|max:' . $numeroHermanos . '|numeric|min:1',
             ]
         );

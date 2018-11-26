@@ -184,10 +184,11 @@ if (Session::has('salud')) {
             </div>
             <div class="col-2">
                 <div class="form-group text-left">
-                    {!! Form::label('inf_salud[talla]','Talla') !!}
+                    {!! Form::label('inf_salud[talla]','Talla(cm)') !!}
                     {{ Form::text ('inf_salud[talla]',
                                     isset($salud->talla)?$salud->talla:"", [
-                                  'class' => $errors->has('inf_salud.talla')?'is-invalid form-control':'form-control'
+                                  'class' => $errors->has('inf_salud.talla')?'is-invalid form-control':'form-control',
+                                  'maxlength'=>3
                     ])}}
                     @if($errors->has('inf_salud.talla'))
                         <div class="invalid-feedback">
@@ -198,7 +199,7 @@ if (Session::has('salud')) {
             </div>
             <div class="col-2">
                 <div class="form-group text-left">
-                    {!! Form::label('inf_salud[peso]','Peso') !!}
+                    {!! Form::label('inf_salud[peso]','Peso(kg)') !!}
                     {{ Form::text ('inf_salud[peso]',
                                     isset($salud->peso)?$salud->peso:"", [
                                   'class' => $errors->has('inf_salud.peso')?'is-invalid form-control':'form-control'

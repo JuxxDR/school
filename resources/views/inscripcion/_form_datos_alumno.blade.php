@@ -238,7 +238,7 @@
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('cp','Código Postal') !!}
-            {{ Form::number('cp',isset($alumno->cp)?$alumno->cp:"", [
+            {{ Form::text('cp',isset($alumno->cp)?$alumno->cp:"", [
           'class' => $errors->has('cp')?'is-invalid form-control':'form-control',
           'maxlength'=>5
             ])}}
