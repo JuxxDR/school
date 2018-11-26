@@ -438,7 +438,8 @@ class InscripcionController extends Controller
                 ])->render();
                 $pdf = \App::make('dompdf.wrapper');
                 $pdf->loadHTML($view);
-                return $pdf->stream('Comprobante-inscripcion.pdf');
+                //Nombre de archivo generado
+                return $pdf->stream('Comprobante-inscripción.pdf');
 //
 //                return view('inscripcion.confirmation_pdf', [
 //                    'alumno' => $alumno,

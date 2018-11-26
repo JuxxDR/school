@@ -9,17 +9,18 @@
 
 <div class="row">
     <div class="col-12 mb-3">
-        <h2 class="text-center">Datos de contacto</h2>
+        <h2 class="text-center" style="background-color:#c4e3f3">Datos de Contacto en Caso de Emergencia</h2>
         <hr>
     </div>
     <div class="col-12">
         <div class="row">
             <div class="col-12 text-center">
-                <h4>Familiar 1</h4>
+                <h4 style="text-align: left">Datos Familiar 1</h4>
+                <hr>
             </div>
             <div class="col-3">
                 <div class="form-group text-left">
-                    {!! Form::label('nombre1','Nombre de contacto') !!}
+                    {!! Form::label('nombre1','Nombre Completo') !!}
                     {{ Form::text('nombre1',isset($emergencia->nombre1)?$emergencia->nombre1:"", [
                   'class' => $errors->has('nombre1')?'is-invalid form-control':'form-control',
                     ])}}
@@ -32,7 +33,7 @@
             </div>
             <div class="col-3">
                 <div class="form-group text-left">
-                    {!! Form::label('tel_fijo1','Telefono fijo') !!}
+                    {!! Form::label('tel_fijo1','Teléfono Fijo') !!}
                     {{ Form::number('tel_fijo1',isset($emergencia->tel_fijo1)?$emergencia->tel_fijo1:"", [
                   'class' => $errors->has('tel_fijo1')?'is-invalid form-control':'form-control',
                     ])}}
@@ -58,7 +59,7 @@
             </div>
             <div class="col-3">
                 <div class="form-group text-left">
-                    {!! Form::label('parentesco1','Parentezco') !!}
+                    {!! Form::label('parentesco1','Parentesco') !!}
                     {{ Form::text('parentesco1',isset($emergencia->parentesco1)?$emergencia->parentesco1:"", [
                   'class' => $errors->has('parentesco1')?'is-invalid form-control':'form-control',
                     ])}}
@@ -75,11 +76,13 @@
         <div class="row">
 
             <div class="col-12 text-center">
-                <h4>Familiar 2</h4>
+                <br><br>
+                <h4 style="text-align: left">Datos Familiar 2</h4>
+                <hr>
             </div>
             <div class="col-3">
                 <div class="form-group text-left">
-                    {!! Form::label('nombre2','Nombre de contacto') !!}
+                    {!! Form::label('nombre2','Nombre Completo') !!}
                     {{ Form::text('nombre2',isset($emergencia->nombre2)?$emergencia->nombre2:"", [
                   'class' => $errors->has('nombre2')?'is-invalid form-control':'form-control',
                     ])}}
@@ -92,7 +95,7 @@
             </div>
             <div class="col-3">
                 <div class="form-group text-left">
-                    {!! Form::label('tel_fijo2','Telefono fijo') !!}
+                    {!! Form::label('tel_fijo2','Teléfono Fijo') !!}
                     {{ Form::number('tel_fijo2',isset($emergencia->tel_fijo2)?$emergencia->tel_fijo2:"", [
                   'class' => $errors->has('tel_fijo2')?'is-invalid form-control':'form-control',
                     ])}}
@@ -118,7 +121,7 @@
             </div>
             <div class="col-3">
                 <div class="form-group text-left">
-                    {!! Form::label('parentesco2','Parentezco') !!}
+                    {!! Form::label('parentesco2','Parentesco') !!}
                     {{ Form::text('parentesco2',isset($emergencia->parentesco2)?$emergencia->parentesco2:"", [
                   'class' => $errors->has('parentesco2')?'is-invalid form-control':'form-control',
                     ])}}

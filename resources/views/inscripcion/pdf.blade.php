@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{{ asset('img/configuration.png') }}" type="image/png">
+    <!--Nombre que se muestra al generar pdf y visualiza en encabezado de pantalla -->
     <title>Comprobante_Inscripción_{{$alumno->nombre}}_{{$alumno->apellidoP}}_{{$alumno->apellidoM}}</title>
     <!-- Style sheets -->
     @include('template.global_css')

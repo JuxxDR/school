@@ -1,11 +1,16 @@
 <?php
 /* @var $alumno \App\Model\Alumno */
 ?>
-
+<div class="row">
+    <div class="col-12 mb-3">
+        <h2 class="text-center" style="background-color:#c4e3f3">Información del Alumno</h2>
+        <hr>
+    </div>
+</div>
 <div class="row">
     <div class="col-12 mb-3">
         <!--Encabezado Pantalla verificación-->
-        <h2 class="text-center">Datos del Alumno</h2>
+        <h2 class="text-left">Datos del Alumno</h2>
         <hr>
     </div>
     <div class="col-4">
@@ -21,7 +26,6 @@
             @endif
         </div>
     </div>
-
     <div class="col-4">
         <div class="form-group text-left">
             {!! Form::label('apellidoP','Apellido Paterno') !!}
@@ -62,9 +66,9 @@
             @endif
         </div>
     </div>
-    <div class="col-4">
+    <div class="col-2">
         <div class="form-group text-left">
-            {!! Form::label('fecha_nacimiento','Fecha de nacimiento') !!}
+            {!! Form::label('fecha_nacimiento','Fecha de Nacimiento') !!}
             {{ Form::date('fecha_nacimiento',isset($alumno->fecha_nacimiento)?$alumno->fecha_nacimiento:"", [
           'class' => $errors->has('fecha_nacimiento')?'is-invalid form-control':'form-control',
             ])}}
@@ -75,7 +79,7 @@
             @endif
         </div>
     </div>
-    <div class="col-4">
+    <div class="col-2">
         <div class="form-group text-left">
             {!! Form::label('edad','Edad') !!}
             {{ Form::number('edad',isset($alumno->edad)?$alumno->edad:"", [
@@ -89,7 +93,7 @@
         </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-2">
         <div class="form-group text-left">
             {!! Form::label('meses','Meses') !!}
             {{ Form::number('meses',isset($alumno->meses)?$alumno->meses:"", [
@@ -102,9 +106,9 @@
             @endif
         </div>
     </div>
-    <div class="col-4">
+    <div class="col-2">
         <div class="form-group text-left">
-            {!! Form::label('grado','Grado') !!}
+            {!! Form::label('grado','Grado al que ingresa') !!}
             {{ Form::select('grado',['1'=>1,'2'=>2,'3'=>3],isset($alumno->grado)?$alumno->grado:"",[
                 'class' => $errors->has('grado')?'is-invalid form-control':'form-control',
             ])}}
@@ -119,12 +123,12 @@
 
 <div class="row">
     <div class="col-12 mb-3">
-        <h2 class="text-center">Datos Domiciliarios</h2>
+        <h2 class="text-left">Domicilio del Alumno</h2>
         <hr>
     </div>
     <div class="col-4">
         <div class="form-group text-left">
-            {!! Form::label('estado','Entidad de nacimiento') !!}
+            {!! Form::label('estado','Entidad de Nacimiento') !!}
             {{ Form::text('estado',isset($alumno->estado)?$alumno->estado:"", [
           'class' => $errors->has('estado')?'is-invalid form-control':'form-control',
             ])}}
@@ -230,7 +234,7 @@
     </div>
     <div class="col-4">
         <div class="form-group text-left">
-            {!! Form::label('cp','Código postal') !!}
+            {!! Form::label('cp','Código Postal') !!}
             {{ Form::number('cp',isset($alumno->cp)?$alumno->cp:"", [
           'class' => $errors->has('cp')?'is-invalid form-control':'form-control',
           'maxlength'=>5

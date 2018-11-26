@@ -124,7 +124,7 @@ unset($antecedentesVal['fam_can']);
             Y la calle:
             <b>{{$alumno->entre_calle2}}</b>
             {{----}}
-            Código postal:
+            Código Postal:
             <b>{{$alumno->cp}}</b>
 
             {{----}}
@@ -215,7 +215,7 @@ unset($antecedentesVal['fam_can']);
             Y la calle:
             <b>{{$madre->entre_calle2}}</b>
             {{----}}
-            Código postal:
+            Código Postal:
             <b>{{$madre->cp}}</b>
 
         </p>
@@ -275,7 +275,7 @@ unset($antecedentesVal['fam_can']);
             Y la calle:
             <b>{{$padre->entre_calle2}}</b>
             {{----}}
-            Código postal:
+            Código Postal:
             <b>{{$padre->cp}}</b>
 
         </p>
@@ -286,7 +286,7 @@ unset($antecedentesVal['fam_can']);
             Número de integrantes de la familia:
             <b>{{$familia->integrantes}}</b>
             {{----}}
-            Número de hermanos:
+            Número de hijos:
             <b>{{$familia->numero_hermanos}}</b>
             {{----}}
             Número que ocupa entre hermanos:
@@ -350,37 +350,38 @@ unset($antecedentesVal['fam_can']);
         <b>{{$eventos->conv_fam?"Si":"No"}}</b>
         Clases abiertas:
         <b>{{$eventos->clase_abierta?"Si":"No"}}</b>
-        Civicos:
+        Cívicos:
         <b>{{$eventos->civicos?"Si":"No"}}</b>
         ¿Cuantas veces puede asisir?
         <b>{{$eventos->pos_asistir}}</b>
         </p>
         <p style="font-size: 1em; text-align: justify;">
-        <h6><b>¿Como suguiere se que se realice el mantenimiento y equipamiento de la escuela?</b></h6>
+        <br>
+        <h6><b>1) ¿Como sugiere que se realice el mantenimiento y equipamiento de la escuela?</b></h6>
         {{$eventos->manto_equip}}
         </p>
         <p style="font-size: 1em; text-align: justify;">
-        <h6><b>¿Como seria su participacion para lograr un espacio educativo digno?</b></h6>
+        <h6><b>2) ¿Como seria su participación para lograr un espacio educativo digno?</b></h6>
         {{$eventos->participacion}}
         </p>
         <p style="font-size: 1em; text-align: justify;">
-        <h6><b>¿De que manera comprende los avances y logros en el aprendizaje de su hijo?</b></h6>
+        <h6><b>3) ¿De que manera comprende mejor usted, acerca  de los avances en los logros del aprendizaje de su hijo(a)?</b></h6>
         {{$eventos->avances}}
         </p>
         <p style="font-size: 1em; text-align: justify;">
-        <h6><b>¿Esta de acuerdo que la docente le de unos besotes a su hijo ?</b></h6>
+        <h6><b>4) ¿Esta de acuerdo que la docente de su hijo(a) lo premie en algunas ocasiones con una etiqueta adherible o con un dulce?</b></h6>
         {{$eventos->premio}}
         </p>
         <p style="font-size: 1em; text-align: justify;">
-        <h6><b>¿A que me comprometo con el nuevo modelo educativo ?</b></h6>
+        <h6><b>5) ¿A que me comprometo con el nuevo modelo educativo?</b></h6>
         {{$eventos->compromiso}}
         </p>
         <p style="font-size: 1em; text-align: justify;">
-        <h6><b>¿De que manera considera que se deeb dar la comunicacion entre padres y escuela ?</b></h6>
+        <h6><b>6) ¿De que manera considera que se debe dar la comunicación entre padres de familia y escuela?</b></h6>
         {{$eventos->comunicacion}}
         </p>
         <p style="font-size: 1em; text-align: justify;">
-        <h6><b>¿Cuales son ss espectativas en este ciclo escolar?</b></h6>
+        <h6><b>7) ¿Cuales son sus expectativas de la Institución para este ciclo escolar?</b></h6>
         {{$eventos->espectativa}}
         </p>
 
@@ -471,7 +472,7 @@ unset($antecedentesVal['fam_can']);
             Enfermedades que ha padecido:
             <b>{{$salud->enfermedad}}</b>
             {{----}}
-            Vacunas aplicadas:
+            Vacunas Aplicadas:
             <b>{{$salud->vacunas_aplicadas}}</b>
             {{----}}
             Alergias:
@@ -752,7 +753,7 @@ unset($antecedentesVal['fam_can']);
                     <b>{{$alumno->nombre}} {{$alumno->apellidoP}} {{$alumno->apellidoM}}</b></td>
             </tr>
             <tr>
-                <td style="border: none">Tipo de sangre</td>
+                <td style="border: none">Tipo de Sangre</td>
                 <td style="border: none"><b>{{$salud->tipo_sangre}}</b></td>
                 <td style="border: none">Teléfono</td>
                 <td style="border: none"><b>{{$alumno->tel_casa}}</b></td>

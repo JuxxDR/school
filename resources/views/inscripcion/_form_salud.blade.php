@@ -13,7 +13,7 @@ if (Session::has('salud')) {
 ?>
 <div class="row">
     <div class="col-12 mb-3">
-        <h2 class="text-center">Datos de Salud</h2>
+        <h2 class="text-center" style="background-color:#c4e3f3">Datos de Salud del Alumno</h2>
         <hr>
     </div>
     <div class="col-4">
@@ -37,7 +37,7 @@ if (Session::has('salud')) {
 
     <div class="col-4">
         <div class="form-group text-left">
-            {!! Form::label('inf_salud[enfermedad]','Enfermedad que ha padecido') !!}
+            {!! Form::label('inf_salud[enfermedad]','Enfermedades que ha padecido') !!}
             {{ Form::text('inf_salud[enfermedad]',
             isset($salud->enfermedad)?$salud->enfermedad:"", [
           'class' => $errors->has('inf_salud.enfermedad')?'is-invalid form-control':'form-control',
@@ -52,7 +52,7 @@ if (Session::has('salud')) {
 
     <div class="col-4">
         <div class="form-group text-left">
-            {!! Form::label('inf_salud[vacunas_aplicadas]','Vacunas aplicadas') !!}
+            {!! Form::label('inf_salud[vacunas_aplicadas]','Vacunas que han sido aplicadas') !!}
             {{ Form::text('inf_salud[vacunas_aplicadas]',
             isset($salud->vacunas_aplicadas)?$salud->vacunas_aplicadas:"", [
           'class' => $errors->has('inf_salud.vacunas_aplicadas')?'is-invalid form-control':'form-control',
@@ -86,7 +86,7 @@ if (Session::has('salud')) {
 
     <div class="col-4">
         <div class="form-group text-left">
-            {!! Form::label('inf_salud[alergia]','¿Que alergia?') !!}
+            {!! Form::label('inf_salud[alergia]','¿Que tipo de alergia?') !!}
             {{ Form::text('inf_salud[alergia]',
                             isset($salud->alergia)?$salud->alergia:"", [
                           'class' => $errors->has('inf_salud.alergia')?'is-invalid form-control':'form-control',
@@ -101,7 +101,7 @@ if (Session::has('salud')) {
 
     <div class="col-4">
         <div class="form-group text-left">
-            {!! Form::label('inf_salud[carac_especial]','¿Alguna característica especial del niño?') !!}
+            {!! Form::label('inf_salud[carac_especial]','¿Alguna característica especial del niño? (lunar)') !!}
             {{ Form::text('inf_salud[carac_especial]',
                             isset($salud->carac_especial)?$salud->carac_especial:"", [
                           'class' => $errors->has('inf_salud.carac_especial')?'is-invalid form-control':'form-control',
@@ -131,7 +131,7 @@ if (Session::has('salud')) {
 
     <div class="col-4">
         <div class="form-group text-left">
-            {!! Form::label('inf_salud[tipo_sangre]','Tipo de sangre') !!}
+            {!! Form::label('inf_salud[tipo_sangre]','Tipo de Sangre') !!}
             {{ Form::text ('inf_salud[tipo_sangre]',
                             isset($salud->tipo_sangre)?$salud->tipo_sangre:"", [
                           'class' => $errors->has('inf_salud.tipo_sangre')?'is-invalid form-control':'form-control'
@@ -193,7 +193,7 @@ if (Session::has('salud')) {
         </div>
     </div>
 
-    <div class="col-6">
+    <div class="col-8">
         <div class="form-group text-left">
             {!! Form::label('inf_salud[enfermedad_ult_mes]','¿Escriba las enfermedades que ha tenido su hijo(a) durante los últimos 12 meses?') !!}
             {{ Form::textarea ('inf_salud[enfermedad_ult_mes]',
@@ -212,15 +212,14 @@ if (Session::has('salud')) {
 </div>
 <div class="row">
     <div class="col-12">
-        <h2 class="text-center">Historial Médico</h2>
-        <hr>
+        <h2 class="text-center" style="background-color:#c4e3f3">Historial Médico del Alumno</h2>
     </div>
     <div class="col-12">
         <div>
             <table class="table table-striped">
                 <thead>
-                <tr align="center">
-                    <th colspan="4"> ¿Su hijo (a) padece alguna de las siguientes enfermedades?</th>
+                <tr align="left">
+                    <th  colspan="4" style="font-size: 20px"> ¿Su hijo(a) padece alguna de las siguientes enfermedades?</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -399,8 +398,8 @@ if (Session::has('salud')) {
         <div>
             <table class="table table-striped">
                 <thead>
-                <tr align="center">
-                    <th colspan="4"> ¿Ha detectado en el niño (a) que:?</th>
+                <tr align="left">
+                    <th colspan="4" style="font-size: 20px"> ¿Ha detectado en el niño (a) que...?<br><br></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -430,7 +429,7 @@ if (Session::has('salud')) {
                     </td>
                 </tr>
                 <tr>
-                    <td>¿Le falta aire despues de hacer ejercicio?</td>
+                    <td>¿Le falta aire después de hacer ejercicio?</td>
                     <td>
                         {{ Form::select('detectado[d3]',
                         [
@@ -442,7 +441,7 @@ if (Session::has('salud')) {
                         ])}}
                     </td>
 
-                    <td>¿Es alergico a algun medicamento?</td>
+                    <td>¿Es alérgico a algun medicamento?</td>
                     <td>
                         {{ Form::select('detectado[d4]',
                         [
@@ -455,7 +454,7 @@ if (Session::has('salud')) {
                     </td>
                 </tr>
                 <tr>
-                    <td>¿Presenta hemorragias?</td>
+                    <td>¿Presenta hemorragias? (sangrados frecuentes)</td>
                     <td>
                         {{ Form::select('detectado[d5]',
                         [
@@ -467,7 +466,7 @@ if (Session::has('salud')) {
                         ])}}
                     </td>
 
-                    <td>¿Cuenta con algun antecedente médico que le impida a su hijo realizar actividades fisicas</td>
+                    <td>¿Cuenta con algún antecedente médico que le impida a su hijo realizar actividades físicas?</td>
                     <td>
                         {{ Form::select('detectado[d6]',
                         [
@@ -505,7 +504,7 @@ if (Session::has('salud')) {
                     </td>
                 </tr>
                 <tr>
-                    <td>¿Es alergico a algun medicamento y/o bebida?</td>
+                    <td>¿Es alérgico a algún medicamento y/o bebida?</td>
                     <td>
                         {{ Form::select('detectado[d9]',
                         [
@@ -517,7 +516,7 @@ if (Session::has('salud')) {
                         ])}}
                     </td>
 
-                    <td>¿Ha recibido alguna vez tranfusión sanguínea?</td>
+                    <td>¿Ha recibido alguna vez transfusión sanguínea?</td>
                     <td>
                         {{ Form::select('detectado[d10]',
                         [
@@ -530,7 +529,7 @@ if (Session::has('salud')) {
                     </td>
                 </tr>
                 <tr>
-                    <td>¿Tiene impedimento para realizar actividades físicas?</td>
+                    <td>¿Tiene impedimento para realizar actividades físicas y/o deportivas?</td>
                     <td>
                         {{ Form::select('detectado[d11]',
                         [
@@ -562,13 +561,13 @@ if (Session::has('salud')) {
         <div>
             <table class="table table-striped">
                 <thead>
-                <tr align="center">
-                    <th colspan="4"> ¿Antecedentes hereditarios del alumno?</th>
+                <tr align="left">
+                    <th colspan="4" style="font-size: 20px"> Antecedentes Hereditarios del Alumno</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>¿Tiene algun familiar diabético?</td>
+                    <td>¿Tiene algún familiar diabético?</td>
                     <td width="10%">
                         {{ Form::select('antecedente[fam_diab]',
                             [
@@ -588,7 +587,7 @@ if (Session::has('salud')) {
                     </td>
                 </tr>
                 <tr>
-                    <td>¿Tiene algun familiar enfermo del corazón?</td>
+                    <td>¿Tiene algún familiar enfermo del corazón?</td>
                     <td width="10%">
                         {{ Form::select('antecedente[fam_cor]',
                             [
@@ -610,7 +609,7 @@ if (Session::has('salud')) {
                 </tr>
 
                 <tr>
-                    <td>¿Tiene algun familiar hipertenso?</td>
+                    <td>¿Tiene algún familiar hipertenso?</td>
                     <td width="10%">
                         {{ Form::select('antecedente[fam_hip]',
                             [
@@ -632,7 +631,7 @@ if (Session::has('salud')) {
                 </tr>
 
                 <tr>
-                    <td>¿Tiene algun familiar enfermo de cáncer?</td>
+                    <td>¿Tiene algún familiar enfermo de cáncer?</td>
                     <td width="10%">
                         {{ Form::select('antecedente[fam_can]',
                             [
