@@ -8,6 +8,14 @@
             <div class="card">
                 <div class="card-body">
                     <h3>Reportes de Evaluación</h3>
+                    @if(session('notification'))
+                        <div class="alert alert-dismissible alert-info">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Correcto</strong> <a href="#" class="alert-link">La acción se ha ejecutado de manera
+                                correcta </a>
+                            {{ session('notification') }}
+                        </div>
+                    @endif
                     @if(count($errors)>0)
                         <div class="alert alert-dismissible alert-danger">
                             <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -40,17 +48,17 @@
                                     <label for="trimestre">Trimestre:</label>
                                     <select class="form-control" id="trimestre" name="trimestre">
                                         <option value="0">Trimestre</option>
-                                        @if(\App\model\Trimestre::all()->first()->trimestre==3)
-                                            <option value="1">Primer Trimestre</option>
-                                            <option value="2">Segundo Trimestre</option>
-                                            <option value="3">Tercer Trimestre</option>
-                                        @endif
-                                        @if(\App\model\Trimestre::all()->first()->trimestre==2)
-                                            <option value="1">Primer Trimestre</option>
-                                            <option value="2">Segundo Trimestre</option>
-                                        @endif
-                                        @if(\App\model\Trimestre::all()->first()->trimestre==1)
-                                            <option value="1">Primer Trimestre</option>
+                                        @if(count(\App\model\Trimestre::all())!=0)
+                                            @if(count(\App\model\Trimestre::where('trimestre',1))!=0)
+                                                <option value="1">Primer Trimestre</option>
+                                            @elseif(count(\App\model\Trimestre::where('trimestre',2))!=0)
+                                                <option value="1">Primer Trimestre</option>
+                                                <option value="2">Segundo Trimestre</option>
+                                            @elseif(count(\App\model\Trimestre::where('trimestre',3))!=0)
+                                                <option value="1">Primer Trimestre</option>
+                                                <option value="2">Segundo Trimestre</option>
+                                                <option value="3">Tercer Trimestre</option>
+                                            @endif
                                         @endif
                                     </select>
                                 </div>
@@ -65,7 +73,7 @@
                         <tr>
                             <th>No. Control</th>
                             <th>Nombre Completo</th>
-                            <th>Editar</th>
+                            <th>PDF</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -74,7 +82,8 @@
                                 <td>{{ $student->alumnos->no_control }}</td>
                                 <td>{{ $student->alumnos->nombre .' '. $student->alumnos->apellidoP .' '. $student->alumnos->apellidoM }}</td>
                                 <td>
-                                    <a>Ver Reporte</a>
+                                    <a href="reporte/{{ $student->alumnos->id }}" class="btn btn-sm btn-danger"
+                                       title="PDF"><i class="fa fa-file-pdf"></i></a>
                                 </td>
                             </tr>
                         @endforeach

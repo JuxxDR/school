@@ -94,7 +94,11 @@
                                                     <a class="btn btn-success" href="tarea/entregas/{{ $tarea->id }}"
                                                        style="float: right">Registrar</a>
                                                 @else
-
+                                                    <form action="tarea/descargaPDF" method="POST">
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" value="{{ $tarea->id }}" id="tarea_id" name="tarea_id">
+                                                        <button type="submit" class="btn btn-danger" style="float:right;"><i class="fa fa-file-pdf"></i><span> Generar PDF</span></button>
+                                                    </form>
                                                 @endif
                                             </div>
                                         </div>

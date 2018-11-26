@@ -103,13 +103,15 @@ class AsistenciaController extends Controller
         $students = GrupoAlumno::where('grupo_id', $group_id)->get();
         $fecha_elegida = $request->input('fecha');
         $numero_alumnos=0;
+        $si=0;
+        $no=0;
         foreach ($students as $alumnos) {
             $numero_alumnos++;
         }
-        $view =  \View::make('docente.asistencia.registro', compact('students', 'fecha_elegida','docente','numero_alumnos'))->render();
+        $view =  \View::make('docente.asistencia.registro', compact('students', 'fecha_elegida','docente','numero_alumnos','si','no'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
-        return $pdf->download('Asistencia-'.$fecha_elegida.'.pdf');
+        return $pdf->stream('Asistencia-'.$fecha_elegida.'.pdf');
     }
 
     public function registro(Request $request)

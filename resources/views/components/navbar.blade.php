@@ -11,7 +11,7 @@
                     Inscripción</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Padres</a>
+                <a class="nav-link" href="{{route('padre_login')}}">Tutores</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('docente_inicio') }}">Docente</a>

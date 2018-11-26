@@ -17,12 +17,14 @@
                             {{ session('notification') }}
                         </div>
                     @endif
-                    @if(\App\model\Trimestre::all()->first()->trimestre==0)
+                    @if(count(\App\model\Trimestre::all())!=0)
+                        @if(\App\model\Trimestre::where('trimestre',1)->first())
+                            <a class="btn btn-success" href="segundoTrimestre">Habilitar Segundo Trimestre</a>
+                        @elseif(\App\model\Trimestre::where('trimestre',2)->first())
+                            <a class="btn btn-success" href="tercerTrimestre">Habilitar Tercer Trimestre</a>
+                        @endif
+                    @else
                         <a class="btn btn-success" href="primerTrimestre">Habilitar Primer Trimestre</a>
-                    @elseif(\App\model\Trimestre::all()->first()->trimestre==1)
-                        <a class="btn btn-success" href="segundoTrimestre">Habilitar Segundo Trimestre</a>
-                    @elseif(\App\model\Trimestre::all()->first()->trimestre==2)
-                        <a class="btn btn-success" href="tercerTrimestre">Habilitar Tercer Trimestre</a>
                     @endif
                     @foreach($grupos as $grupo)
                         <h3>{{ 'Grupo: '.$grupo->id }}</h3>
