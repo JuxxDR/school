@@ -47,12 +47,17 @@
             background-image: {{asset('img/tu imagen.png')}};
         }
 
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+
         _
 
     </style>
 </head>
 <body>
-<img src="{{asset('img/chido2.jpg')}}" alt="encabezado" width="100%">
+<img src="{{asset('img/chido2.png')}}" alt="encabezado" width="100%">
+<hr style="border: solid grey; height: 0.5px ;color: gray">
 @include('inscripcion._body_pdf')
 @include('template.global_js')
 @stack('scripts')

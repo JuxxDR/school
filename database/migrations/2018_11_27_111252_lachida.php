@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDatabase extends Migration
+class Lachida extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateDatabase extends Migration
      */
     public function up()
     {
-//        $this->down();
+        //        $this->down();
         //Tablas Fredy
 
         Schema::create('folios', function (Blueprint $table) {
@@ -51,7 +51,7 @@ class CreateDatabase extends Migration
             $table->integer('meses');
             $table->string('calle');
             $table->string('no_ext');
-            $table->string('no_int');
+            $table->string('no_int')->nullable();
             $table->string('colonia');
             $table->string('entre_calle1');
             $table->string('entre_calle2');
@@ -284,7 +284,7 @@ class CreateDatabase extends Migration
 
             $table->unsignedInteger('alumno_id');
             $table->foreign('alumno_id')->references('id')->on('alumnos');
-
+            $table->date('fecha');
             $table->string('asistio');
             $table->timestamps();
         });
@@ -297,17 +297,18 @@ class CreateDatabase extends Migration
             $table->string('apellidoP');
             $table->string('apellidoM');
             $table->smallInteger('role')->default(1); //0.-Administrativo 1.-Docente
+            $table->rememberToken();
             $table->timestamps();
         });
 
         Schema::create('grupos', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->unsignedInteger('docente_id');
+            $table->unsignedInteger('docente_id')->unique();
             $table->foreign('docente_id')->references('id')->on('docentes');
 
             $table->string('aula');
-            $table->string('grado');
+            $table->smallInteger('grado');
             $table->timestamps();
         });
 
@@ -330,6 +331,7 @@ class CreateDatabase extends Migration
             $table->string('nombre');
             $table->string('descripcion');
             $table->date('fecha_entrega');
+
             $table->timestamps();
         });
 
@@ -342,7 +344,24 @@ class CreateDatabase extends Migration
             $table->unsignedInteger('alumno_id');
             $table->foreign('alumno_id')->references('id')->on('alumnos');
 
-            $table->string('entrego');
+            $table->smallInteger('entrego'); //0.-No entrego 1.-Deficiente 2.-Medio 3.-Aceptable
+            $table->timestamps();
+        });
+
+        Schema::create('dia_asistencia', function (Blueprint $table) {
+            $table->increments('id');
+
+            $table->unsignedInteger('docente_id');
+            $table->foreign('docente_id')->references('id')->on('docentes');
+
+            $table->date('fecha_entrega');
+            $table->smallInteger('realizada');//0.-No 1.-Si
+            $table->timestamps();
+        });
+
+        Schema::create('trimestre', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('trimestre')->default(0);
             $table->timestamps();
         });
 
@@ -355,6 +374,8 @@ class CreateDatabase extends Migration
 
             $table->string('nombre');
             $table->string('informacion');
+            $table->string('observaciones')->nullable();
+            $table->smallInteger('importancia');
             $table->timestamps();
         });
 
@@ -365,6 +386,17 @@ class CreateDatabase extends Migration
 
             $table->string('nombre');
             $table->string('informacion');
+            $table->string('observaciones')->nullable();
+            $table->smallInteger('importancia');
+            $table->timestamps();
+        });
+
+        Schema::create('anuncios_generales', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nombre');
+            $table->string('informacion');
+            $table->string('observaciones')->nullable();
+            $table->smallInteger('importancia');
             $table->timestamps();
         });
     }
@@ -376,8 +408,11 @@ class CreateDatabase extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('anuncios_generales');
         Schema::dropIfExists('anuncios_especificos');
         Schema::dropIfExists('anuncios');
+        Schema::dropIfExists('trimestre');
+        Schema::dropIfExists('dia_asistencia');
         Schema::dropIfExists('entrega_tarea');
         Schema::dropIfExists('tareas');
         Schema::dropIfExists('grupo_alumno');
@@ -399,6 +434,8 @@ class CreateDatabase extends Migration
         Schema::dropIfExists('alumnos');
         Schema::dropIfExists('inscripciones');
         Schema::dropIfExists('folios');
-    }
 
+
+
+    }
 }

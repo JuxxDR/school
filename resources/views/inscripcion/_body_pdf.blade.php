@@ -311,6 +311,8 @@ unset($antecedentesVal['remember_token']);
 
     <div class="header"></div>
     <div id="datos-emergencia" class="new_page">
+        <img src="{{asset('img/chido2.png')}}" alt="encabezado" width="100%">
+        <hr>
         <h5><b>Contactos de emergencia</b></h5>
         <p style="font-size: 1em; text-align: justify;">
             1 )

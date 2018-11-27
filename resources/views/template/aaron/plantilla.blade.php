@@ -12,7 +12,7 @@
 </head>
 <body>
 <center>
-    <img src="{{ asset('img/chido2.png') }}" align=center>
+    <img src="{{ asset('img/chido2.png') }}" align=center width="75%" HEIGHT="100px">
 </center>
 @include('components.aaron.navbar')
 <div class="wrapper">
