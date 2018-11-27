@@ -52,7 +52,7 @@
     </style>
 </head>
 <body>
-<img src="{{asset('img/ENCABEZADO.jpg')}}" alt="encabezado" width="100%">
+<img src="{{asset('img/chido2.jpg')}}" alt="encabezado" width="100%">
 @include('inscripcion._body_pdf')
 @include('template.global_js')
 @stack('scripts')

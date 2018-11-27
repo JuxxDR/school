@@ -119,7 +119,6 @@ class Alumno extends Model
                 'fecha_nacimiento' => 'date',
                 'edad' => 'required|integer',
                 'meses' => 'required|integer|max:12',
-
                 'estado' => 'required',
                 'calle' => 'required',
                 'no_ext' => 'required|integer',

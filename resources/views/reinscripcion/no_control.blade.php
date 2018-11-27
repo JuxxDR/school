@@ -26,8 +26,11 @@
                                     </div>
                                 </div>
                                 @endif
-                                <div class="form-group text-left">
                                     {!! Form::label('no_control','Ingrese su número de control') !!}
+                                <div class="input-group mb-2 text-left">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    </div>
                                     {{ Form::text('no_control',null, [
                                   'class' => $errors->has('no_control')?'is-invalid form-control':'form-control',
                                     ])}}
@@ -38,9 +41,15 @@
                                     @endif
                                 </div>
                             </div>
+
                             <div class="col-8 offset-2">
-                                <div class="form-group text-left">
-                                    {!! Form::label('password','Contraseña') !!}
+                                {!! Form::label('password','Contraseña') !!}
+                                <div class="input-group mb-3 text-left">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+
+                                    </div>
+
                                     {{ Form::password('password', [
                                   'class' => $errors->has('password')?'is-invalid form-control':'form-control',
                                     ])}}
@@ -51,7 +60,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-12 text-center ">
+                            <div class="col-12 text-center "><hr>
                                 {!!
                                     Form::submit('Continuar',
                                     [

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">SICESE</a>
+    <a class="navbar-brand" href="/escuela_investigacion/public">SICESE<img src="" alt="logo" style="width:20px;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -15,13 +15,11 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user-graduate"></i> Sistema de control escolar
+                    <i class="fas fa-address-card"></i> Alumnos
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{route('inscripcion_folio')}}"><i class="fas fa-folder-plus"></i>
-                        Inscripciones</a>
-                    <a class="dropdown-item" href="{{route("reinscripcion_no_control")}}"><i
-                                class="fas fa-graduation-cap"></i> Reinscripciones</a>
+                    <a class="dropdown-item" href="{{route('inscripcion_folio')}}"><i class="fas fa-file-alt"></i>&nbsp;&nbsp;Inscripciones</a>
+                    <a class="dropdown-item" href="{{route("reinscripcion_no_control")}}"><i class="fas fa-id-badge"></i>&nbsp;&nbsp;Reinscripciones</a>
                 </div>
             </li>
         </ul>

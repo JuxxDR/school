@@ -12,7 +12,7 @@
 </head>
 <body>
 <center>
-    <img src="{{ asset('img/ENCABEZADO3.jpg') }}" align=center width="75%" HEIGHT="100px">
+    <img src="{{ asset('img/chido2.png') }}" align=center width="75%" HEIGHT="100px">
 </center>
 @include('components.navbar')
 <div class="wrapper">

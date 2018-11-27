@@ -14,7 +14,7 @@
     <div class="container-fluid">
         <div id="wait" class="row mt-5" hidden>
             <div class="col-12 text-center">
-                <i class="fas fa-cog fa-spin" style="font-size: 4em"></i>
+                <i class="fas fa-spinner fa-spin" style="font-size: 4em"></i>
                 <h5 class="mt-3"><b>Espere mientras se genera su comprobante, esto puede tardar unos minutos...</b></h5>
             </div>
         </div>
