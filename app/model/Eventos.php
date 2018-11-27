@@ -83,21 +83,21 @@ class Eventos extends Model
     public static function rules()
     {
         return [
-            "cultural"=>'required|max:255',
-            "deportivo"=>'required|max:255',
-            "excursion"=>'required|max:255',
-            "recreativo"=>'required|max:255',
-            "conv_fam"=>'required|max:255',
-            "clase_abierta"=>'required|max:255',
-            "civicos"=>'required|max:255',
-            "pos_asistir"=>'required|max:255',
-            "manto_equip"=>'required|max:255',
-            "participacion"=>'required|max:255',
-            "avances"=>'required|max:255',
-            "premio"=>'required|max:255',
-            "compromiso"=>'required|max:255',
-            "comunicacion"=>'required|max:255',
-            "espectativa"=>'required|max:255',
+            "cultural" => 'required|max:255',
+            "deportivo" => 'required|max:255',
+            "excursion" => 'required|max:255',
+            "recreativo" => 'required|max:255',
+            "conv_fam" => 'required|max:255',
+            "clase_abierta" => 'required|max:255',
+            "civicos" => 'required|max:255',
+            "pos_asistir" => 'required|integer|max:50',
+            "manto_equip" => 'required|max:255',
+            "participacion" => 'required|max:255',
+            "avances" => 'required|max:255',
+            "premio" => 'required|max:255',
+            "compromiso" => 'required|max:255',
+            "comunicacion" => 'required|max:255',
+            "espectativa" => 'required|max:255',
         ];
     }
 
@@ -105,6 +105,7 @@ class Eventos extends Model
     {
         return [
             "*.required" => "El campo es requerido",
+            "pos_asistir.max" => "Valor indicado no válido.",
             "*.max" => "Ingrese un texto más pequeño"
         ];
     }

@@ -2,24 +2,37 @@
         @endphp
 <?php
 /* @var $eventos \App\Model\Eventos */
-if (Session::has('eventos')){
-    $eventos=Session::get('eventos');
+if (Session::has('eventos')) {
+    $eventos = Session::get('eventos');
 }
 
 ?>
-
 <div class="row">
     <div class="col-12 mb-3">
-        <h2 class="text-center">Datos de contacto</h2>
+        <h2 class="text-center" style="background-color:#c4e3f3">Información Adicional</h2>
         <hr>
 
     </div>
     <div class="col-12">
         <div class="row">
-            <div class="col-12 text-center">
-                <h5>¿Desea participar en alguno de los siguientes eventos?</h5>
+            <div class="col-12 text-left">
+                <h5 style="font-size: 20px"><b>¿Desea participar en alguno de los siguientes eventos?</b></h5><br>
             </div>
-            <div class="col-3">
+            <div class="col-2">
+                <div class="form-group text-left">
+                    {!! Form::label('civicos','Cívicos') !!}
+                    {{ Form::select('civicos',
+                      [
+                      true=>"Si",
+                      false=>"No",
+                      ],
+                      isset($eventos->civicos)?$eventos->civicos:false, [
+                              'class' => $errors->has('excursion')?'is-invalid form-control':'form-control',
+                      ])}}
+                </div>
+            </div>
+
+            <div class="col-2">
                 <div class="form-group text-left">
                     {!! Form::label('cultural','Culturales') !!}
                     {{ Form::select('cultural',
@@ -32,7 +45,8 @@ if (Session::has('eventos')){
                       ])}}
                 </div>
             </div>
-            <div class="col-3">
+
+            <div class="col-2">
                 <div class="form-group text-left">
                     {!! Form::label('deportivo','Deportivos') !!}
                     {{ Form::select('deportivo',
@@ -45,7 +59,8 @@ if (Session::has('eventos')){
                       ])}}
                 </div>
             </div>
-            <div class="col-3">
+
+            <div class="col-2">
                 <div class="form-group text-left">
                     {!! Form::label('excursion','Excursiones') !!}
                     {{ Form::select('excursion',
@@ -58,7 +73,7 @@ if (Session::has('eventos')){
                       ])}}
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <div class="form-group text-left">
                     {!! Form::label('recreativo','Recreativos') !!}
                     {{ Form::select('recreativo',
@@ -71,7 +86,8 @@ if (Session::has('eventos')){
                       ])}}
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-1"><!--Espacio--></div>
+            <div class="col-2">
                 <div class="form-group text-left">
                     {!! Form::label('conv_fam','Convivencia familiar') !!}
                     {{ Form::select('conv_fam',
@@ -84,7 +100,7 @@ if (Session::has('eventos')){
                       ])}}
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <div class="form-group text-left">
                     {!! Form::label('clase_abierta','Clases abiertas') !!}
                     {{ Form::select('clase_abierta',
@@ -97,23 +113,9 @@ if (Session::has('eventos')){
                       ])}}
                 </div>
             </div>
-
-            <div class="col-3">
+            <div class="col-4">
                 <div class="form-group text-left">
-                    {!! Form::label('civicos','Civicos') !!}
-                    {{ Form::select('civicos',
-                      [
-                      true=>"Si",
-                      false=>"No",
-                      ],
-                      isset($eventos->civicos)?$eventos->civicos:false, [
-                              'class' => $errors->has('excursion')?'is-invalid form-control':'form-control',
-                      ])}}
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="form-group text-left">
-                    {!! Form::label('pos_asistir','¿Cuantas veces puede asisir?') !!}
+                    {!! Form::label('pos_asistir','¿A cúantos eventos puede asistir durante el año?') !!}
                     {{ Form::number('pos_asistir',isset($eventos->pos_asistir)?$eventos->pos_asistir:"", [
                   'class' => $errors->has('pos_asistir')?'is-invalid form-control':'form-control',
                     ])}}
@@ -128,10 +130,10 @@ if (Session::has('eventos')){
     </div>
     <div class="col-12">
         <div class="row">
-
             <div class="col-12">
                 <div class="form-group text-left">
-                    {!! Form::label('manto_equip','¿Como suguiere se que se realice el mantenimiento y equipamiento de la escuela?') !!}
+                    <br>
+                    {!! Form::label('manto_equip','1) ¿Cómo sugiere que se realice el mantenimiento y equipamiento de la escuela?') !!}
                     {{ Form::textarea ('manto_equip',isset($eventos->manto_equip)?$eventos->manto_equip:"", [
                   'class' => $errors->has('manto_equip')?'is-invalid form-control':'form-control',
                   'rows'=>3
@@ -145,7 +147,7 @@ if (Session::has('eventos')){
             </div>
             <div class="col-12">
                 <div class="form-group text-left">
-                    {!! Form::label('participacion','¿Como seria su participacion para lograr un espacio educativo digno?') !!}
+                    {!! Form::label('participacion','2) ¿Cómo seria su participación para lograr un espacio educativo digno?') !!}
                     {{ Form::textarea ('participacion',isset($eventos->participacion)?$eventos->participacion:"", [
                   'class' => $errors->has('participacion')?'is-invalid form-control':'form-control',
                   'rows'=>3
@@ -160,7 +162,7 @@ if (Session::has('eventos')){
 
             <div class="col-12">
                 <div class="form-group text-left">
-                    {!! Form::label('avances','¿De que manera comprende los avances y logros en el aprendizaje de su hijo?') !!}
+                    {!! Form::label('avances','3) ¿De qué manera comprende mejor usted, acerca  de los avances en los logros del aprendizaje de su hijo(a)?') !!}
                     {{ Form::textarea ('avances',isset($eventos->avances)?$eventos->avances:"", [
                   'class' => $errors->has('avances')?'is-invalid form-control':'form-control',
                   'rows'=>3
@@ -174,7 +176,7 @@ if (Session::has('eventos')){
             </div>
             <div class="col-12">
                 <div class="form-group text-left">
-                    {!! Form::label('premio','¿Esta de acuerdo que la docente le de unos besotes a su hijo ?') !!}
+                    {!! Form::label('premio','4) ¿Está de acuerdo que la docente de su hijo(a) lo premie en algunas ocasiones con una etiqueta adherible o con un dulce?') !!}
                     {{ Form::textarea ('premio',isset($eventos->premio)?$eventos->premio:"", [
                   'class' => $errors->has('premio')?'is-invalid form-control':'form-control',
                   'rows'=>3
@@ -188,7 +190,7 @@ if (Session::has('eventos')){
             </div>
             <div class="col-12">
                 <div class="form-group text-left">
-                    {!! Form::label('compromiso','¿A que me comprometo con el nuevo modelo educativo ?') !!}
+                    {!! Form::label('compromiso','5) ¿A que me comprometo con el nuevo modelo educativo?') !!}
                     {{ Form::textarea ('compromiso',isset($eventos->compromiso)?$eventos->compromiso:"", [
                   'class' => $errors->has('compromiso')?'is-invalid form-control':'form-control',
                   'rows'=>3
@@ -202,7 +204,7 @@ if (Session::has('eventos')){
             </div>
             <div class="col-12">
                 <div class="form-group text-left">
-                    {!! Form::label('comunicacion','¿De que manera considera que se deeb dar la comunicacion entre padres y escuela ?') !!}
+                    {!! Form::label('comunicacion','6) ¿De qué manera considera que se debe dar la comunicación entre padres de familia y escuela?') !!}
                     {{ Form::textarea ('comunicacion',isset($eventos->comunicacion)?$eventos->comunicacion:"", [
                   'class' => $errors->has('comunicacion')?'is-invalid form-control':'form-control',
                   'rows'=>3
@@ -216,7 +218,7 @@ if (Session::has('eventos')){
             </div>
             <div class="col-12">
                 <div class="form-group text-left">
-                    {!! Form::label('espectativa','¿Cuales son ss espectativas en este ciclo escolar?') !!}
+                    {!! Form::label('espectativa','7) ¿Cuáles son sus expectativas de la Institución para este ciclo escolar?') !!}
                     {{ Form::textarea ('espectativa',isset($eventos->espectativa)?$eventos->espectativa:"", [
                   'class' => $errors->has('espectativa')?'is-invalid form-control':'form-control',
                   'rows'=>3

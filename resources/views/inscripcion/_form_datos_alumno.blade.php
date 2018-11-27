@@ -4,7 +4,14 @@
 
 <div class="row">
     <div class="col-12 mb-3">
-        <h2 class="text-center">Datos del alumno</h2>
+        <h2 class="text-center" style="background-color:#c4e3f3">Información del Alumno</h2>
+        <hr>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 mb-3">
+        <!--Encabezado Pantalla verificación-->
+        <h2 class="text-left">Datos del Alumno</h2>
         <hr>
     </div>
     <div class="col-4">
@@ -52,6 +59,7 @@
             {!! Form::label('curp','CURP') !!}
             {{ Form::text('curp',isset($alumno->curp)?$alumno->curp:"", [
           'class' => $errors->has('curp')?'is-invalid form-control':'form-control',
+          "maxlength"=>18
             ])}}
             @if($errors->has('curp'))
                 <div class="invalid-feedback">
@@ -60,9 +68,9 @@
             @endif
         </div>
     </div>
-    <div class="col-4">
+    <div class="col-2">
         <div class="form-group text-left">
-            {!! Form::label('fecha_nacimiento','Fecha de nacimiento') !!}
+            {!! Form::label('fecha_nacimiento','Fecha de Nacimiento') !!}
             {{ Form::date('fecha_nacimiento',isset($alumno->fecha_nacimiento)?$alumno->fecha_nacimiento:"", [
           'class' => $errors->has('fecha_nacimiento')?'is-invalid form-control':'form-control',
             ])}}
@@ -73,7 +81,7 @@
             @endif
         </div>
     </div>
-    <div class="col-4">
+    <div class="col-2">
         <div class="form-group text-left">
             {!! Form::label('edad','Edad') !!}
             {{ Form::number('edad',isset($alumno->edad)?$alumno->edad:"", [
@@ -87,7 +95,7 @@
         </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-2">
         <div class="form-group text-left">
             {!! Form::label('meses','Meses') !!}
             {{ Form::number('meses',isset($alumno->meses)?$alumno->meses:"", [
@@ -100,11 +108,12 @@
             @endif
         </div>
     </div>
-    <div class="col-4">
+    <div class="col-2">
         <div class="form-group text-left">
-            {!! Form::label('grado','Grado') !!}
+            {!! Form::label('grado','Grado al que ingresa') !!}
             {{ Form::select('grado',['1'=>1,'2'=>2,'3'=>3],isset($alumno->grado)?$alumno->grado:"",[
                 'class' => $errors->has('grado')?'is-invalid form-control':'form-control',
+                'disabled'=>Session::has("reinscripcion")
             ])}}
             @if($errors->has('grado'))
                 <div class="invalid-feedback">
@@ -117,12 +126,12 @@
 
 <div class="row">
     <div class="col-12 mb-3">
-        <h2 class="text-center">Datos domiciliarios</h2>
+        <h2 class="text-left">Domicilio del Alumno</h2>
         <hr>
     </div>
     <div class="col-4">
         <div class="form-group text-left">
-            {!! Form::label('estado','Entidad de nacimiento') !!}
+            {!! Form::label('estado','Entidad de Nacimiento') !!}
             {{ Form::text('estado',isset($alumno->estado)?$alumno->estado:"", [
           'class' => $errors->has('estado')?'is-invalid form-control':'form-control',
             ])}}
@@ -160,7 +169,7 @@
         </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-2">
         <div class="form-group text-left">
             {!! Form::label('no_ext','No. Exterior') !!}
             {{ Form::number('no_ext',isset($alumno->no_ext)?$alumno->no_ext:"", [
@@ -173,7 +182,7 @@
             @endif
         </div>
     </div>
-    <div class="col-4">
+    <div class="col-2">
         <div class="form-group text-left">
             {!! Form::label('no_int','No. Interior') !!}
             {{ Form::number('no_int',isset($alumno->no_int)?$alumno->no_int:"", [
@@ -228,9 +237,10 @@
     </div>
     <div class="col-4">
         <div class="form-group text-left">
-            {!! Form::label('cp','Código postal') !!}
-            {{ Form::number('cp',isset($alumno->cp)?$alumno->cp:"", [
+            {!! Form::label('cp','Código Postal') !!}
+            {{ Form::text('cp',isset($alumno->cp)?$alumno->cp:"", [
           'class' => $errors->has('cp')?'is-invalid form-control':'form-control',
+          'maxlength'=>5
             ])}}
             @if($errors->has('cp'))
                 <div class="invalid-feedback">
@@ -258,6 +268,7 @@
             {!! Form::label('tel_casa','Telefóno de casa') !!}
             {{ Form::text('tel_casa',isset($alumno->tel_casa)?$alumno->tel_casa:"", [
           'class' => $errors->has('tel_casa')?'is-invalid form-control':'form-control',
+                    "maxlength"=>10
             ])}}
             @if($errors->has('tel_casa'))
                 <div class="invalid-feedback">
@@ -271,6 +282,7 @@
             {!! Form::label('cel','Celular') !!}
             {{ Form::text('cel',isset($alumno->cel)?$alumno->cel:"", [
           'class' => $errors->has('cel')?'is-invalid form-control':'form-control',
+            "maxlength"=>10
             ])}}
             @if($errors->has('cel'))
                 <div class="invalid-feedback">

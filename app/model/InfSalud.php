@@ -54,6 +54,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\InfSalud newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\InfSalud newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\InfSalud query()
+ * @property-read \App\model\AntecedesntesHereditarios $antecedentes
+ * @property-read \App\model\Detectado $detectado
+ * @property-read \App\model\Enfermedades $enfermedades
  */
 class InfSalud extends Model
 {
@@ -82,12 +85,11 @@ class InfSalud extends Model
             $prefix . 'enfermedad' => 'required',
             $prefix . 'vacunas_aplicadas' => 'required',
             $prefix . 'carac_especial' => 'required',
-            $prefix . 'tipo_sangre' => 'required',
             $prefix . 'enfermedad_ult_mes' => 'required',
             $prefix . 'enfermedad_frecuente' => 'required',
             $prefix . 'medico_familiar' => 'required',
-            $prefix . 'talla' => 'required',
-            $prefix . 'peso' => 'required',
+            $prefix . 'talla' => 'required|integer|max:200',
+            $prefix . 'peso' => 'required|numeric|max:50',
         ];
     }
 
@@ -97,18 +99,40 @@ class InfSalud extends Model
             $prefix . 'enfermedad.required' => 'El campo es requerido',
             $prefix . 'vacunas_aplicadas.required' => 'El campo es requerido',
             $prefix . 'carac_especial.required' => 'El campo es requerido',
-            $prefix . 'tipo_sangre.required' => 'El campo es requerido',
             $prefix . 'enfermedad_ult_mes.required' => 'El campo es requerido',
             $prefix . 'enfermedad_frecuente.required' => 'El campo es requerido',
             $prefix . 'medico_familiar.required' => 'El campo es requerido',
             $prefix . 'talla.required' => 'El campo es requerido',
+            $prefix . 'talla.integer' => 'Ingrese valores enteros',
+            $prefix . 'talla.max' => 'Ingrese un valor más pequeño',
             $prefix . 'peso.required' => 'El campo es requerido',
+            $prefix . 'peso.max' => 'Ingrese un valor más pequeño.',
+            $prefix . 'peso.numeric' => 'Ingrese un valor númerico.',
         ];
     }
+
     public function detectado()
     {
-        return $this->belongsTo(
+        return $this->hasOne(
             Detectado::class,
+            'salud_id',
+            'id'
+        );
+    }
+
+    public function antecedentes()
+    {
+        return $this->hasOne(
+            AntecedesntesHereditarios::class,
+            'salud_id',
+            'id'
+        );
+    }
+
+    public function enfermedades()
+    {
+        return $this->hasOne(
+            Enfermedades::class,
             'salud_id',
             'id'
         );

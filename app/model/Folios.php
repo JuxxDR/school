@@ -31,6 +31,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Folios newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Folios newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Folios query()
+ * @property-read \App\model\Inscripciones $inscripcion
  */
 class Folios extends Model
 {
@@ -39,21 +40,21 @@ class Folios extends Model
     public static function rules()
     {
         return [
-            'folio'=>'required|exists:folios,folio'
+            'folio' => 'required|exists:folios,folio'
         ];
     }
 
     public static function messages()
     {
         return [
-            'folio.required'=>'Ingrese un folio',
-            'folio.exists'=>'El folio ingresado no es válido, verifique su información.'
+            'folio.required' => 'Ingrese un folio',
+            'folio.exists' => 'El folio ingresado no es válido, verifique su información.'
         ];
     }
 
-    public function inscripciones()
+    public function inscripcion()
     {
-        return $this->hasMany(
+        return $this->hasOne(
             Inscripciones::class,
             'folio_id',
             'id'

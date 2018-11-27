@@ -13,7 +13,7 @@ class CreateDatabase extends Migration
      */
     public function up()
     {
-        $this->down();
+//        $this->down();
         //Tablas Fredy
 
         Schema::create('folios', function (Blueprint $table) {
@@ -153,9 +153,9 @@ class CreateDatabase extends Migration
             $table->string('enfermedad');
             $table->string('vacunas_aplicadas');
             $table->smallInteger('ban_alergia');
-            $table->string('alergia');
+            $table->string('alergia')->nullable();
             $table->string('carac_especial');
-            $table->string('tipo_sangre');
+            $table->string('tipo_sangre')->nullable();
             $table->string('enfermedad_ult_mes');
             $table->string('enfermedad_frecuente');
             $table->string('medico_familiar');
@@ -276,7 +276,7 @@ class CreateDatabase extends Migration
             $table->string('evaluacion');
             $table->integer('trimestre');
             $table->rememberToken();
-            $table->timestcamps();
+            $table->timestamps();
         });
 
         Schema::create('asistencias', function (Blueprint $table) {

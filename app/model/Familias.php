@@ -34,6 +34,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Familias newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Familias newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\model\Familias query()
+ * @property-read \App\model\PersonasAut $autorizadas
+ * @property-read \App\model\Emergencia $emergencia
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\model\Padre[] $padres
  */
 class Familias extends Model
 {
@@ -49,8 +52,8 @@ class Familias extends Model
     {
         return
             [
-                'integrantes' => 'required|max:255|numeric|min:1',
-                'numero_hermanos' => 'required|max:255|numeric|min:0',
+                'integrantes' => 'required|max:255|numeric|min:2',
+                'numero_hermanos' => 'required|max:255|numeric|min:1',
                 'lugar_hermanos' => 'required|max:255|numeric|min:1',
                 'padres_juntos' => 'required',
             ];
@@ -62,8 +65,9 @@ class Familias extends Model
             [
                 'integrantes.required' => 'El campo es requerido.',
                 'integrantes.max' => 'Ingrese un valor mas pequeño.',
+                'numero_hermanos.max' => 'Ingrese un valor mas pequeño.',
                 'integrantes.numeric' => 'Ingrese un valor númerico.',
-                'integrantes.min' => 'Ingrese un valor mayor a 0',
+                'integrantes.min' => 'Ingrese un valor mayor a 1',
                 'numero_hermanos.required' => 'El campo es requerido.',
                 'numero_hermanos.max' => 'Ingrese un valor mas pequeño.',
                 'numero_hermanos.numeric' => 'Ingrese un valor númerico.',
@@ -76,5 +80,30 @@ class Familias extends Model
             ];
     }
 
+    public function padres()
+    {
+        return $this->hasMany(
+            Padre::class,
+            'familia_id',
+            'id'
+        );
+    }
 
+    public function emergencia()
+    {
+        return $this->hasOne(
+            Emergencia::class,
+            'familia_id',
+            'id'
+        );
+    }
+
+    public function autorizadas()
+    {
+        return $this->hasOne(
+            PersonasAut::class,
+            'familia_id',
+            'id'
+        );
+    }
 }
