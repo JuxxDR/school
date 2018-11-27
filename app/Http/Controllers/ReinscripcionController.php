@@ -21,10 +21,22 @@ class ReinscripcionController extends Controller
 
     public function indexPost(CheckNoControlRequest $request)
     {
-        \Session::flush();
+        $validator = \Validator::make($request->all(), []);
         $noControl = $request->input("no_control");
         //Alumno
         $alumno = Alumno::whereNoControl($noControl)->first();
+        $password = $alumno->password;
+        if ($password !== $request->input('password')) {
+            $validator->getMessageBag()->add('general',
+                'Usuario y/o contraseña incorectos');
+            return
+                redirect()
+                    ->route('reinscripcion_no_control')
+                    ->withErrors($validator)
+                    ->withInput();
+        }
+        \Session::flush();
+
         $alumno->grado = $alumno->grado === 3 ?: $alumno->grado + 1;
         //Salud
         $infSalud = $alumno->singleInfSalud;

@@ -105,7 +105,7 @@ class Alumno extends Model
         'tel_casa',
         'cel',
     ];
-
+//             regex:/^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/',
     public static function rules()
     {
         return
@@ -113,7 +113,9 @@ class Alumno extends Model
                 'nombre' => 'required|max:255',
                 'apellidoP' => 'required|max:255',
                 'apellidoM' => 'required|max:255',
-                'curp' => 'required|max:18|min:18',
+                'curp' => 'required|
+                max:18|
+                min:18|',
                 'fecha_nacimiento' => 'date',
                 'edad' => 'required|integer',
                 'meses' => 'required|integer|max:12',
@@ -145,6 +147,7 @@ class Alumno extends Model
                 'curp.required' => 'El CURP es requerido',
                 'curp.min' => 'Verifique su CURP',
                 'curp.max' => 'Verifique su CURP',
+                'curp.regex' => 'Verifique su CURP',
                 'fecha_nacimiento.date' => 'Ingrese una fecha válida',
                 'edad.integer' => 'Ingrese un valor númerico',
                 'edad.required' => 'La edad es requerida',

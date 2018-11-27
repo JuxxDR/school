@@ -17,6 +17,15 @@
                         {!! Form::open()!!}
                         <div class="row">
                             <div class="col-8 offset-2">
+                                @if($errors->has('general'))
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="alert alert-danger" role="alert">
+                                            <p>{{ $errors->first('general') }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
                                 <div class="form-group text-left">
                                     {!! Form::label('no_control','Ingrese su número de control') !!}
                                     {{ Form::text('no_control',null, [

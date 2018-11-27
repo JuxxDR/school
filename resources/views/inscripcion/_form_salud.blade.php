@@ -202,7 +202,8 @@ if (Session::has('salud')) {
                     {!! Form::label('inf_salud[peso]','Peso(kg)') !!}
                     {{ Form::text ('inf_salud[peso]',
                                     isset($salud->peso)?$salud->peso:"", [
-                                  'class' => $errors->has('inf_salud.peso')?'is-invalid form-control':'form-control'
+                                  'class' => $errors->has('inf_salud.peso')?'is-invalid form-control':'form-control',
+                                  'maxlength'=>3
                     ])}}
                     @if($errors->has('inf_salud.peso'))
                         <div class="invalid-feedback">

@@ -73,6 +73,7 @@
             {!! Form::label('fecha_nacimiento','Fecha de Nacimiento') !!}
             {{ Form::date('fecha_nacimiento',isset($alumno->fecha_nacimiento)?$alumno->fecha_nacimiento:"", [
           'class' => $errors->has('fecha_nacimiento')?'is-invalid form-control':'form-control',
+          'max'=>'2018-12-31'
             ])}}
             @if($errors->has('fecha_nacimiento'))
                 <div class="invalid-feedback">
