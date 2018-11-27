@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\Alumno;
+use App\model\DiaAsistencia;
 use App\Model\Docente;
 use App\Model\Grupo;
 use App\Model\GrupoAlumno;
+use App\Model\Tarea;
 use App\model\Trimestre;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -88,6 +90,22 @@ class AdminController extends Controller
         $trimestre->trimestre = 1;
         $trimestre->save();
         return back()->with('notification', 'El primer trimestre ha sido habilitado');
+    }
+
+    public function habilitarSegundo()
+    {
+        $trimestre = new Trimestre();
+        $trimestre->trimestre = 2;
+        $trimestre->save();
+        return back()->with('notification', 'El segundo trimestre ha sido habilitado');
+    }
+
+    public function habilitarTercer()
+    {
+        $trimestre = new Trimestre();
+        $trimestre->trimestre = 3;
+        $trimestre->save();
+        return back()->with('notification', 'El tercer trimestre ha sido habilitado');
     }
 
     public function deleteDocente($id)
@@ -273,5 +291,62 @@ class AdminController extends Controller
         }
 
         return redirect(route('admin_docentes'))->with('notification', 'Grupos Creados');
+    }
+
+    public function grupoDocente($id){
+        $fechas=DiaAsistencia::where('docente_id',$id)->get();
+        $docente = Docente::find($id);
+        $grupo_id = Grupo::where('docente_id',$id)->first()->id;
+        $tareas = Tarea::where('grupo_id',$grupo_id)->get();
+        $students = GrupoAlumno::where('grupo_id',$grupo_id)->get();
+        return view('admin.grupo')->with(compact('students','docente','fechas','tareas'));
+    }
+
+    public function descargaAsistenciaPDF(Request $request){
+        $this->validate($request, [
+            'fecha' => 'not_in:0',
+        ], [
+            "fecha.not_in" => "Debes seleccionar una fecha",
+        ]);
+        $docente=Docente::find($request->input('docente_id'));
+        $group_id = Grupo::where('docente_id', $docente->id)->first()->id;
+        $students = GrupoAlumno::where('grupo_id', $group_id)->get();
+        $fecha_elegida = $request->input('fecha');
+        $numero_alumnos=0;
+        $si=0;
+        $no=0;
+        foreach ($students as $alumnos) {
+            $numero_alumnos++;
+        }
+        $view =  \View::make('docente.asistencia.registro', compact('students', 'fecha_elegida','docente','numero_alumnos','si','no'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->stream('Asistencia-'.$fecha_elegida.'.pdf');
+    }
+
+    public function descargaTareaPDF(Request $request){
+        $this->validate($request, [
+            'tarea_id' => 'not_in:0',
+        ], [
+            "tarea_id.not_in" => "Debes seleccionar una tarea",
+        ]);
+        $user_id = $request->input('docente_id');
+        $docente = Docente::find($user_id);
+        $group_id = Grupo::where('docente_id', $user_id)->first()->id;
+        $students = GrupoAlumno::where('grupo_id', $group_id)->get();
+        $tarea_id = $request->input('tarea_id');
+        $tarea = Tarea::find($tarea_id);
+        $numero_alumnos = 0;
+        $aceptable = 0;
+        $medio = 0;
+        $deficiente = 0;
+        $no_entregado = 0;
+        foreach ($students as $alumnos) {
+            $numero_alumnos++;
+        }
+        $view = \View::make('docente.tarea.registro', compact('students', 'tarea', 'docente', 'numero_alumnos', 'aceptable', 'medio','deficiente','no_entregado'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->stream('Tarea-' . $tarea_id . '.pdf');
     }
 }

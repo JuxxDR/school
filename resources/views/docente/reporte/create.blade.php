@@ -11,6 +11,9 @@
             <div class="card">
                 <div class="card-body">
                     <h3>Reportes de Evaluación</h3>
+                    <br>
+                    <h6><i class="fa fa-user-circle-o"></i> Alumno: {{ \App\Model\Alumno::find($alumno_id)->nombre.' '.\App\Model\Alumno::find($alumno_id)->apellidoP.' '.\App\Model\Alumno::find($alumno_id)->apellidoM }}</h6>
+                    <h6><i class="fa fa-user-circle"></i> No. Control: {{ \App\Model\Alumno::find($alumno_id)->no_control }}</h6>
                     @if(session('notification'))
                         <div class="alert alert-dismissible alert-warning">
                             <button type="button" class="close" data-dismiss="alert">&times;</button>

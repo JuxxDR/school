@@ -208,6 +208,10 @@ Route::group(['middleware' => 'admin',], function () {
 
     Route::get('administrativo/primerTrimestre', 'Admin\AdminController@habilitarPrimer')->name('admin_habilitar1');
 
+    Route::get('administrativo/segundoTrimestre', 'Admin\AdminController@habilitarSegundo')->name('admin_habilitar2');
+
+    Route::get('administrativo/tercerTrimestre', 'Admin\AdminController@habilitarTercer')->name('admin_habilitar3');
+
     Route::get('administrativo/notificaciones', 'Admin\AdminController@notifications')->name('admin_notificar');
 
     Route::get('administrativo/HistorialNotificaciones', 'Admin\AnuncioController@obtenerAnuncios')->name('admin_historial');
@@ -232,7 +236,19 @@ Route::group(['middleware' => 'admin',], function () {
 
     Route::get('administrativo/eliminarD/{id}', 'Admin\AdminController@deleteDocente')->name('eliminar_docente');
 
+    Route::get('administrativo/grupo/{id}', 'Admin\AdminController@grupoDocente')->name('buscar_grupoDocente');
+
+    Route::get('administrativo/grupo/asistenciaG/{id}', 'Admin\AdminController@asistenciaGrupo')->name('asistencia_grupo');
+
+    Route::get('administrativo/grupo/tareaG/{id}', 'Admin\AdminController@tareaGrupo')->name('tarea_grupo');
+
+    Route::get('administrativo/grupo/reporte/{id}', 'Doc\DocenteController@PDFReporteAlumno')->name('admin_reporteG');
+
     Route::post('administrativo/docentes/crear', 'Admin\AdminController@crearDocente')->name('crear_docente');
+
+    Route::post('administrativo/grupo/asistencia/consultarFecha', 'Admin\AdminController@descargaAsistenciaPDF')->name('admin_asistenciaPDF');
+
+    Route::post('administrativo/grupo/tarea/registro', 'Admin\AdminController@descargaTareaPDF')->name('admin_tareaPDF');
 });
 
 //====================================

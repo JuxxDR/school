@@ -89,6 +89,9 @@ class AsistenciaController extends Controller
     }
 
     public function consultaFecha(Request $request){
+        if($request->input('fecha')==0){
+            return back()->with('asistencia_warning','Debes selccionar una fecha');
+        }
         $user_id = auth()->user()->id;
         $group_id = Grupo::where('docente_id', $user_id)->first()->id;
         $students = GrupoAlumno::where('grupo_id', $group_id)->get();
@@ -120,13 +123,18 @@ class AsistenciaController extends Controller
         $group_id = Grupo::where('docente_id', $user_id)->first();
         $group_id = $group_id->id;
         $students = GrupoAlumno::where('grupo_id', $group_id)->get();
+        foreach ($students as $student){
+            if($request->input('asistencia' . $student->alumno_id)== 0){
+                return back()->with('asistencia_warning','Indica la asistencia de todos los alumnos');
+            }
+        }
         foreach ($students as $student) {
             $entrega = new Asistencia();
             $entrega->alumno_id = $student->alumno_id;
             $asistio="";
             if ($request->input('asistencia' . $student->alumno_id)== 1){
                 $asistio="si";
-            }else{
+            }else if($request->input('asistencia' . $student->alumno_id)== 2){
                 $asistio="no";
             }
             $entrega->asistio = $asistio;

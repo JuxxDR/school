@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Doc;
 
 use App\Model\Alumno;
+use App\Model\Asistencia;
 use App\Model\Docente;
+use App\Model\EntregaTarea;
 use App\Model\Evaluacion;
 use App\Model\Grupo;
 use App\Model\GrupoAlumno;
+use App\Model\Tarea;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -30,11 +33,12 @@ class DocenteController extends Controller
     public function cambioContraseña(Request $request)
     {
         $this->validate($request, [
-            'contraseña_nueva' => 'required',
+            'contraseña_nueva' => 'required|max:20|min:8',
             'contraseña_confirmar' => 'required',
         ], [
-            "contraseña_nueva.required" => "La fecha no es valida",
-            "contraseña_confirmar.required" => "La fecha no es valida",
+            "contraseña_nueva.required" => "La contraseña no es valida",
+            'contraseña_confirmar.required' => 'Debes confirmar la contraseña',
+            'contraseña_nueva.min' => 'La contraseña no cumple con los requisitos minimos, introduce una de por lo menos 8 caracteres',
         ]);
 
         if ($request->input('contraseña_nueva') != $request->input('contraseña_confirmar')) {
@@ -60,10 +64,17 @@ class DocenteController extends Controller
 
     public function buscarReporteAlumno(Request $request)
     {
+        if($request->input('alumnos')==0){
+            return back()->with('warning_reporte','Selecciona un alumno');
+        }
+        if($request->input('trimestre')==0){
+            return back()->with('warning_reporte','Selecciona un trimestre');
+        }
         $alumno_id = $request->input('alumnos');
         $evaluations = Evaluacion::where('alumno_id', $request->input('alumnos'))->get();
         $trimestre = $request->input('trimestre');
-        if (count($evaluations) > 0) {
+        $evalua = Evaluacion::where('alumno_id', $request->input('alumnos'))->where('trimestre',$trimestre)->get();
+        if (count($evalua) > 0) {
             $evaluacion1 = "";
             $evaluacion2 = "";
             $evaluacion3 = "";
@@ -157,7 +168,13 @@ class DocenteController extends Controller
     public function PDFReporteAlumno($id){
         $student = Alumno::find($id);
         $evaluaciones = Evaluacion::where('alumno_id',$id)->get();
-        $view =  \View::make('evaluacion', compact('evaluaciones','student'))->render();
+        $inasistencias = count(Asistencia::where('alumno_id',$id)->where('asistio','no')->get());
+        $total_dias = count(Asistencia::where('alumno_id',$id)->get());
+        $aceptable = count(EntregaTarea::where('alumno_id',$id)->where('entrego',1)->get());
+        $medio = count(EntregaTarea::where('alumno_id',$id)->where('entrego',2)->get());
+        $deficiente = count(EntregaTarea::where('alumno_id',$id)->where('entrego',3)->get());
+        $no_entrego = count(EntregaTarea::where('alumno_id',$id)->where('entrego',4)->get());
+        $view =  \View::make('evaluacion', compact('evaluaciones','student','inasistencias','aceptable','medio','deficiente','no_entrego','total_dias'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
         return $pdf->stream('Reporte de Evaluacion-'.$id.'.pdf');

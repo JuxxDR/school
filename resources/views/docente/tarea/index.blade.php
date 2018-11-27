@@ -6,6 +6,19 @@
     <div id="content">
         <div class="container">
             <div class="card">
+                @if(count($errors)>0)
+                    <div class="alert alert-dismissible alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Oh no!</strong> <a href="#" class="alert-link">Comprueba si los datos
+                            introducidos son
+                            correctos </a> e intentalo de nuevo.
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="container">
                     <br>
                     <h1 style="text-align: center">Tareas

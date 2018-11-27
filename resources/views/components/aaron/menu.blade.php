@@ -27,13 +27,7 @@
                    class="dropdown-toggle">Administrar</a>
                 <ul class="collapse list-unstyled" id="adminSubmenu">
                     <li>
-                        <a href="{{ route('admin_docentes') }}">Docentes</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin_grupos') }}">Grupos</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin_reportes') }}">Reportes de Evaluación</a>
+                        <a href="{{ route('admin_docentes') }}">Docentes/Grupos/Reportes</a>
                     </li>
                 </ul>
             </li>

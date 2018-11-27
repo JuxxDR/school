@@ -1,5 +1,6 @@
 $(function () {
-    $('[data-anuncio]').on('click', AnuncioModal)
+    $('[data-anuncio]').on('click', AnuncioModal);
+
 });
 
 function AnuncioModal() {
