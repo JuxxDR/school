@@ -210,7 +210,7 @@
 <table id="asistencias">
     <tr>
         <td rowspan="2" style="background-color: #f2f2f2;text-align: center;">Inasistencias</td>
-        <td style="padding-bottom: 0px;text-align: center;">{{ $inasistencias }}</td>
+        <td style="padding-bottom: 0px;text-align: center;">{{ $inasistencias }}/{{ $total_dias }}</td>
         <td rowspan="2" style="background-color: #f2f2f2;text-align: center;">Registro de Tareas</td>
         <td style="padding-bottom: 0px;text-align: center;">{{ $aceptable }}</td>
         <td style="padding-bottom: 0px;text-align: center;">{{ $medio }}</td>

@@ -169,11 +169,12 @@ class DocenteController extends Controller
         $student = Alumno::find($id);
         $evaluaciones = Evaluacion::where('alumno_id',$id)->get();
         $inasistencias = count(Asistencia::where('alumno_id',$id)->where('asistio','no')->get());
+        $total_dias = count(Asistencia::where('alumno_id',$id)->get());
         $aceptable = count(EntregaTarea::where('alumno_id',$id)->where('entrego',1)->get());
         $medio = count(EntregaTarea::where('alumno_id',$id)->where('entrego',2)->get());
         $deficiente = count(EntregaTarea::where('alumno_id',$id)->where('entrego',3)->get());
         $no_entrego = count(EntregaTarea::where('alumno_id',$id)->where('entrego',4)->get());
-        $view =  \View::make('evaluacion', compact('evaluaciones','student','inasistencias','aceptable','medio','deficiente','no_entrego'))->render();
+        $view =  \View::make('evaluacion', compact('evaluaciones','student','inasistencias','aceptable','medio','deficiente','no_entrego','total_dias'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
         return $pdf->stream('Reporte de Evaluacion-'.$id.'.pdf');
