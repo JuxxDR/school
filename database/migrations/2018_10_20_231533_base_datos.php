@@ -366,7 +366,7 @@ class BaseDatos extends Migration
 
             $table->string('nombre');
             $table->string('informacion');
-            $table->string('observaciones');
+            $table->string('observaciones')->nullable();
             $table->smallInteger('importancia');
             $table->timestamps();
         });
@@ -378,7 +378,7 @@ class BaseDatos extends Migration
 
             $table->string('nombre');
             $table->string('informacion');
-            $table->string('observaciones');
+            $table->string('observaciones')->nullable();
             $table->smallInteger('importancia');
             $table->timestamps();
         });
@@ -387,7 +387,7 @@ class BaseDatos extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('informacion');
-            $table->string('observaciones');
+            $table->string('observaciones')->nullable();
             $table->smallInteger('importancia');
             $table->timestamps();
         });

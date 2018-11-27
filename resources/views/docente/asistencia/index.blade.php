@@ -12,6 +12,20 @@
             <div class="card">
                 <div class="container">
                     <br>
+                    @if(session('notification'))
+                        <div class="alert alert-dismissible alert-warning" style="margin-bottom: 0px">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Alerta! </strong><br>
+                            {{ session('notification') }}
+                        </div>
+                    @endif
+                    @if(session('asistencia_warning'))
+                        <div class="alert alert-dismissible alert-warning" style="margin-bottom: 0px">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Alerta! </strong><br>
+                            {{ session('asistencia_warning') }}
+                        </div>
+                    @endif
                     <h1 style="text-align: center;">Lista de asistencia</h1>
                     <h2 style="text-align: center;">Jardin de Niños: "Profa. Ma. Luisa Ballina Escartin" </h2>
                     <img class="card-img-top" src="{{ asset('img/niños.png') }}" alt="Card image" style="width:100%">
@@ -48,13 +62,7 @@
                     </div>
                 </div>
 
-                @if(session('notification'))
-                    <div class="alert alert-dismissible alert-warning" style="margin-bottom: 0px">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong>Alerta! </strong><br>
-                        {{ session('notification') }}
-                    </div>
-                @endif
+
                 @if( $realizada == 0 )
                     <form action="asistencia/guardar" method="POST">
                         {{ csrf_field() }}
@@ -82,17 +90,17 @@
                             @endforeach
                             </tbody>
                         </table>
-                        <button class="btn btn-primary" style="float: right;" type="submit">Guardar</button>
+                        <div class="container">
+                            <button class="btn btn-success" style="float: right;" type="submit">Guardar</button>
+                        </div>
+                        <br>
+                        <br>
                     </form>
                 @else
                     <div class="alert alert-dismissible alert-info text-center" style="margin-bottom: 0px">
                         <h4>Ya pasaste lista el dia de hoy</h4>
                         <p style="color: black">Recuerda que solo puedes registrar asistencia de tu grupo una vez al
                             dia.</p>
-                        <p style="text-align: right;font-size: 11pt;color: black;">Si deseas consultar las listas de
-                            asistencia, puedes hacerlo dando click <strong><a href=""
-                                                                              style="color: dodgerblue">aqui</a></strong>.
-                        </p>
                     </div>
                 @endif
             </div>

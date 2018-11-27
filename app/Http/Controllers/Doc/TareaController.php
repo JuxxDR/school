@@ -67,13 +67,18 @@ class TareaController extends Controller
         $group_id = $group_id->id;
         $students = GrupoAlumno::where('grupo_id', $group_id)->get();
         foreach ($students as $student) {
+            if ($request->input('entrega' . $student->alumno_id)==0){
+                return back()->with('warning_tarea','Registra la entrega de todos los alumnos');
+            }
+        }
+        foreach ($students as $student) {
             $entrega = new EntregaTarea();
             $entrega->alumno_id = $student->alumno_id;
             $entrega->entrego = $request->input('entrega' . $student->alumno_id);
             $entrega->tarea_id = $request->input('tarea_id');
             $entrega->save();
         }
-        return back()->with('confirmation', 'Tarea Registrado');
+        return back()->with('confirmation', 'Tarea Registrada');
     }
 
     public function descargaPDF(Request $request)

@@ -8,7 +8,8 @@
     <div class="container">
         <div class="container">
             <br>
-            <div id="demo" class="carousel slide" data-ride="carousel">
+            <center>
+            	<div id="demo" class="carousel slide" data-ride="carousel" style="width: 750px;height: 400px;">
 
                 <!-- Indicators -->
                 <ul class="carousel-indicators">
@@ -18,24 +19,24 @@
                 </ul>
 
                 <!-- The slideshow -->
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{{ asset('img/M1.jpg') }}" alt="Incentivacon" width="1000" height="450">
-                        <div class="carousel-caption">
+                <div class="carousel-inner" style="width: 750px;height: 400px;">
+                    <div class="carousel-item active" style="text-align: center;">
+                        <img src="{{ asset('img/M1.jpg') }}" alt="Incentivacon" width="750" height="400">
+                        <div class="carousel-caption" style="background-color: black; opacity: 0.6;">
                             <h3>Clases de incentivacion</h3>
                             <p>Conociendo las parte del cuerpo humano</p>
                         </div>
                     </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('img/M2.jpg') }}" alt="Herramientas" width="1000" height="450">
-                        <div class="carousel-caption">
+                    <div class="carousel-item" style="text-align: center;">
+                        <img src="{{ asset('img/M2.jpg') }}" alt="Herramientas" width="750" height="400">
+                        <div class="carousel-caption" style="background-color: black; opacity: 0.6;">
                             <h3>Exploracion de nuevas herramientas</h3>
                             <p>La importancia de reciclar</p>
                         </div>
                     </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('img/M3.jpg') }}" alt="Conocimientos" width="1000" height="450">
-                        <div class="carousel-caption">
+                    <div class="carousel-item" style="text-align: center;">
+                        <img src="{{ asset('img/M3.jpg') }}" alt="Conocimientos" width="750" height="400">
+                        <div class="carousel-caption" style="background-color: black; opacity: 0.6;">
                             <h3>Adquiriendo nuevos conocimientos</h3>
                             <p>los libros rifan</p>
                         </div>
@@ -50,6 +51,7 @@
                     <span class="carousel-control-next-icon"></span>
                 </a>
             </div>
+            </center>
         </div>
 
 

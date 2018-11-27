@@ -5,27 +5,32 @@
     <!-- Page Content  -->
     <div id="content">
         <div class="container">
-            <h2>Administrar Docentes</h2>
+            <h2><img src="{{ asset('img/manage.png') }}" style="width: 115px;"> Administración de Docentes y Grupos</h2>
+            @if(count(\App\Model\Grupo::all())!=count(\App\Model\Docente::where('role',1)->get()))
+                <br>
+                <a class="btn btn-info" title="Crear Grupo" href="grupos/crear" style="float: right">Crear Grupos</a>
+                <br>
+            @endif
             <br>
-            <a class="btn btn-info" title="Crear Grupo" href="grupos/crear" style="float: right">Crear Grupos</a>
-            <br><br>
             <div class="card">
                 @if(session('warning'))
                     <div class="alert alert-dismissible alert-warning" style="margin-bottom: 0px;">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong>Advertencia! </strong> <a href="#" class="alert-link">La acción no se ha ejecutado de manera
+                        <strong>Advertencia! </strong> <a href="#" class="alert-link">La acción no se ha ejecutado de
+                            manera
                             correcta </a><br>
                         {{ session('warning') }}
                     </div>
                 @endif
-                    @if(session('notification'))
-                        <div class="alert alert-dismissible alert-success" style="margin-bottom: 0px;">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            <strong>Informacion! </strong> <a href="#" class="alert-link">La acción se ha ejecutado de manera
-                                correcta </a><br>
-                            {{ session('notification') }}
-                        </div>
-                    @endif
+                @if(session('notification'))
+                    <div class="alert alert-dismissible alert-success" style="margin-bottom: 0px;">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Informacion! </strong> <a href="#" class="alert-link">La acción se ha ejecutado de
+                            manera
+                            correcta </a><br>
+                        {{ session('notification') }}
+                    </div>
+                @endif
                 @if(count($errors)>0)
                     <div class="alert alert-dismissible alert-danger">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -41,21 +46,20 @@
                 <table class="table" id="lista_docentes" style="margin-top: 0px;">
                     <thead class="thead-dark">
                     <tr>
-                        <th>No. Docente</th>
                         <th>Nombre del Docente</th>
                         <th>Email</th>
                         <th>Grupo</th>
                         <th>Aula</th>
                         <th>Grado</th>
-                        <th>No. Alumnos</th>
-                        <th>Opciones</th>
+                        <th>Alumnos</th>
+                        <th style="width: 150px;">Opciones</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($docentes as $docente)
                         <tr>
-                            <td>{{ $docente->id }}</td>
-                            <td>{{ $docente->nombre .' '. $docente->apellidoP .' '. $docente->apellidoM }}</td>
+                            <td>{{ $docente->id }}
+                                .- {{ $docente->nombre .' '. $docente->apellidoP .' '. $docente->apellidoM }}</td>
                             <td>{{ $docente->email }}</td>
                             @if(\App\Model\Grupo::where('docente_id',$docente->id)->first())
                                 <td>{{ \App\Model\Grupo::where('docente_id',$docente->id)->first()->id }}</td>
@@ -75,6 +79,10 @@
                                 </button>
                                 <a class="btn btn-sm btn-danger" title="Eliminar"
                                    href="eliminarD/{{ $docente->id }}"><span class="fa fa-remove"></span></a>
+                                @if(count(\App\Model\Grupo::all())==count(\App\Model\Docente::where('role',1)->get()))
+                                    <a class="btn btn-sm btn-success" title="Ver Grupo"
+                                       href="grupo/{{ $docente->id }}"><span class="fa fa-group"></span></a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
@@ -82,7 +90,7 @@
                 </table>
             </div>
             <br>
-            <h2>Crear Docente</h2>
+            <h2><img src="{{ asset('img/add.png') }}" style="width: 90px;"> Agregar Docente</h2>
             <br>
             <div class="card">
                 <div class="card-body">
@@ -132,6 +140,49 @@
                     </form>
                 </div>
             </div>
+            <br>
+            <h2><img src="{{ asset('img/reporte.png') }}" style="width: 90px;"> Reportes de Evaluacion</h2>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            @if(count(\App\model\Trimestre::all())!=0)
+                                @if(\App\model\Trimestre::where('trimestre',3)->first())
+
+                                @elseif(\App\model\Trimestre::where('trimestre',2)->first())
+                                    <a class="btn btn-success" href="tercerTrimestre">Habilitar Tercer Trimestre</a>
+                                @elseif(\App\model\Trimestre::where('trimestre',1)->first())
+                                    <a class="btn btn-success" href="segundoTrimestre">Habilitar Segundo Trimestre</a>
+                                @endif
+                            @else
+                                <a class="btn btn-success" href="primerTrimestre">Habilitar Primer Trimestre</a>
+                            @endif
+                        </div>
+                        <div class="col-md-9">
+                            @if(count(\App\model\Trimestre::all())!=0)
+                                @if(\App\model\Trimestre::where('trimestre',3)->first())
+                                    <div class="alert alert-dismissible alert-info" style="margin-bottom: 0px;">
+                                        <strong>Tercer trimestre habilitado</strong>
+                                    </div>
+                                @elseif(\App\model\Trimestre::where('trimestre',2)->first())
+                                    <div class="alert alert-dismissible alert-info" style="margin-bottom: 0px;">
+                                        <strong>Segundo trimestre habilitado</strong>
+                                    </div>
+                                @elseif(\App\model\Trimestre::where('trimestre',1)->first())
+                                    <div class="alert alert-dismissible alert-info" style="margin-bottom: 0px;">
+                                        <strong>Primer trimestre habilitado</strong>
+                                    </div>
+                                @endif
+                            @else
+                                <div class="alert alert-dismissible alert-info" style="margin-bottom: 0px;">
+                                    <strong>No has habilitado ningun trimestre para evaluación!</strong>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -151,7 +202,6 @@
                             <div class="form-group">
                                 <label for="email">Email:</label>
                                 <input type="text" class="form-control" id="email"
-                                       placeholder="Introduce el nuevo email del docente"
                                        name="email">
                             </div>
                         </div>
@@ -175,5 +225,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/aaron.js') }}"></script>
+    <script src="{{ asset('js/docente.js') }}"></script>
 @endsection

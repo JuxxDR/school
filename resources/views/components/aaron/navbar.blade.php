@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary" style="margin-bottom: 0;">
+<nav class="navbar navbar-expand-lg " style="margin-bottom: 0;background-color: #014c8c;color: white">
     <a class="navbar-brand" href="#">SICESE</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

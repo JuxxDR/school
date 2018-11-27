@@ -5,10 +5,11 @@
     <!-- Page Content  -->
     <div id="content">
         <div class="container">
-            <h2>Notificaciones a Padres</h2>
+            <h2><img src="{{ asset('img/bell.png') }}" style="width: 95px;"> Notificaciones a Padres</h2>
             <br>
-            <a href="HistorialNotificaciones" class="btn btn-success" style="float: right">Historial de Anuncios</a>
+            <a href="HistorialNotificaciones" class="btn btn-info" style="float: right">Historial de Anuncios</a>
             <br>
+
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
@@ -21,8 +22,14 @@
                     <a class="nav-link" data-toggle="tab" href="#grupo">Grupo</a>
                 </li>
             </ul>
+            @if(session('notification'))
+                <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>{{ session('notification') }}! </strong>
+                </div>
+            @endif
 
-            <!-- Tab panes -->
+        <!-- Tab panes -->
             <div class="tab-content">
                 <div id="general" class="container tab-pane active"><br>
                     <h3>Anuncio General</h3>
@@ -90,35 +97,60 @@
                     <h3>Anuncio Especifico</h3>
                     <p>Este anuncio puede ser publicado a un alumno en especifico.</p>
                     <div class="card">
-                        <div class="card-body">
-                            @foreach($grupos as $grupo)
-                                <h3>{{ 'Grupo: '.$grupo->id }}</h3>
-                                <h4>{{ 'Aula: '.$grupo->aula }}</h4>
-                                <p>{{ 'No. Alumnos: '.$grupo->grupoAlumno->count() }}</p>
-                                <table class="table" id="lista_asistencias">
-                                    <thead class="thead-dark">
-                                    <tr>
-                                        <th>No. Control</th>
-                                        <th>Nombre Completo</th>
-                                        <th>Anuncio</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($grupo->grupoAlumno as $student)
-                                        <tr>
-                                            <td>{{ $student->alumnos->no_control }}</td>
-                                            <td>{{ $student->alumnos->nombre .' '. $student->alumnos->apellidoP .' '. $student->alumnos->apellidoM }}</td>
-                                            <td>
-                                                <button type="button" class="btn btn-sm btn-info" title="Anuncio"
-                                                        data-anuncio="{{ $student->alumno_id }}">
-                                                    <span class="fa fa-pencil"></span>
-                                                </button>
-                                            </td>
-                                        </tr>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <ul class="nav nav-pills flex-column">
+                                    @foreach($grupos as $grupo)
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="pill"
+                                               href="#grupo{{ $grupo->id }}">Grupo: {{ $grupo->id }}
+                                                Aula: {{ $grupo->aula }}</a>
+                                        </li>
                                     @endforeach
-                                    </tbody>
-                                </table>
-                            @endforeach
+                                </ul>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="tab-content">
+                                        <div class="container tab-pane active">
+                                            <div class="alert alert-dismissible alert-primary">
+                                                <strong>Selecciona un grupo! </strong><br>
+                                            </div>
+                                        </div>
+                                        @foreach($grupos as $grupo)
+                                            <div id="grupo{{ $grupo->id }}" class="container tab-pane fade">
+                                                <h3>{{ 'Grupo: '.$grupo->id }}</h3>
+                                                <h4>{{ 'Aula: '.$grupo->aula }}</h4>
+                                                <p>{{ 'No. Alumnos: '.$grupo->grupoAlumno->count() }}</p>
+                                                <table class="table" id="lista_asistencias">
+                                                    <thead class="thead-dark">
+                                                    <tr>
+                                                        <th>No. Control</th>
+                                                        <th>Nombre Completo</th>
+                                                        <th>Anuncio</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    @foreach($grupo->grupoAlumno as $student)
+                                                        <tr>
+                                                            <td>{{ $student->alumnos->no_control }}</td>
+                                                            <td>{{ $student->alumnos->nombre .' '. $student->alumnos->apellidoP .' '. $student->alumnos->apellidoM }}</td>
+                                                            <td>
+                                                                <button type="button" class="btn btn-sm btn-info"
+                                                                        title="Anuncio"
+                                                                        data-anuncio="{{ $student->alumno_id }}">
+                                                                    <span class="fa fa-pencil"></span>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -132,7 +164,7 @@
                                 <div class="form-group">
                                     <label for="grupo">Grupo:</label>
                                     <select class="form-control" name="grupo" id="grupo">
-                                        <option>Selecciona el grupo</option>
+                                        <option value="0">Selecciona el grupo</option>
                                         @foreach($grupos as $grupo)
                                             <option value="{{ $grupo->id }}">{{ $grupo->id }}</option>
                                         @endforeach

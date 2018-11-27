@@ -11,9 +11,11 @@
     @stack('css')
 </head>
 <body>
-<center>
-    <img src="{{ asset('img/ENCABEZADO3.jpg') }}" align=center width="100%" height="50%">
-</center>
+<div style="width: 100%;background-color: white;">
+    <center>
+        <img src="{{ asset('img/ENCABEZADO3.jpg') }}" align=center width="85%" height="30%">
+    </center>
+</div>
 @include('components.aaron.navbar')
 <div class="wrapper">
     @if(auth()->check())
