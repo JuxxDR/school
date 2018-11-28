@@ -312,13 +312,13 @@ unset($antecedentesVal['remember_token']);
     <div class="header"></div>
     <div id="datos-emergencia" class="new_page">
         <img src="{{asset('img/chido2.png')}}" alt="encabezado" width="100%">
-        <hr>
-        <h5><b>Contactos de emergencia</b></h5>
+        <hr style="border: solid grey; height: 0.5px ;color: gray">
+        <h5><b>Contactos de Emergencia</b></h5>
         <p style="font-size: 1em; text-align: justify;">
             1 )
             Nombre:
             <b>{{$emergencia->nombre1}}</b>
-            Patentezco:
+            Parentesco:
             <b>{{$emergencia->parentesco1}}</b>
             Teléfono fijo:
             <b>{{$emergencia->tel_fijo1}}</b>
@@ -329,11 +329,11 @@ unset($antecedentesVal['remember_token']);
             2 )
             Nombre:
             <b>{{$emergencia->nombre2}}</b>
-            Patentezco:
+            Parentesco:
             <b>{{$emergencia->parentesco2}}</b>
             Teléfono fijo:
             <b>{{$emergencia->tel_fijo2}}</b>
-            Celular
+            Celular:
             <b>{{$emergencia->celular2}}</b>
         </p>
     </div>
@@ -341,16 +341,14 @@ unset($antecedentesVal['remember_token']);
         <p style="font-size: 1em; text-align: justify;">
         <p>
             Me comprometo que en caso de algún cambio en mi número telefónico y/o domicilio, informaré inmediatamente
-            por escrito a la autoridad educativa”. Atendiendo al protocolo de atención en caso de emergencia y de seguro
+            por escrito a la autoridad educativa. Atendiendo al protocolo de atención en caso de emergencia y de seguro
             escolar.
-            <br>Nombre del padre o tutor:_____________________________________
-            <br>
-            <br>FIRMA DE ENTERADO ____________________________________________
+            <br>Nombre y firma del padre o tutor:_____________________________________
         </p>
     </div>
-    <div id="datos-eventos">
+    <div id="datos-eventos"><hr>
         <p style="font-size: 1em; text-align: justify;">
-        <h5><b>Posibilidad de participar en eventos</b></h5>
+        <h5><b>Posibilidad de Participar en Eventos</b></h5>
         Culturales:
         <b>{{$eventos->cultural?"Si":"No"}}</b>
         Deportivos:
@@ -365,51 +363,53 @@ unset($antecedentesVal['remember_token']);
         <b>{{$eventos->clase_abierta?"Si":"No"}}</b>
         Cívicos:
         <b>{{$eventos->civicos?"Si":"No"}}</b>
-        ¿Cuantas veces puede asisir?
+        ¿Cuantas veces puede asistir?
         <b>{{$eventos->pos_asistir}}</b>
         </p>
         <p style="font-size: 1em; text-align: justify;">
-            <br>
         <h6><b>1) ¿Como sugiere que se realice el mantenimiento y equipamiento de la escuela?</b></h6>
-        {{$eventos->manto_equip}}
+        &nbsp;&nbsp;{{$eventos->manto_equip}}
         </p>
         <p style="font-size: 1em; text-align: justify;">
         <h6><b>2) ¿Como seria su participación para lograr un espacio educativo digno?</b></h6>
-        {{$eventos->participacion}}
+        &nbsp;&nbsp;{{$eventos->participacion}}
         </p>
         <p style="font-size: 1em; text-align: justify;">
         <h6><b>3) ¿De que manera comprende mejor usted, acerca de los avances en los logros del aprendizaje de su
                 hijo(a)?</b></h6>
-        {{$eventos->avances}}
+        &nbsp;&nbsp;{{$eventos->avances}}
         </p>
         <p style="font-size: 1em; text-align: justify;">
         <h6><b>4) ¿Esta de acuerdo que la docente de su hijo(a) lo premie en algunas ocasiones con una etiqueta
                 adherible o con un dulce?</b></h6>
-        {{$eventos->premio}}
+        &nbsp;&nbsp;{{$eventos->premio}}
         </p>
         <p style="font-size: 1em; text-align: justify;">
         <h6><b>5) ¿A que me comprometo con el nuevo modelo educativo?</b></h6>
-        {{$eventos->compromiso}}
+        &nbsp;&nbsp;{{$eventos->compromiso}}
         </p>
         <p style="font-size: 1em; text-align: justify;">
         <h6><b>6) ¿De que manera considera que se debe dar la comunicación entre padres de familia y escuela?</b></h6>
-        {{$eventos->comunicacion}}
+        &nbsp;&nbsp;{{$eventos->comunicacion}}
         </p>
         <p style="font-size: 1em; text-align: justify;">
         <h6><b>7) ¿Cuales son sus expectativas de la Institución para este ciclo escolar?</b></h6>
-        {{$eventos->espectativa}}
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$eventos->espectativa}}
         </p>
 
     </div>
     <div class="footer"></div>
 
     <div id="datos-autorizadas" class="new_page">
-        <h5><b>Datos administrativos</b></h5>
+        <img src="{{asset('img/chido2.png')}}" alt="encabezado" width="100%">
+        <hr style="border: solid grey; height: 0.5px ;color: gray">
+        <h5><b>Datos Administrativos</b></h5>
+        <hr>
         <p style="font-size: 1em; text-align: justify;">
             PERSONAS AUTORIZADAS PARA RECOGER AL NIÑO:
             <br>
             <br>
-            ME COMPROMETO A DAR AISO A LA INSTITUCIÓN EN DADO CASO QUE NO PUEDA ASISTIR A RECOER A MI HIJO POR ALGUNA
+            ME COMPROMETO A DAR AVISO A LA INSTITUCIÓN EN DADO CASO QUE NO PUEDA ASISTIR A RECOGER A MI HIJO POR ALGUNA
             SITUACIÓN, SIENDO ESTAS LAS PERSONAS AUTORIZADAS ÚNICAMENTE PARA LLEVÁRSELO.
             <br>
             1.-{{$personasAut->nombre1}}
@@ -419,11 +419,11 @@ unset($antecedentesVal['remember_token']);
             3.-{{$personasAut->nombre3}}
             <br>
             4.-{{$personasAut->nombre4}}
-            <br>
+            <br><br>
             NOMBRE DEL PADRE O TUTOR: _________________________
             <br>
             <br>
-            FIRMA DE AUORIZACIÓN: _______________________
+            FIRMA DE AUtORIZACIÓN: _______________________
 
         </p>
     </div>
@@ -431,7 +431,7 @@ unset($antecedentesVal['remember_token']);
         <table>
             <thead>
             <tr style="text-align: center">
-                <th colspan="4"><b>Documentos entregados()</b></th>
+                <th colspan="4"><b>Documentos Entregados()</b></th>
             </tr>
             </thead>
             <tbody>
@@ -475,13 +475,16 @@ unset($antecedentesVal['remember_token']);
             “REGISTRO NACIONAL DE ALUMNOS (RNA) Y EL REGISTRO NACIONAL DE EMISIÓN, VALIDACIÓN E INSCRIPCIÓN DE
             DOCUMENTOS ACADÉMICOS (RODAC), SISTEMAS QUE HAN SIDO DEBIDAMENTE INSCRITOS EN EL LISTADO DE SISTEMAS DE
             DATOS PERSONALES ANTE EL INSTITUTO FEDERAL DE ACCESO A LA INFORMACION PUBLICA (IFAI) CON FECHA 8 DE JULIO DE
-            2009. www.ifai.org.mx http://www.controlescolar.sep.gob.mx ”
-        </p>
+            2009.<a>www.ifai.org.mx</a>  y <a>http://www.controlescolar.sep.gob.mx
+        </p></a>
     </div>
 
 
     <div id="datos-salud" class="new_page">
+        <img src="{{asset('img/chido2.png')}}" alt="encabezado" width="100%">
+        <hr style="border: solid grey; height: 0.5px ;color: gray">
         <h5><b>Historia Medica del Alumno</b></h5>
+        <hr>
         {{----}}
         <p style="font-size: 1em; text-align: justify;">
             Enfermedades que ha padecido:
@@ -609,6 +612,8 @@ unset($antecedentesVal['remember_token']);
 
 
     <div id="leyenda-4" class="new_page">
+        <img src="{{asset('img/chido2.png')}}" alt="encabezado" width="100%">
+        <hr style="border: solid grey; height: 0.5px ;color: gray">
         <p style="font-size: 1em; text-align: justify;">
             BAJO PROTESTA DE DECIR LA VERDAD MANIFIESTO QUE LAS RESPUESTAS DEL CUESTIONARIO CORRESPONDE A MI
             HIJO(A)<b> {{$alumno->nombre}} {{$alumno->apellidoP}} {{$alumno->apellidoM}}</b>
@@ -689,10 +694,12 @@ unset($antecedentesVal['remember_token']);
 
 
     <div id="leyenda-6" class="new_page">
-        <h6><b>AUTORIZACION DE REPRODUCCIÓN DE IMAGEN POR PARTE DEL PADRE O TUTOR DEL ALUMNO</b></h6>
-
+        <img src="{{asset('img/chido2.png')}}" alt="encabezado" width="100%">
+        <hr style="border: solid grey; height: 0.5px ;color: gray">
+        <h6><b>AUTORIZACIÓN DE REPRODUCCIÓN DE IMAGEN POR PARTE DEL PADRE O TUTOR</b></h6>
+        <hr>
         <p style="font-size: 1em; text-align: right;">
-            Toluca Méx a ____fecha: {{\Carbon\Carbon::now()->format('d-m-Y')}}
+            Toluca Méx a fecha: {{\Carbon\Carbon::now()->format('d-m-Y')}}
         </p>
         <p style="font-size: 1em; text-align: justify;">
             CLa (el) que suscribe,_________________________________en calidad de padre o tutor del (a)
@@ -737,8 +744,12 @@ unset($antecedentesVal['remember_token']);
     </div>
 
     <div id="leyenda-8" class="new_page">
+        <img src="{{asset('img/chido2.png')}}" alt="encabezado" width="100%">
+        <hr style="border: solid grey; height: 0.5px ;color: gray">
+        <h5><b>Datos de Acceso a Portal Web</b></h5>
+        <hr>
         <p style="font-size: 1em; text-align: justify;">
-            Una vez se ha completado el proceso de Inscripción/reinscripción, se ha otorgado un Numero de Alumno y
+            Una vez se ha completado el proceso de Inscripción/Reinscripción, se ha otorgado un Numero de Alumno y
             Contraseña, los cuales permitirán acceder a la plataforma para lograr visualizar el seguimiento del alumno,
             como también diversos avisos o notificaciones por parte de la institución. Esta informacion (No.Alumno y
             Contraseña) deberá guardarla en un lugar seguro ,pues se le solicitará en caso de acceder a la plataforma en
@@ -756,7 +767,7 @@ unset($antecedentesVal['remember_token']);
     </div>
 
     <div id="leyenda-7" style="border: 1px black solid; margin-top: 20px">
-        <h6 style="text-align: center"><b>Tarjeta de emergencia</b></h6>
+        <h6 style="text-align: center"><b>Tarjeta de Emergencia</b></h6>
         <table style="border: none;width: 100%">
             <thead>
             <tr>
@@ -767,7 +778,7 @@ unset($antecedentesVal['remember_token']);
             </thead>
             <tbody>
             <tr>
-                <td style="border: none">Nombre del alumno</td>
+                <td style="border: none">Nombre del Alumno</td>
                 <td colspan="3" style="border: none">
                     <b>{{$alumno->nombre}} {{$alumno->apellidoP}} {{$alumno->apellidoM}}</b></td>
             </tr>
@@ -794,7 +805,7 @@ unset($antecedentesVal['remember_token']);
                 <td style="border: none">Nombre del padre</td>
                 <td style="border: none"><b>{{$padre->nombre_completo}}</b></td>
 
-                <td style="border: none">Celuar</td>
+                <td style="border: none">Celular</td>
                 <td style="border: none"><b>{{$padre->celular}}</b></td>
             </tr>
             <tr>

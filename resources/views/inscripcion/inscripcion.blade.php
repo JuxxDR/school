@@ -60,7 +60,7 @@
                         'confirmation'=>$confirmation
                        ]):"#"}}"
                        role="tab"
-                       aria-selected="true">Alumno</a>
+                       aria-selected="true"><i class="fas fa-user"></i> &nbsp;Alumno</a>
                     <a class="list-group-item nav-link {{$select==2?'active':''}}"
                        href="{{($confirmation||Session::has('reinscripcion'))?
                        route('inscripcion_datos_salud',
@@ -71,7 +71,7 @@
                        ]):
                        "#"}}"
                        role="tab"
-                       aria-selected="false">Salud</a>
+                       aria-selected="false"><i class="fas fa-medkit"></i> &nbsp;Salud</a>
                     <a class="list-group-item nav-link {{$select==3?'active':''}}"
                        href="{{($confirmation||Session::has('reinscripcion'))?
                        route('inscripcion_datos_integracion',
@@ -82,7 +82,7 @@
                        ]):
                        "#"}}"
                        role="tab"
-                       aria-selected="false">Integración</a>
+                       aria-selected="false"><i class="fas fa-users"></i>  Integración familiar</a>
                     <a class="list-group-item nav-link {{$select==4?'active':''}}"
                        href="{{($confirmation||Session::has('reinscripcion'))?
                        route('inscripcion_datos_padres',
@@ -93,7 +93,7 @@
                        ]):
                        "#"}}"
                        role="tab"
-                       aria-selected="false">Padres</a>
+                       aria-selected="false"><i class="fas fa-user-friends"></i>  Padres</a>
 
                     <a class="list-group-item nav-link {{$select==5?'active':''}}"
                        href="{{($confirmation||Session::has('reinscripcion'))?
@@ -105,7 +105,7 @@
                        ]):
                        "#"}}"
                        role="tab"
-                       aria-selected="false">Emergencia</a>
+                       aria-selected="false"><i class="fas fa-hospital"></i> &nbsp;Emergencia</a>
                     <a class="list-group-item nav-link {{$select==6?'active':''}}"
                        href="{{($confirmation||Session::has('reinscripcion'))?
                        route('inscripcion_datos_personas_aut',
@@ -116,7 +116,7 @@
                        ]):
                        "#"}}"
                        role="tab"
-                       aria-selected="false">Personas autorizadas</a>
+                       aria-selected="false"><i class="fas fa-id-badge"></i> &nbsp;Personas autorizadas</a>
                     <a class="list-group-item nav-link {{$select==7?'active':''}}"
                        href="{{($confirmation||Session::has('reinscripcion'))?
                        route('inscripcion_datos_eventos',
@@ -127,7 +127,7 @@
                        ]):
                        "#"}}"
                        role="tab"
-                       aria-selected="false">Eventos</a>
+                       aria-selected="false"><i class="fas fa-calendar-alt"></i> &nbsp;Eventos</a>
                 </div>
             </div>
             <div class="col mt-3 ml-0 pl-0">

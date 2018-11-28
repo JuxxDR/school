@@ -23,14 +23,14 @@
                     <div class="carousel-item active" style="text-align: center;">
                         <img src="{{ asset('img/M1.jpg') }}" alt="Incentivacon" width="750" height="400">
                         <div class="carousel-caption" style="background-color: black; opacity: 0.6;">
-                            <h3>Clases de incentivacion</h3>
-                            <p>Conociendo las parte del cuerpo humano</p>
+                            <h3>Clases de integración</h3>
+                            <p>Favoreciendo el trabajo en equipo</p>
                         </div>
                     </div>
                     <div class="carousel-item" style="text-align: center;">
                         <img src="{{ asset('img/M2.jpg') }}" alt="Herramientas" width="750" height="400">
                         <div class="carousel-caption" style="background-color: black; opacity: 0.6;">
-                            <h3>Exploracion de nuevas herramientas</h3>
+                            <h3>Exploración de nuevas herramientas</h3>
                             <p>La importancia de reciclar</p>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                         <img src="{{ asset('img/M3.jpg') }}" alt="Conocimientos" width="750" height="400">
                         <div class="carousel-caption" style="background-color: black; opacity: 0.6;">
                             <h3>Adquiriendo nuevos conocimientos</h3>
-                            <p>los libros rifan</p>
+                            <p>Comprendiendo el entorno</p>
                         </div>
                     </div>
                 </div>
