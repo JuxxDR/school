@@ -21,23 +21,27 @@ class AsistenciaController extends Controller
 
     public function index()
     {
-        $user_id = auth()->user()->id;
-        $group_id = Grupo::where('docente_id', $user_id)->first();
-        $group_id = $group_id->id;
-        $students = GrupoAlumno::where('grupo_id', $group_id)->get();
-        $numero_alumnos=0;
-        foreach ($students as $alumnos) {
-            $numero_alumnos++;
+        if (count(Grupo::all())>0){
+            $user_id = auth()->user()->id;
+            $group_id = Grupo::where('docente_id', $user_id)->first();
+            $group_id = $group_id->id;
+            $students = GrupoAlumno::where('grupo_id', $group_id)->get();
+            $numero_alumnos=0;
+            foreach ($students as $alumnos) {
+                $numero_alumnos++;
+            }
+            $realizada = DiaAsistencia::where('fecha_entrega', date('Y-m-d'))->where('docente_id',$user_id)->first();
+            if ($realizada) {
+                $realizada = DiaAsistencia::where('fecha_entrega', date('Y-m-d'))->first()->realizada;
+            } else {
+                $realizada = 0;
+            }
+            $docente=Docente::find(auth()->user()->id);
+            $fechas=DiaAsistencia::where('docente_id',$docente->id)->get();
+            return view('docente.asistencia.index')->with(compact('students', 'realizada','docente','numero_alumnos','fechas'));
+        }else{
+            return redirect(route('docente_inicio'));
         }
-        $realizada = DiaAsistencia::where('fecha_entrega', date('Y-m-d'))->where('docente_id',$user_id)->first();
-        if ($realizada) {
-            $realizada = DiaAsistencia::where('fecha_entrega', date('Y-m-d'))->first()->realizada;
-        } else {
-            $realizada = 0;
-        }
-        $docente=Docente::find(auth()->user()->id);
-        $fechas=DiaAsistencia::where('docente_id',$docente->id)->get();
-        return view('docente.asistencia.index')->with(compact('students', 'realizada','docente','numero_alumnos','fechas'));
     }
 
     public function asistio($id)

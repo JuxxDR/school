@@ -8,15 +8,27 @@
             <a href="{{ route('docente_inicio') }}">Inicio</a>
         </li>
         @if(auth()->user()->is_teacher)
-            <li>
-                <a href="{{ route('asistencia_inicio') }}">Lista de asistencia</a>
-            </li>
-            <li>
-                <a href="{{ route('tarea_inicio') }}">Tareas</a>
-            </li>
-            <li>
-                <a href="{{ route('docente_reportes') }}">Reportes de evaluación</a>
-            </li>
+            @if(count(\App\Model\Grupo::all())==0)
+                <li>
+                    <a href="#" style="cursor: not-allowed;" class="isDisabled">Lista de asistencia</a>
+                </li>
+                <li>
+                    <a href="#" style="cursor: not-allowed;" class="isDisabled">Tareas</a>
+                </li>
+                <li>
+                    <a href="#" style="cursor: not-allowed;" class="isDisabled">Reportes de evaluación</a>
+                </li>
+            @else
+                <li>
+                    <a href="{{ route('asistencia_inicio') }}">Lista de asistencia</a>
+                </li>
+                <li>
+                    <a href="{{ route('tarea_inicio') }}">Tareas</a>
+                </li>
+                <li>
+                    <a href="{{ route('docente_reportes') }}">Reportes de evaluación</a>
+                </li>
+            @endif
         @endif
         @if(auth()->user()->is_admin)
             <li>

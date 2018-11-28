@@ -12,6 +12,7 @@ use App\model\Trimestre;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use PhpParser\Comment\Doc;
+use function Sodium\add;
 
 class AdminController extends Controller
 {
@@ -212,13 +213,33 @@ class AdminController extends Controller
         $segundoGrado = Alumno::where('grado', 2)->get();
         $tercerGrado = Alumno::where('grado', 3)->get();
 
+        $lista = array();
+        for ($i = 0; $i < $request->input('grupo1'); $i++) {
+            array_push($lista, $request->input('docente1' . $i));
+        }
+
+        for ($i = 0; $i < $request->input('grupo2'); $i++) {
+            array_push($lista, $request->input('docente2' . $i));
+        }
+
+        for ($i = 0; $i < $request->input('grupo3'); $i++) {
+            array_push($lista, $request->input('docente3' . $i));
+        }
+
+        $longitud = count($lista);
+        $unicos = array_unique($lista);
+        $longitudDeUnicos = count($unicos);
+        if($longitudDeUnicos!=$longitud){
+            return back()->with('warning', 'Debes seleccionar un docente diferente para cada grupo');
+        }
+
         for ($i = 0; $i < $request->input('grupo1'); $i++) {
             if ($request->input('docente1' . $i) == 0) {
                 $grupos = Grupo::all();
                 foreach ($grupos as $grupo) {
                     $grupo->delete();
                 }
-                return back()->with('warning', 'Debes eleccionar un docente para el grupo');
+                return back()->with('warning', 'Debes seleccionar un docente para el grupo');
             }
             $group = new Grupo();
             $group->docente_id = $request->input('docente1' . $i);
@@ -233,7 +254,7 @@ class AdminController extends Controller
                 foreach ($grupos as $grupo) {
                     $grupo->delete();
                 }
-                return back()->with('warning', 'Debes eleccionar un docente para el grupo');
+                return back()->with('warning', 'Debes seleccionar un docente para el grupo');
             }
             $group = new Grupo();
             $group->docente_id = $request->input('docente2' . $i);
@@ -247,7 +268,7 @@ class AdminController extends Controller
                 foreach ($grupos as $grupo) {
                     $grupo->delete();
                 }
-                return back()->with('warning', 'Debes eleccionar un docente para el grupo');
+                return back()->with('warning', 'Debes seleccionar un docente para el grupo');
             }
             $group = new Grupo();
             $group->docente_id = $request->input('docente3' . $i);
@@ -255,6 +276,7 @@ class AdminController extends Controller
             $group->grado = 3;
             $group->save();
         }
+
 
         $aux = Grupo::where('grado', 1)->get()->toArray();
         $length = count($aux);

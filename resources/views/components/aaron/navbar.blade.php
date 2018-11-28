@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar navbar-dark bg-success">
-    <a class="navbar-brand" href="#">SICESE</a>
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-info">
+    <a class="navbar-brand" href="/school/public/">SICESE</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -17,7 +17,7 @@
                     </li>
                 @endif
             @endif
-            <li @if(request()->is('docente_inicio')) class="nav-item active" @else class="nav-item" @endif>
+            <li @if(auth()->check()) class="nav-item active" @else class="nav-item" @endif>
                 @if(auth()->check())
                     <a class="nav-link"
                        href="{{ route('docente_inicio') }}">@if( \App\Model\Docente::find(auth()->user()->id)->role == 1 )

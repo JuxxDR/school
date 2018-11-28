@@ -54,12 +54,16 @@ class DocenteController extends Controller
 
     public function reportes()
     {
-        $user_id = auth()->user()->id;
-        $group_id = Grupo::where('docente_id', $user_id)->first();
-        $group_id = $group_id->id;
-        $students = GrupoAlumno::where('grupo_id', $group_id)->get();
-        $evaluaciones = "no";
-        return view('docente.reporte.index')->with(compact('students', 'evaluaciones'));
+        if(count(Grupo::all())>0){
+            $user_id = auth()->user()->id;
+            $group_id = Grupo::where('docente_id', $user_id)->first();
+            $group_id = $group_id->id;
+            $students = GrupoAlumno::where('grupo_id', $group_id)->get();
+            $evaluaciones = "no";
+            return view('docente.reporte.index')->with(compact('students', 'evaluaciones'));
+        }else{
+            return redirect(route('docente_inicio'));
+        }
     }
 
     public function buscarReporteAlumno(Request $request)
