@@ -13,7 +13,19 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
+
+Route::get('/historia', function () {
+    return view('historia');
+})->name('historia');
+
+Route::get('/programas', function () {
+    return view('programas');
+})->name('programas');
+
+Route::get('/contacto', function () {
+    return view('contacto');
+})->name('contacto');
 
 
 Route::get(
