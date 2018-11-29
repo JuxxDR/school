@@ -43,6 +43,16 @@ body {
     margin-bottom: 0;
 }
 
+#login, #loginD {
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #0056b3;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
 .contenedor:hover .imagen {-webkit-transform:scale(1.3);transform:scale(1.3);}
 .contenedor {overflow:hidden;}
 

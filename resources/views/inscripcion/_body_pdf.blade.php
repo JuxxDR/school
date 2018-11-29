@@ -82,7 +82,7 @@ unset($antecedentesVal['remember_token']);
     <div id="cabecera" style="text-align: right">
         <p style="">
             @if(Session::has('reinscripcion'))
-                <b>Ficha de reinscripción</b>
+                <b>Ficha de Reinscripción</b>
             @else
                 <b>Ficha de inscripción : {{$inscripcion->folio->folio}}</b>
             @endif
@@ -171,7 +171,7 @@ unset($antecedentesVal['remember_token']);
     </div>
     <div id="datos_padres">
         <h5><b>Núcleo familiar</b></h5>
-        <h6 style="margin-left: 10%"><b>•Madre</b></h6>
+        <h6 style="margin-left: 5%"><b>•Madre</b></h6>
         <p style="font-size: 1em; text-align: justify;">
             {{----}}
             Nombre:
@@ -204,7 +204,7 @@ unset($antecedentesVal['remember_token']);
             Red social :
             <b>{{$madre->red_social}}</b>
         </p>
-        <h6 style="margin-left: 10%"><b>Dirección</b></h6>
+        <h6 style="margin-left: 5%"><b>Dirección</b></h6>
         <p style="font-size: 1em; text-align: justify;">
             {{----}}
             Calle:
@@ -231,7 +231,7 @@ unset($antecedentesVal['remember_token']);
 
         </p>
         {{--PADRE--}}
-        <h6 style="margin-left: 10%"><b>•Padre</b></h6>
+        <h6 style="margin-left: 5%"><b>•Padre</b></h6>
         <p style="font-size: 1em; text-align: justify;">
             {{----}}
             Nombre:
@@ -264,7 +264,7 @@ unset($antecedentesVal['remember_token']);
             Red social :
             <b>{{$padre->red_social}}</b>
         </p>
-        <h6 style="margin-left: 10%"><b>Dirección</b></h6>
+        <h6 style="margin-left: 5%"><b>Dirección</b></h6>
         <p style="font-size: 1em; text-align: justify;">
             {{----}}
             Calle:
@@ -398,7 +398,7 @@ unset($antecedentesVal['remember_token']);
         </p>
 
     </div>
-    <div class="footer"></div>
+
 
     <div id="datos-autorizadas" class="new_page">
         <img src="{{asset('img/chido2.png')}}" alt="encabezado" width="100%">
@@ -411,7 +411,7 @@ unset($antecedentesVal['remember_token']);
             <br>
             ME COMPROMETO A DAR AVISO A LA INSTITUCIÓN EN DADO CASO QUE NO PUEDA ASISTIR A RECOGER A MI HIJO POR ALGUNA
             SITUACIÓN, SIENDO ESTAS LAS PERSONAS AUTORIZADAS ÚNICAMENTE PARA LLEVÁRSELO.
-            <br>
+            <br><br>
             1.-{{$personasAut->nombre1}}
             <br>
             2.-{{$personasAut->nombre2}}
@@ -502,7 +502,7 @@ unset($antecedentesVal['remember_token']);
             Caracteristicas especiales del niño:
             <b>{{$salud->carac_especial}}</b>
             {{----}}
-            Enfermedades que ha padecido el niño en los últimos 12 meses
+            Enfermedades que ha padecido el niño en los últimos 12 meses:
             <b>{{$salud->enfermedad_ult_mes}}</b>
 
             {{----}}
@@ -756,14 +756,10 @@ unset($antecedentesVal['remember_token']);
             línea, siendo único para cada alumno.
             <br>
             <br>
-        @if(!Session::has('reinscripcion'))
-            <h5><b>No. Alumno: {{$alumno->no_control}}</b></h5>
-            <h5><b>Contraseña: {{$alumno->password}}</b></h5>
             Datos de ingreso a plataforma web:
             </p>
             <h5><b>No. Alumno: {{$alumno->no_control}}</b></h5>
             <h5><b>Contraseña: {{$alumno->password}}</b></h5>
-        @endif
     </div>
 
     <div id="leyenda-7" style="border: 1px black solid; margin-top: 20px">
@@ -812,7 +808,7 @@ unset($antecedentesVal['remember_token']);
                 <td style="border: none">Nombre de la madre</td>
                 <td style="border: none"><b>{{$madre->nombre_completo}}</b></td>
 
-                <td style="border: none">Celuar</td>
+                <td style="border: none">Celular</td>
                 <td style="border: none"><b>{{$madre->celular}}</b></td>
             </tr>
             <tr>

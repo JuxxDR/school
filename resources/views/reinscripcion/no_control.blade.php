@@ -5,10 +5,12 @@
 @section('title', 'Reinscripción')
 
 @section('content')
+
     <div class="container">
         <div class="row" style="height: 614px">
 
             <div class="col-6 offset-3 mt-5">
+
                 <div class="card">
                     <div class="card-header text-center card bg-secondary" style="color: white">
                         <h3>Reinscripción</h3>
