@@ -161,7 +161,7 @@ class Lachida extends Migration
             $table->string('medico_familiar');
             $table->string('talla');
             $table->string('peso');
-            $table->string('recomendaciones_especiales');
+            $table->string('recomendaciones_especiales')->nullable();
 
             $table->rememberToken();
             $table->timestamps();

@@ -16,7 +16,7 @@
                         <h2 style="text-align: center">Nuestra Historia <img src="{{ asset('img/materiales.png') }}"
                                                                              alt="Card image" style="width:175px;">
                         </h2>
-                        <p style="text-align: justify">El <b style="color: black">Jardín de Niños Profra. Ma. Luisa Ballina Escartín</b> se
+                        <p style="text-align: justify; color: #777;">El <b style="color: black">Jardín de Niños Profra. Ma. Luisa Ballina Escartín</b> se
                             construye en
                             una
                             superficie de 1791 m2 , siendo un área de relleno sanitario el cual fue donado el día 17 de

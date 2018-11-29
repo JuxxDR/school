@@ -120,79 +120,90 @@ class AdminController extends Controller
 
     public function crearGrupos()
     {
-        $primerGrado = Alumno::where('grado', 1)->get();
-        $segundoGrado = Alumno::where('grado', 2)->get();
-        $tercerGrado = Alumno::where('grado', 3)->get();
-
-        $docente = Docente::where('role', 1)->get();
-        $mayor = 0;
-        if (count($docente) % 3 == 0) {
-            $grupo1 = count($docente) / 3;
-            $grupo2 = count($docente) / 3;
-            $grupo3 = count($docente) / 3;
-        } else if (count($docente) % 3 == 1) {
-            if (count($primerGrado) > count($segundoGrado)) {
-                if (count($primerGrado) > count($tercerGrado)) {
-                    //1mayor
-                    $mayor = 1;
-                    $grupo1 = floor(count($docente) / 3) + 1;
-                    $grupo2 = floor(count($docente) / 3);
-                    $grupo3 = floor(count($docente) / 3);
+        if (count(Docente::where('role', 1)->get()) >= 3) {
+            if (count(Alumno::all()) > 0) {
+                $primerGrado = Alumno::where('grado', 1)->get();
+                $segundoGrado = Alumno::where('grado', 2)->get();
+                $tercerGrado = Alumno::where('grado', 3)->get();
+                if (count($primerGrado) == 0 || count($segundoGrado) == 0 || count($tercerGrado) == 0) {
+                    return back()->with('warning', 'No hay alumnos inscritos en los 3 grados');
                 } else {
-                    //3mayor
-                    $mayor = 3;
-                    $grupo3 = floor(count($docente) / 3) + 1;
-                    $grupo2 = floor(count($docente) / 3);
-                    $grupo1 = floor(count($docente) / 3);
+                    $docente = Docente::where('role', 1)->get();
+                    $mayor = 0;
+                    if (count($docente) % 3 == 0) {
+                        $grupo1 = count($docente) / 3;
+                        $grupo2 = count($docente) / 3;
+                        $grupo3 = count($docente) / 3;
+                    } else if (count($docente) % 3 == 1) {
+                        if (count($primerGrado) > count($segundoGrado)) {
+                            if (count($primerGrado) > count($tercerGrado)) {
+                                //1mayor
+                                $mayor = 1;
+                                $grupo1 = floor(count($docente) / 3) + 1;
+                                $grupo2 = floor(count($docente) / 3);
+                                $grupo3 = floor(count($docente) / 3);
+                            } else {
+                                //3mayor
+                                $mayor = 3;
+                                $grupo3 = floor(count($docente) / 3) + 1;
+                                $grupo2 = floor(count($docente) / 3);
+                                $grupo1 = floor(count($docente) / 3);
+                            }
+                        } else {
+                            if (count($segundoGrado) > count($tercerGrado)) {
+                                //2mayor
+                                $mayor = 2;
+                                $grupo2 = floor(count($docente) / 3) + 1;
+                                $grupo1 = floor(count($docente) / 3);
+                                $grupo3 = floor(count($docente) / 3);
+                            } else {
+                                //3mayor
+                                $mayor = 3;
+                                $grupo3 = floor(count($docente) / 3) + 1;
+                                $grupo2 = floor(count($docente) / 3);
+                                $grupo1 = floor(count($docente) / 3);
+                            }
+                        }
+                    } else if (count($docente) % 3 == 2) {
+                        if (count($primerGrado) < count($segundoGrado)) {
+                            if (count($primerGrado) < count($tercerGrado)) {
+                                //1mayor
+                                $mayor = 1;
+                                $grupo1 = floor(count($docente) / 3);
+                                $grupo2 = floor(count($docente) / 3) + 1;
+                                $grupo3 = floor(count($docente) / 3) + 1;
+                            } else {
+                                //3mayor
+                                $mayor = 3;
+                                $grupo3 = floor(count($docente) / 3);
+                                $grupo2 = floor(count($docente) / 3) + 1;
+                                $grupo1 = floor(count($docente) / 3) + 1;
+                            }
+                        } else {
+                            if (count($segundoGrado) < count($tercerGrado)) {
+                                //2mayor
+                                $mayor = 2;
+                                $grupo2 = floor(count($docente) / 3);
+                                $grupo1 = floor(count($docente) / 3) + 1;
+                                $grupo3 = floor(count($docente) / 3) + 1;
+                            } else {
+                                //3mayor
+                                $mayor = 3;
+                                $grupo3 = floor(count($docente) / 3);
+                                $grupo2 = floor(count($docente) / 3) + 1;
+                                $grupo1 = floor(count($docente) / 3) + 1;
+                            }
+                        }
+                    }
+                    return view('admin.asigna')->with(compact('docente', 'grupo1', 'grupo2', 'grupo3'));
+                    //dd(count($primerGrado) . ' ' . count($segundoGrado) . ' ' . count($tercerGrado) . ' Docentes:' . count($docente).' Mayor/Menor:'.$mayor.' Grupo1:'.$grupo1.' Grupo2:'.$grupo2.' Grupo3:'.$grupo3);
                 }
             } else {
-                if (count($segundoGrado) > count($tercerGrado)) {
-                    //2mayor
-                    $mayor = 2;
-                    $grupo2 = floor(count($docente) / 3) + 1;
-                    $grupo1 = floor(count($docente) / 3);
-                    $grupo3 = floor(count($docente) / 3);
-                } else {
-                    //3mayor
-                    $mayor = 3;
-                    $grupo3 = floor(count($docente) / 3) + 1;
-                    $grupo2 = floor(count($docente) / 3);
-                    $grupo1 = floor(count($docente) / 3);
-                }
+                return back()->with('warning', 'No hay alumnos inscritos');
             }
-        } else if (count($docente) % 3 == 2) {
-            if (count($primerGrado) < count($segundoGrado)) {
-                if (count($primerGrado) < count($tercerGrado)) {
-                    //1mayor
-                    $mayor = 1;
-                    $grupo1 = floor(count($docente) / 3);
-                    $grupo2 = floor(count($docente) / 3) + 1;
-                    $grupo3 = floor(count($docente) / 3) + 1;
-                } else {
-                    //3mayor
-                    $mayor = 3;
-                    $grupo3 = floor(count($docente) / 3);
-                    $grupo2 = floor(count($docente) / 3) + 1;
-                    $grupo1 = floor(count($docente) / 3) + 1;
-                }
-            } else {
-                if (count($segundoGrado) < count($tercerGrado)) {
-                    //2mayor
-                    $mayor = 2;
-                    $grupo2 = floor(count($docente) / 3);
-                    $grupo1 = floor(count($docente) / 3) + 1;
-                    $grupo3 = floor(count($docente) / 3) + 1;
-                } else {
-                    //3mayor
-                    $mayor = 3;
-                    $grupo3 = floor(count($docente) / 3);
-                    $grupo2 = floor(count($docente) / 3) + 1;
-                    $grupo1 = floor(count($docente) / 3) + 1;
-                }
-            }
+        } else {
+            return back()->with('warning', 'El numero de docentes registrados en el sistema no cumple con lo establecido, deben ser minimo 3');
         }
-        return view('admin.asigna')->with(compact('docente', 'grupo1', 'grupo2', 'grupo3'));
-        //dd(count($primerGrado) . ' ' . count($segundoGrado) . ' ' . count($tercerGrado) . ' Docentes:' . count($docente).' Mayor/Menor:'.$mayor.' Grupo1:'.$grupo1.' Grupo2:'.$grupo2.' Grupo3:'.$grupo3);
     }
 
     public function asignarGrupos(Request $request)
@@ -245,86 +256,89 @@ class AdminController extends Controller
             $group->save();
         }
 
-        $aux = Grupo::where('grado',1)->get()->toArray();
+        $aux = Grupo::where('grado', 1)->get()->toArray();
         $length = count($aux);
-        $i=0;
+        $i = 0;
         foreach ($primerGrado as $student) {
-            if ($i==$length-1){
-                $i=0;
-            }else{
-                $i=$i+1;
+            if ($i == $length - 1) {
+                $i = 0;
+            } else {
+                $i = $i + 1;
             }
             $grupoAlumno = new GrupoAlumno();
-            $grupoAlumno->grupo_id=$aux[$i]['id'];
-            $grupoAlumno->alumno_id=$student->id;
+            $grupoAlumno->grupo_id = $aux[$i]['id'];
+            $grupoAlumno->alumno_id = $student->id;
             $grupoAlumno->save();
         }
 
-        $aux = Grupo::where('grado',2)->get()->toArray();
+        $aux = Grupo::where('grado', 2)->get()->toArray();
         $length = count($aux);
-        $i=0;
+        $i = 0;
         foreach ($segundoGrado as $student) {
-            if ($i==$length-1){
-                $i=0;
-            }else{
-                $i=$i+1;
+            if ($i == $length - 1) {
+                $i = 0;
+            } else {
+                $i = $i + 1;
             }
             $grupoAlumno = new GrupoAlumno();
-            $grupoAlumno->grupo_id=$aux[$i]['id'];
-            $grupoAlumno->alumno_id=$student->id;
+            $grupoAlumno->grupo_id = $aux[$i]['id'];
+            $grupoAlumno->alumno_id = $student->id;
             $grupoAlumno->save();
         }
 
-        $aux = Grupo::where('grado',3)->get()->toArray();
+        $aux = Grupo::where('grado', 3)->get()->toArray();
         $length = count($aux);
-        $i=0;
+        $i = 0;
         foreach ($tercerGrado as $student) {
-            if ($i==$length-1){
-                $i=0;
-            }else{
-                $i=$i+1;
+            if ($i == $length - 1) {
+                $i = 0;
+            } else {
+                $i = $i + 1;
             }
             $grupoAlumno = new GrupoAlumno();
-            $grupoAlumno->grupo_id=$aux[$i]['id'];
-            $grupoAlumno->alumno_id=$student->id;
+            $grupoAlumno->grupo_id = $aux[$i]['id'];
+            $grupoAlumno->alumno_id = $student->id;
             $grupoAlumno->save();
         }
 
         return redirect(route('admin_docentes'))->with('notification', 'Grupos Creados');
     }
 
-    public function grupoDocente($id){
-        $fechas=DiaAsistencia::where('docente_id',$id)->get();
+    public function grupoDocente($id)
+    {
+        $fechas = DiaAsistencia::where('docente_id', $id)->get();
         $docente = Docente::find($id);
-        $grupo_id = Grupo::where('docente_id',$id)->first()->id;
-        $tareas = Tarea::where('grupo_id',$grupo_id)->get();
-        $students = GrupoAlumno::where('grupo_id',$grupo_id)->get();
-        return view('admin.grupo')->with(compact('students','docente','fechas','tareas'));
+        $grupo_id = Grupo::where('docente_id', $id)->first()->id;
+        $tareas = Tarea::where('grupo_id', $grupo_id)->get();
+        $students = GrupoAlumno::where('grupo_id', $grupo_id)->get();
+        return view('admin.grupo')->with(compact('students', 'docente', 'fechas', 'tareas'));
     }
 
-    public function descargaAsistenciaPDF(Request $request){
+    public function descargaAsistenciaPDF(Request $request)
+    {
         $this->validate($request, [
             'fecha' => 'not_in:0',
         ], [
             "fecha.not_in" => "Debes seleccionar una fecha",
         ]);
-        $docente=Docente::find($request->input('docente_id'));
+        $docente = Docente::find($request->input('docente_id'));
         $group_id = Grupo::where('docente_id', $docente->id)->first()->id;
         $students = GrupoAlumno::where('grupo_id', $group_id)->get();
         $fecha_elegida = $request->input('fecha');
-        $numero_alumnos=0;
-        $si=0;
-        $no=0;
+        $numero_alumnos = 0;
+        $si = 0;
+        $no = 0;
         foreach ($students as $alumnos) {
             $numero_alumnos++;
         }
-        $view =  \View::make('docente.asistencia.registro', compact('students', 'fecha_elegida','docente','numero_alumnos','si','no'))->render();
+        $view = \View::make('docente.asistencia.registro', compact('students', 'fecha_elegida', 'docente', 'numero_alumnos', 'si', 'no'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
-        return $pdf->stream('Asistencia-'.$fecha_elegida.'.pdf');
+        return $pdf->stream('Asistencia-' . $fecha_elegida . '.pdf');
     }
 
-    public function descargaTareaPDF(Request $request){
+    public function descargaTareaPDF(Request $request)
+    {
         $this->validate($request, [
             'tarea_id' => 'not_in:0',
         ], [
@@ -344,7 +358,7 @@ class AdminController extends Controller
         foreach ($students as $alumnos) {
             $numero_alumnos++;
         }
-        $view = \View::make('docente.tarea.registro', compact('students', 'tarea', 'docente', 'numero_alumnos', 'aceptable', 'medio','deficiente','no_entregado'))->render();
+        $view = \View::make('docente.tarea.registro', compact('students', 'tarea', 'docente', 'numero_alumnos', 'aceptable', 'medio', 'deficiente', 'no_entregado'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
         return $pdf->stream('Tarea-' . $tarea_id . '.pdf');

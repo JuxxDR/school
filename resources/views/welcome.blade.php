@@ -68,7 +68,7 @@
                             <p class="card-text" style="text-align: justify" ><br>El Jardin de Niños Profra. Ma.Luisa Ballina Escartin es una institucion cuya misión es brindar un servicio educativo de calidad, en donde directivos y docentes, están comprometidos, a lograr los propósitos fundamentales de la educación preescolar, propiciando, ambientes de aprendizajes, atendiendo a la diversidad que los lleven al desarrollo de competencias, practica de valores generando  un deseo permanente  de aprender a aprender, aprender a convivir</p>
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="btn btn-light">Saber más..</a>
+                            <a href="historia" class="btn btn-light">Saber más..</a>
                         </div>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                             </ul>
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="btn btn-light">Conocer más...</a>
+                            <a href="programas" class="btn btn-light">Conocer más...</a>
                         </div>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                             <p class="card-text" style="text-align: justify;"><br>Plan de Texca No.100 Col. La Magdalena C.P:50010.<br>Tel: 2-80-16-80<br>Correo electrónico:<br>jnballina_escartin@hotmail.com</p>
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="btn btn-light">Contactar</a>
+                            <a href="contacto" class="btn btn-light">Contactar</a>
                         </div>
                     </div>
                 </div>

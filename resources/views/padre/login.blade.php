@@ -8,6 +8,13 @@
                 <div class="card">
                     <img src="{{ asset('img/logo.png') }}" class="avatar" alt="Avatar Image">
                     <div class="card-body">
+                        @if(session('warning'))
+                            <div class="alert alert-dismissible alert-warning" style="margin-bottom: 0px;">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Advertencia! </strong><br>
+                                {{ session('warning') }}
+                            </div>
+                        @endif
                         <form class="form-horizontal" method="POST" action="inicio">
                             {{ csrf_field() }}
                             <br>

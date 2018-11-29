@@ -6,9 +6,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('padre_login')}}">Tutores</a>
-            </li>
+            @if(count(\App\Model\Grupo::all())>=3)
+                @if(!auth()->check())
+                    <li @if(request()->is('padre_inicio') || request()->is('padre_login')) class="nav-item active"
+                        @else class="nav-item" @endif>
+                        <a class="nav-link" href="{{route('padre_login')}}">Tutores</a>
+                    </li>
+                @endif
+            @endif
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('docente_inicio') }}">Docente</a>
             </li>
