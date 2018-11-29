@@ -15,13 +15,17 @@ class TareaController extends Controller
 {
     public function index()
     {
-        $tareas = auth()->user()->grupo->tareas;
+        if(count(Grupo::all())>0){
+            $tareas = auth()->user()->grupo->tareas;
 
-        $user_id = auth()->user()->id;
-        $group_id = Grupo::where('docente_id', $user_id)->first();
-        $group_id = $group_id->id;
-        $students = GrupoAlumno::where('grupo_id', $group_id)->get();
-        return view('docente.tarea.index')->with(compact('tareas', 'students'));
+            $user_id = auth()->user()->id;
+            $group_id = Grupo::where('docente_id', $user_id)->first();
+            $group_id = $group_id->id;
+            $students = GrupoAlumno::where('grupo_id', $group_id)->get();
+            return view('docente.tarea.index')->with(compact('tareas', 'students'));
+        }else{
+            return redirect(route('docente_inicio'));
+        }
     }
 
     public function entrega($id_tarea)

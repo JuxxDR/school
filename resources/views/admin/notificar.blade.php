@@ -207,7 +207,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-success" style="float: right;">Publicar</button>
+                                <button type="submit" class="btn btn-success" style="float: right;" @if(count($grupos)==0) disabled @endif>Publicar</button>
                             </form>
                         </div>
                     </div>

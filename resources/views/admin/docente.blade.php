@@ -90,56 +90,59 @@
                 </table>
             </div>
             <br>
-            <h2><img src="{{ asset('img/add.png') }}" style="width: 90px;"> Agregar Docente</h2>
-            <br>
-            <div class="card">
-                <div class="card-body">
-                    @if(session('notification_crear'))
-                        <div class="alert alert-dismissible alert-info" style="margin-bottom: 0px;">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            <strong>Correcto</strong> <a href="#" class="alert-link">La acción se ha ejecutado de manera
-                                correcta </a><br>
-                            {{ session('notification_crear') }}
-                        </div>
-                    @endif
-                    <form action="docentes/crear" method="POST">
-                        {{ csrf_field() }}
-                        <div class="row">
-                            <div class="form-group col-md-4">
-                                <label for="name">Nombre:</label>
-                                <input type="text" class="form-control" id="name" placeholder="Introduce Nombre"
-                                       name="name">
+            @if(count(\App\Model\Grupo::all())==0)
+                <h2><img src="{{ asset('img/add.png') }}" style="width: 90px;"> Agregar Docente</h2>
+                <br>
+                <div class="card">
+                    <div class="card-body">
+                        @if(session('notification_crear'))
+                            <div class="alert alert-dismissible alert-info" style="margin-bottom: 0px;">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Correcto</strong> <a href="#" class="alert-link">La acción se ha ejecutado de
+                                    manera
+                                    correcta </a><br>
+                                {{ session('notification_crear') }}
                             </div>
-                            <div class="form-group col-md-4">
-                                <label for="apellidoP">Apellido Paterno:</label>
-                                <input type="text" class="form-control" id="apellidoP"
-                                       placeholder="Introduce Apellido Paterno"
-                                       name="apellidoP">
+                        @endif
+                        <form action="docentes/crear" method="POST">
+                            {{ csrf_field() }}
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="name">Nombre:</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Introduce Nombre"
+                                           name="name">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="apellidoP">Apellido Paterno:</label>
+                                    <input type="text" class="form-control" id="apellidoP"
+                                           placeholder="Introduce Apellido Paterno"
+                                           name="apellidoP">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="apellidoM">Apellido Materno:</label>
+                                    <input type="text" class="form-control" id="apellidoM"
+                                           placeholder="Introduce Apellido Materno"
+                                           name="apellidoM">
+                                </div>
                             </div>
-                            <div class="form-group col-md-4">
-                                <label for="apellidoM">Apellido Materno:</label>
-                                <input type="text" class="form-control" id="apellidoM"
-                                       placeholder="Introduce Apellido Materno"
-                                       name="apellidoM">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="email2">Email:</label>
+                                    <input type="text" class="form-control" id="email2" placeholder="Introduce email"
+                                           name="email2">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="password2">Contraseña:</label>
+                                    <input type="text" class="form-control" id="password2"
+                                           placeholder="Introduce Contraseña"
+                                           name="password2" value="{{ str_random(8) }}">
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="email2">Email:</label>
-                                <input type="text" class="form-control" id="email2" placeholder="Introduce email"
-                                       name="email2">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="password2">Contraseña:</label>
-                                <input type="text" class="form-control" id="password2"
-                                       placeholder="Introduce Contraseña"
-                                       name="password2" value="{{ str_random(8) }}">
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-success" style="float: right">Guardar Docente</button>
-                    </form>
+                            <button type="submit" class="btn btn-success" style="float: right">Guardar Docente</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            @endif
             <br>
             <h2><img src="{{ asset('img/reporte.png') }}" style="width: 90px;"> Reportes de Evaluacion</h2>
             <br>

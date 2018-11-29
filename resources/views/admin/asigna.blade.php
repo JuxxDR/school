@@ -12,11 +12,11 @@
                 <div class="card-body">
                     <h2>Creacion de Grupos</h2>
                     @if(session('warning'))
-                        <div class="alert alert-dismissible alert-info">
+                        <div class="alert alert-dismissible alert-warning">
                             <button type="button" class="close" data-dismiss="alert">&times;</button>
                             <strong>Advertencia!</strong> <a href="#" class="alert-link">La acción no se ha ejecutado de
                                 manera
-                                correcta </a>
+                                correcta </a><br>
                             {{ session('warning') }}
                         </div>
                     @endif
@@ -104,10 +104,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                <hr>
                             @endfor
                             <button type="submit" class="btn btn-success" style="float: right">Asignar Grupos</button>
-                            <br>
+                            <br><br>
                         </form>
                     @else
                         <div class="alert alert-dismissible alert-danger">
